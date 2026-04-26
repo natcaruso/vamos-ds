@@ -49,8 +49,8 @@
 
   /* ─── Outline (blue) variant tokens ─── */
   --btn-outline-bg:               transparent;
-  --btn-outline-bg-hover:         var(--vamos-ant-blue-1);
-  --btn-outline-bg-pressed:       var(--vamos-ant-blue-2);
+  --btn-outline-bg-hover:         var(--action-lightblue-bg);
+  --btn-outline-bg-pressed:       var(--action-lightblue-bg-pressed);
   --btn-outline-bg-disabled:      transparent;
   --btn-outline-fg:               var(--action-blue-bg);
   --btn-outline-fg-disabled:      var(--text-disabled);
@@ -63,7 +63,7 @@
   --btn-ghost-bg-hover:         var(--overlay-disabled);
   --btn-ghost-bg-pressed:       var(--vamos-overlay-10);
   --btn-ghost-bg-disabled:      transparent;
-  --btn-ghost-fg:               var(--action-blue-bg);
+  --btn-ghost-fg:               var(--vamos-brand-grey);
   --btn-ghost-fg-disabled:      var(--text-disabled);
 }
 
