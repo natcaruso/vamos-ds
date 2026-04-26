@@ -77,11 +77,15 @@
   --vamos-brand-pink:           #FF5983;
   --vamos-brand-grey:           #4E4E4E;
 
-  --vamos-brand-blue-pressed:   #0052CC;
-  --vamos-brand-green-pressed:  #15803D;
-  --vamos-brand-purple-pressed: #8B5CFF;
-  --vamos-brand-pink-pressed:   #F43F5E;
-  --vamos-brand-grey-pressed:   #3A3A3A;
+  --vamos-brand-blue-pressed:      #0052CC;
+  --vamos-brand-green-pressed:     #15803D;
+  --vamos-brand-purple-pressed:    #8B5CFF;
+  --vamos-brand-pink-pressed:      #F43F5E;
+  --vamos-brand-grey-pressed:      #3A3A3A;
+
+  /* Light tint of brand-blue — used for soft CTAs and tinted surfaces. */
+  --vamos-brand-lightblue:         #E9F0FE;
+  --vamos-brand-lightblue-pressed: #D0E0FF;
 
   /* ─── Palette · Ant Design 12 hues × 10 steps ───
    * Step 6 is the "primary" of each hue. Step 1 = lightest, step 10 = darkest.
@@ -383,6 +387,14 @@
   --action-grey-bg-disabled:  var(--vamos-surface-soft);
   --action-grey-fg:           var(--vamos-ink-inverse-100);
   --action-grey-fg-disabled:  var(--vamos-ink-45);
+
+  /* ─── Action · lightblue (soft CTA — light tint, blue label) ─── */
+  --action-lightblue-bg:           var(--vamos-brand-lightblue);
+  --action-lightblue-bg-hover:     var(--vamos-brand-lightblue-pressed);
+  --action-lightblue-bg-pressed:   var(--vamos-brand-lightblue-pressed);
+  --action-lightblue-bg-disabled:  var(--vamos-surface-soft);
+  --action-lightblue-fg:           var(--vamos-brand-blue);
+  --action-lightblue-fg-disabled:  var(--vamos-ink-45);
 
   /* ─── Feedback · status pairs (bg + fg, always used together) ─── */
   --feedback-info-bg:        var(--vamos-ant-blue-1);

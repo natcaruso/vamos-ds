@@ -10,19 +10,21 @@
 /* ─────────── 1 · PRIMITIVES ─────────── */
 
 export const brand = {
-  blue:   "#0066FE",
-  green:  "#16A34A",
-  purple: "#9863FF",
-  pink:   "#FF5983",
-  grey:   "#4E4E4E"
+  blue:      "#0066FE",
+  green:     "#16A34A",
+  purple:    "#9863FF",
+  pink:      "#FF5983",
+  grey:      "#4E4E4E",
+  lightblue: "#E9F0FE"
 } as const;
 
 export const brandPressed = {
-  blue:   "#0052CC",
-  green:  "#15803D",
-  purple: "#8B5CFF",
-  pink:   "#F43F5E",
-  grey:   "#3A3A3A"
+  blue:      "#0052CC",
+  green:     "#15803D",
+  purple:    "#8B5CFF",
+  pink:      "#F43F5E",
+  grey:      "#3A3A3A",
+  lightblue: "#D0E0FF"
 } as const;
 
 export const palette = {
@@ -146,7 +148,7 @@ const sharedDisabled = {
 };
 
 export const action: Record<
-  "blue" | "green" | "purple" | "pink" | "grey",
+  "blue" | "green" | "purple" | "pink" | "grey" | "lightblue",
   ActionRole
 > = {
   blue: {
@@ -182,6 +184,13 @@ export const action: Record<
     bgHover:   brandPressed.grey,
     bgPressed: brandPressed.grey,
     fg:        ink.inverse[100],
+    ...sharedDisabled
+  },
+  lightblue: {
+    bg:        brand.lightblue,
+    bgHover:   brandPressed.lightblue,
+    bgPressed: brandPressed.lightblue,
+    fg:        brand.blue,
     ...sharedDisabled
   }
 };

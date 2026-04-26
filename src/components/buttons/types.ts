@@ -6,6 +6,7 @@ export type ButtonVariant =
   | "purple"
   | "pink"
   | "grey"
+  | "lightblue"
   | "outline"
   | "ghost";
 

@@ -249,6 +249,23 @@
   color: var(--action-grey-fg-disabled);
 }
 
+.vds-btn--lightblue {
+  background: var(--action-lightblue-bg);
+  color: var(--action-lightblue-fg);
+}
+.vds-btn--lightblue:hover:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--action-lightblue-bg-hover);
+}
+.vds-btn--lightblue:active:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--action-lightblue-bg-pressed);
+  box-shadow: var(--shadow-pressed);
+}
+.vds-btn--lightblue[disabled],
+.vds-btn--lightblue[aria-disabled="true"] {
+  background: var(--action-lightblue-bg-disabled);
+  color: var(--action-lightblue-fg-disabled);
+}
+
 /* ──────────────────────────────────────────────────────────────────────
  * Variants — outline (blue) + ghost
  * ────────────────────────────────────────────────────────────────────── */

@@ -12,7 +12,7 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["blue", "green", "purple", "pink", "grey", "outline", "ghost"]
+      options: ["blue", "green", "purple", "pink", "grey", "lightblue", "outline", "ghost"]
     },
     size:      { control: "select", options: ["3xl", "2xl", "xl", "md"] },
     fullWidth: { control: "boolean" },
@@ -32,7 +32,7 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 const ALL_VARIANTS: ButtonVariant[] = [
-  "blue", "green", "purple", "pink", "grey", "outline", "ghost"
+  "blue", "green", "purple", "pink", "grey", "lightblue", "outline", "ghost"
 ];
 const ALL_SIZES: ButtonSize[] = ["3xl", "2xl", "xl", "md"];
 
@@ -51,13 +51,14 @@ export const Variants: Story = {
     <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "flex-start" }}>
       {ALL_VARIANTS.map((v) => (
         <Button key={v} variant={v} size="2xl">
-          {v === "blue"    && "Brand · blue"}
-          {v === "green"   && "Brand · green"}
-          {v === "purple"  && "Brand · purple"}
-          {v === "pink"    && "Brand · pink"}
-          {v === "grey"    && "Brand · grey"}
-          {v === "outline" && "Outline · blue"}
-          {v === "ghost"   && "Ghost"}
+          {v === "blue"      && "Brand · blue"}
+          {v === "green"     && "Brand · green"}
+          {v === "purple"    && "Brand · purple"}
+          {v === "pink"      && "Brand · pink"}
+          {v === "grey"      && "Brand · grey"}
+          {v === "lightblue" && "Brand · lightblue"}
+          {v === "outline"   && "Outline · blue"}
+          {v === "ghost"     && "Ghost"}
         </Button>
       ))}
     </div>
