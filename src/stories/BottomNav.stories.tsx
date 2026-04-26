@@ -11,6 +11,20 @@ const ITEMS: BottomNavItem[] = [
   { id: "profile", label: "Perfil",   avatarSrc: avatar, avatarAlt: "Ana Paula" }
 ];
 
+const ITEMS_WITH_BADGES: BottomNavItem[] = [
+  { id: "home",    label: "Início",   iconName: "home" },
+  { id: "agenda",  label: "Agenda",   iconName: "calendar_month", badge: 3 },
+  { id: "explore", label: "Explorar", iconName: "search", badge: "dot" },
+  { id: "profile", label: "Perfil",   avatarSrc: avatar, avatarAlt: "Ana Paula", badge: 128 }
+];
+
+const ITEMS_WITH_DISABLED: BottomNavItem[] = [
+  { id: "home",    label: "Início",   iconName: "home" },
+  { id: "agenda",  label: "Agenda",   iconName: "calendar_month" },
+  { id: "explore", label: "Explorar", iconName: "search", disabled: true },
+  { id: "profile", label: "Perfil",   avatarSrc: avatar, avatarAlt: "Ana Paula" }
+];
+
 const meta: Meta<typeof BottomNav> = {
   title: "Components/Bottom navigation",
   component: BottomNav,
@@ -23,13 +37,7 @@ type Story = StoryObj<typeof BottomNav>;
 export const Default: Story = {
   render: () => {
     const [active, setActive] = useState("home");
-    return (
-      <BottomNav
-        items={ITEMS}
-        activeId={active}
-        onSelect={setActive}
-      />
-    );
+    return <BottomNav items={ITEMS} activeId={active} onSelect={setActive} />;
   }
 };
 
@@ -41,6 +49,20 @@ export const ProfileActive: Story = {
   render: () => {
     const [active, setActive] = useState("profile");
     return <BottomNav items={ITEMS} activeId={active} onSelect={setActive} />;
+  }
+};
+
+export const WithBadges: Story = {
+  render: () => {
+    const [active, setActive] = useState("home");
+    return <BottomNav items={ITEMS_WITH_BADGES} activeId={active} onSelect={setActive} />;
+  }
+};
+
+export const WithDisabledItem: Story = {
+  render: () => {
+    const [active, setActive] = useState("home");
+    return <BottomNav items={ITEMS_WITH_DISABLED} activeId={active} onSelect={setActive} />;
   }
 };
 
@@ -64,10 +86,18 @@ export const InMobileFrame: Story = {
           padding: "0 0 24px"
         }}
       >
-        <div style={{ position: "absolute", inset: 0, padding: 24, color: "var(--text-tertiary)", font: "var(--fw-medium) 14px var(--font-sans)" }}>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            padding: 24,
+            color: "var(--text-tertiary)",
+            font: "var(--fw-medium) 14px var(--font-sans)"
+          }}
+        >
           Conteúdo da tela…
         </div>
-        <BottomNav items={ITEMS} activeId={active} onSelect={setActive} />
+        <BottomNav items={ITEMS_WITH_BADGES} activeId={active} onSelect={setActive} />
       </div>
     );
   }

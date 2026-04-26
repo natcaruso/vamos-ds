@@ -1,19 +1,28 @@
 /* ──────────────────────────────────────────────────────────────────────
  * BottomNav — pill-shaped tab bar.
  *
+ * Aesthetic: kinetic minimal. The active item earns a soft lightblue
+ * pill indicator behind its icon (the brand's "ink fill" gesture); tap
+ * presses scale the whole item down 4 % and spring back; optional
+ * notification badges sit at the corner of the icon. Motion is bound
+ * to the DS motion scale and respects prefers-reduced-motion.
+ *
  * Container: surface-default fill, full radius, soft shadow.
- * Item: stacked icon + label, text shifts from tertiary (rest) → primary
- * (active). Active item also flips the Material Symbol to its filled
- * variant — the accepted Material idiom for "selected".
+ * Item:      stacked icon + label, text shifts tertiary → primary on
+ *            active. Active item also flips Material Symbols to the
+ *            filled variant (the accepted Material idiom for
+ *            "selected").
  * ────────────────────────────────────────────────────────────────────── */
 
 :root {
+  /* Container ─── */
   --bottom-nav-bg:               var(--surface-default);
   --bottom-nav-radius:           var(--radius-full);
   --bottom-nav-padding-block:    var(--space-12);
   --bottom-nav-padding-inline:   var(--space-16);
   --bottom-nav-shadow:           var(--shadow-card);
 
+  /* Item ─── */
   --bottom-nav-item-padding-y:   var(--space-12);
   --bottom-nav-item-padding-x:   var(--space-16);
   --bottom-nav-item-gap:         var(--space-4);
@@ -25,7 +34,36 @@
 
   --bottom-nav-icon-size:        var(--icon-size-xl);
   --bottom-nav-avatar-size:      var(--icon-size-2xl);
+
+  /* Active indicator (lightblue pill behind the icon) ─── */
+  --bottom-nav-indicator-bg:         var(--action-lightblue-bg);
+  --bottom-nav-indicator-w:          var(--space-56);
+  --bottom-nav-indicator-h:          var(--space-32);
+  --bottom-nav-indicator-radius:     var(--radius-full);
+  --bottom-nav-indicator-rest-scale: 0.6;
+
+  /* Press / disabled ─── */
+  --bottom-nav-press-scale:      0.96;
+  --bottom-nav-disabled-opacity: 0.5;
+
+  /* Badge ─── */
+  --bottom-nav-badge-bg:         var(--vamos-brand-pink);
+  --bottom-nav-badge-fg:         var(--vamos-ink-inverse-100);
+  --bottom-nav-badge-radius:     var(--radius-full);
+  --bottom-nav-badge-h:          var(--space-16);
+  --bottom-nav-badge-min-w:      var(--space-16);
+  --bottom-nav-badge-padding-x:  var(--space-4);
+  --bottom-nav-badge-dot-size:   var(--space-8);
+  --bottom-nav-badge-fs:         var(--fs-caption);
+  --bottom-nav-badge-fw:         var(--fw-semibold);
+  --bottom-nav-badge-ring-width: var(--border-width-default);
+  --bottom-nav-badge-offset-y:   calc(-1 * var(--space-4));
+  --bottom-nav-badge-offset-x:   calc(-1 * var(--space-6));
 }
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Container
+ * ────────────────────────────────────────────────────────────────────── */
 
 .vds-bottom-nav {
   display: inline-flex;
@@ -50,7 +88,12 @@
   display: flex;
 }
 
+/* ──────────────────────────────────────────────────────────────────────
+ * Item
+ * ────────────────────────────────────────────────────────────────────── */
+
 .vds-bottom-nav__item {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,11 +108,14 @@
   color: var(--bottom-nav-item-fg);
   font: var(--fw-medium) var(--fs-body-sm)/var(--lh-body-sm) var(--font-sans);
   border-radius: var(--radius-16);
-  transition: color var(--motion-duration-fast) var(--motion-easing-standard);
   text-align: center;
+  transform-origin: center 60%;
+  transition:
+    color var(--motion-duration-fast) var(--motion-easing-standard),
+    transform var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
-.vds-bottom-nav__item:hover {
+.vds-bottom-nav__item:hover:not([disabled]) {
   color: var(--bottom-nav-item-fg-hover);
 }
 
@@ -77,16 +123,60 @@
   color: var(--bottom-nav-item-fg-active);
 }
 
+.vds-bottom-nav__item:active:not([disabled]) {
+  transform: scale(var(--bottom-nav-press-scale));
+}
+
+.vds-bottom-nav__item[disabled],
+.vds-bottom-nav__item[aria-disabled="true"] {
+  opacity: var(--bottom-nav-disabled-opacity);
+  cursor: not-allowed;
+}
+
 .vds-bottom-nav__item:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
 
+/* ──────────────────────────────────────────────────────────────────────
+ * Indicator pill (active state)
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-bottom-nav__indicator {
+  position: absolute;
+  top: var(--bottom-nav-item-padding-y);
+  left: 50%;
+  width: var(--bottom-nav-indicator-w);
+  height: var(--bottom-nav-indicator-h);
+  margin-left: calc(var(--bottom-nav-indicator-w) / -2);
+  border-radius: var(--bottom-nav-indicator-radius);
+  background: var(--bottom-nav-indicator-bg);
+  opacity: 0;
+  transform: scale(var(--bottom-nav-indicator-rest-scale));
+  transform-origin: center;
+  transition:
+    opacity var(--motion-duration-fast) var(--motion-easing-standard),
+    transform var(--motion-duration-base) var(--motion-easing-decelerate);
+  pointer-events: none;
+  z-index: var(--z-base);
+}
+
+.vds-bottom-nav__item[aria-current="page"] .vds-bottom-nav__indicator {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Media (icon + avatar wrapper)
+ * ────────────────────────────────────────────────────────────────────── */
+
 .vds-bottom-nav__media {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   height: var(--bottom-nav-avatar-size);
+  z-index: var(--z-raised);
 }
 
 .vds-bottom-nav__avatar {
@@ -94,4 +184,53 @@
   height: var(--bottom-nav-avatar-size);
   border-radius: var(--radius-full);
   object-fit: cover;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Badge
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-bottom-nav__badge {
+  position: absolute;
+  top: var(--bottom-nav-badge-offset-y);
+  right: var(--bottom-nav-badge-offset-x);
+  min-width: var(--bottom-nav-badge-min-w);
+  height: var(--bottom-nav-badge-h);
+  padding: 0 var(--bottom-nav-badge-padding-x);
+  background: var(--bottom-nav-badge-bg);
+  color: var(--bottom-nav-badge-fg);
+  border: var(--bottom-nav-badge-ring-width) solid var(--bottom-nav-bg);
+  border-radius: var(--bottom-nav-badge-radius);
+  font: var(--bottom-nav-badge-fw) var(--bottom-nav-badge-fs)/1 var(--font-sans);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.vds-bottom-nav__badge--dot {
+  min-width: var(--bottom-nav-badge-dot-size);
+  width: var(--bottom-nav-badge-dot-size);
+  height: var(--bottom-nav-badge-dot-size);
+  padding: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Reduced motion
+ * ────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .vds-bottom-nav__item,
+  .vds-bottom-nav__indicator {
+    transition: none;
+  }
+  .vds-bottom-nav__item:active:not([disabled]) {
+    transform: none;
+  }
+  .vds-bottom-nav__indicator {
+    transform: scale(1);
+  }
+  .vds-bottom-nav__item:not([aria-current="page"]) .vds-bottom-nav__indicator {
+    opacity: 0;
+  }
 }
