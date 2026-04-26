@@ -35,7 +35,13 @@ const FG_STEP_FOR_COLOR: Record<TagColor, number> = (() => {
   return out;
 })();
 
-export function Tag({ color = "neutral", leadingIcon, children, className }: TagProps) {
+export function Tag({
+  color = "neutral",
+  leadingIcon,
+  trailingIcon,
+  children,
+  className
+}: TagProps) {
   const hue = CSS_HUE[color];
   const fgStep = FG_STEP_FOR_COLOR[color] + 1; // ramps are 1-indexed in CSS
 
@@ -49,6 +55,7 @@ export function Tag({ color = "neutral", leadingIcon, children, className }: Tag
     <span className={["vds-tag", className].filter(Boolean).join(" ")} style={cssVars}>
       {leadingIcon && <span className="vds-tag__icon">{leadingIcon}</span>}
       <span className="vds-tag__label">{children}</span>
+      {trailingIcon && <span className="vds-tag__icon">{trailingIcon}</span>}
     </span>
   );
 }

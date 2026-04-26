@@ -65,6 +65,45 @@ export const WithLeadingIcon: Story = {
   )
 };
 
+export const WithTrailingIcon: Story = {
+  parameters: { layout: "padded" },
+  render: () => (
+    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <Tag color="blue" trailingIcon={<Icon name="chevron_right" size={iconSize.sm} weight={iconWeightForSize(iconSize.sm)} />}>
+        Beach Tennis
+      </Tag>
+      <Tag color="green" trailingIcon={<Icon name="check" size={iconSize.sm} weight={iconWeightForSize(iconSize.sm)} />}>
+        Confirmado
+      </Tag>
+      <Tag color="neutral" trailingIcon={<Icon name="open_in_new" size={iconSize.sm} weight={iconWeightForSize(iconSize.sm)} />}>
+        Detalhes
+      </Tag>
+    </div>
+  )
+};
+
+export const WithBothIcons: Story = {
+  parameters: { layout: "padded" },
+  render: () => (
+    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <Tag
+        color="purple"
+        leadingIcon={<Icon name="bolt" size={iconSize.sm} weight={iconWeightForSize(iconSize.sm)} />}
+        trailingIcon={<Icon name="chevron_right" size={iconSize.sm} weight={iconWeightForSize(iconSize.sm)} />}
+      >
+        Em progresso
+      </Tag>
+      <Tag
+        color="orange"
+        leadingIcon={<Icon name="schedule" size={iconSize.sm} weight={iconWeightForSize(iconSize.sm)} />}
+        trailingIcon={<Icon name="info" size={iconSize.sm} weight={iconWeightForSize(iconSize.sm)} />}
+      >
+        Quase lotado
+      </Tag>
+    </div>
+  )
+};
+
 export const AccessibilityAudit: Story = {
   parameters: { layout: "padded" },
   render: () => (

@@ -18,6 +18,7 @@ export type TagColor =
 export interface TagProps {
   color?: TagColor;
   leadingIcon?: ReactNode;
+  trailingIcon?: ReactNode;
   children: ReactNode;
   className?: string;
 }
