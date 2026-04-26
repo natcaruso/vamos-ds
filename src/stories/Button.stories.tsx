@@ -14,7 +14,7 @@ const meta: Meta<typeof Button> = {
       control: "select",
       options: ["blue", "green", "purple", "pink", "grey", "lightblue", "outline", "ghost"]
     },
-    size:      { control: "select", options: ["3xl", "2xl", "xl", "md"] },
+    size:      { control: "select", options: ["3xl", "2xl", "xl", "md", "sm"] },
     fullWidth: { control: "boolean" },
     disabled:  { control: "boolean" },
     children:  { control: "text" }
@@ -34,13 +34,14 @@ type Story = StoryObj<typeof Button>;
 const ALL_VARIANTS: ButtonVariant[] = [
   "blue", "green", "purple", "pink", "grey", "lightblue", "outline", "ghost"
 ];
-const ALL_SIZES: ButtonSize[] = ["3xl", "2xl", "xl", "md"];
+const ALL_SIZES: ButtonSize[] = ["3xl", "2xl", "xl", "md", "sm"];
 
 const sizeIcon = (s: ButtonSize) =>
   s === "3xl" ? iconSize.xl
   : s === "2xl" ? iconSize.lg
   : s === "xl" ? iconSize.md
-  : iconSize.sm;
+  : s === "md" ? iconSize.sm
+  : iconSize.xs;
 
 /* ─────────── Playground ─────────── */
 

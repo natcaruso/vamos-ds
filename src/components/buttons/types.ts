@@ -10,7 +10,7 @@ export type ButtonVariant =
   | "outline"
   | "ghost";
 
-export type ButtonSize = "3xl" | "2xl" | "xl" | "md";
+export type ButtonSize = "3xl" | "2xl" | "xl" | "md" | "sm";
 
 export interface ButtonProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "children"> {

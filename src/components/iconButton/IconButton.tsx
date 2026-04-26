@@ -6,10 +6,11 @@ import "../buttons/buttons.css";
 import "./iconButton.css";
 
 const SIZE_TO_ICON_PX: Record<IconButtonSize, number> = {
-  "2xl": iconSize.xl, /* 24 */
-  xl:    iconSize.lg, /* 20 */
-  md:    iconSize.md, /* 16 */
-  sm:    iconSize.sm  /* 14 */
+  "3xl": iconSize["2xl"], /* 32 */
+  "2xl": iconSize.xl,     /* 24 */
+  xl:    iconSize.lg,     /* 20 */
+  md:    iconSize.md,     /* 16 */
+  sm:    iconSize.sm      /* 14 */
 };
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(

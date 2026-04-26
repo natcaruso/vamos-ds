@@ -16,7 +16,7 @@ const meta: Meta<typeof IconButton> = {
       control: "select",
       options: ["blue", "green", "purple", "pink", "grey", "lightblue", "outline", "ghost"]
     },
-    size:        { control: "select", options: ["2xl", "xl", "md", "sm"] },
+    size:        { control: "select", options: ["3xl", "2xl", "xl", "md", "sm"] },
     iconWeight:  { control: "select", options: [100, 200, 300, 400, 500, 600, 700] },
     iconFilled:  { control: "boolean" },
     disabled:    { control: "boolean" }
@@ -38,7 +38,7 @@ type Story = StoryObj<typeof IconButton>;
 const ALL_VARIANTS: IconButtonVariant[] = [
   "blue", "green", "purple", "pink", "grey", "lightblue", "outline", "ghost"
 ];
-const ALL_SIZES: IconButtonSize[] = ["2xl", "xl", "md", "sm"];
+const ALL_SIZES: IconButtonSize[] = ["3xl", "2xl", "xl", "md", "sm"];
 
 export const Playground: Story = {};
 

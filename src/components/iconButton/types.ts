@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes } from "react";
 import type { ButtonVariant } from "../buttons";
 import type { IconWeight } from "../icon";
 
-export type IconButtonSize = "2xl" | "xl" | "md" | "sm";
+export type IconButtonSize = "3xl" | "2xl" | "xl" | "md" | "sm";
 export type IconButtonVariant = ButtonVariant;
 
 export interface IconButtonProps

@@ -12,16 +12,20 @@
   --ibtn-radius:        var(--radius-full);
   --ibtn-border-width:  var(--border-width-default);
 
-  /* ─── Per-size geometry (square: width = height) ─── */
-  --ibtn-h-2xl:    var(--space-48);
-  --ibtn-h-xl:     var(--space-40);
-  --ibtn-h-md:     var(--space-32);
-  --ibtn-h-sm:     var(--space-24);
+  /* ─── Per-size geometry (square: width = height). Heights bound to
+   *   the shared --control-h-* scale so IconButton stays in lock-step
+   *   with Button at every step. ─── */
+  --ibtn-h-3xl:    var(--control-h-3xl);
+  --ibtn-h-2xl:    var(--control-h-2xl);
+  --ibtn-h-xl:     var(--control-h-xl);
+  --ibtn-h-md:     var(--control-h-md);
+  --ibtn-h-sm:     var(--control-h-sm);
 
-  --ibtn-icon-2xl: var(--icon-size-xl); /* 24 */
-  --ibtn-icon-xl:  var(--icon-size-lg); /* 20 */
-  --ibtn-icon-md:  var(--icon-size-md); /* 16 */
-  --ibtn-icon-sm:  var(--icon-size-sm); /* 14 */
+  --ibtn-icon-3xl: var(--icon-size-2xl); /* 32 */
+  --ibtn-icon-2xl: var(--icon-size-xl);  /* 24 */
+  --ibtn-icon-xl:  var(--icon-size-lg);  /* 20 */
+  --ibtn-icon-md:  var(--icon-size-md);  /* 16 */
+  --ibtn-icon-sm:  var(--icon-size-sm);  /* 14 */
 
   --ibtn-icon-weight: 500;
 }
@@ -59,6 +63,7 @@
  * Sizes — width === height
  * ────────────────────────────────────────────────────────────────────── */
 
+.vds-icon-btn--3xl { width: var(--ibtn-h-3xl); height: var(--ibtn-h-3xl); }
 .vds-icon-btn--2xl { width: var(--ibtn-h-2xl); height: var(--ibtn-h-2xl); }
 .vds-icon-btn--xl  { width: var(--ibtn-h-xl);  height: var(--ibtn-h-xl);  }
 .vds-icon-btn--md  { width: var(--ibtn-h-md);  height: var(--ibtn-h-md);  }

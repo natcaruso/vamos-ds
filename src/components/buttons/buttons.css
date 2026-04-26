@@ -15,37 +15,43 @@
   --btn-fw:            var(--fw-bold);
   --btn-border-width:  var(--border-width-default);
 
-  /* ─── Per-size geometry ─── */
-  /* Heights map directly to the spacing scale (56 / 48 / 40 / 32). */
-  --btn-h-3xl:    var(--space-56);
-  --btn-h-2xl:    var(--space-48);
-  --btn-h-xl:     var(--space-40);
-  --btn-h-md:     var(--space-32);
+  /* ─── Per-size geometry — heights bound to the shared --control-h-*
+   *   scale so Button and IconButton stay aligned at every step. ─── */
+  --btn-h-3xl:    var(--control-h-3xl);
+  --btn-h-2xl:    var(--control-h-2xl);
+  --btn-h-xl:     var(--control-h-xl);
+  --btn-h-md:     var(--control-h-md);
+  --btn-h-sm:     var(--control-h-sm);
 
   --btn-px-3xl:   var(--space-24);
   --btn-px-2xl:   var(--space-20);
   --btn-px-xl:    var(--space-16);
   --btn-px-md:    var(--space-12);
+  --btn-px-sm:    var(--space-8);
 
   --btn-gap-3xl:  var(--space-8);
   --btn-gap-2xl:  var(--space-8);
   --btn-gap-xl:   var(--space-6);
   --btn-gap-md:   var(--space-4);
+  --btn-gap-sm:   var(--space-4);
 
-  --btn-fs-3xl:   var(--fs-h5);     /* 16 */
-  --btn-fs-2xl:   var(--fs-h5);     /* 16 */
-  --btn-fs-xl:    var(--fs-body-sm);/* 14 */
-  --btn-fs-md:    var(--fs-body-sm);/* 14 */
+  --btn-fs-3xl:   var(--fs-h5);      /* 16 */
+  --btn-fs-2xl:   var(--fs-h5);      /* 16 */
+  --btn-fs-xl:    var(--fs-body-sm); /* 14 */
+  --btn-fs-md:    var(--fs-body-sm); /* 14 */
+  --btn-fs-sm:    var(--fs-caption); /* 12 */
 
   --btn-lh-3xl:   var(--lh-h5);
   --btn-lh-2xl:   var(--lh-h5);
   --btn-lh-xl:    var(--lh-body-sm);
   --btn-lh-md:    var(--lh-body-sm);
+  --btn-lh-sm:    var(--lh-caption);
 
   --btn-icon-3xl: var(--icon-size-xl); /* 24 */
   --btn-icon-2xl: var(--icon-size-lg); /* 20 */
   --btn-icon-xl:  var(--icon-size-md); /* 16 */
   --btn-icon-md:  var(--icon-size-sm); /* 14 */
+  --btn-icon-sm:  var(--icon-size-xs); /* 12 */
   --btn-icon-weight: 500;              /* match bold label optically */
 
   /* ─── Outline (blue) variant tokens ─── */
@@ -155,6 +161,15 @@
   line-height: var(--btn-lh-md);
 }
 .vds-btn--md .vds-btn__icon { width: var(--btn-icon-md); height: var(--btn-icon-md); }
+
+.vds-btn--sm {
+  height: var(--btn-h-sm);
+  padding: 0 var(--btn-px-sm);
+  gap: var(--btn-gap-sm);
+  font-size: var(--btn-fs-sm);
+  line-height: var(--btn-lh-sm);
+}
+.vds-btn--sm .vds-btn__icon { width: var(--btn-icon-sm); height: var(--btn-icon-sm); }
 
 /* ──────────────────────────────────────────────────────────────────────
  * Variants — solid CTAs, named by brand color (blue / green / purple /
