@@ -41,7 +41,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
           {leadingIcon}
         </span>
       )}
-      {children && <span className="vds-btn__label">{children}</span>}
+      <span className="vds-btn__label">{children}</span>
       {trailingIcon && (
         <span className="vds-btn__icon" aria-hidden="true">
           {trailingIcon}

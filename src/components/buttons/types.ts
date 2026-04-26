@@ -13,7 +13,9 @@ export type ButtonVariant =
 export type ButtonSize = "3xl" | "2xl" | "xl" | "md";
 
 export interface ButtonProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> {
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "children"> {
+  /** Button label. Icon-only buttons are not supported by the design system. */
+  children: ReactNode;
   variant?: ButtonVariant;
   size?: ButtonSize;
   leadingIcon?: ReactNode;
