@@ -147,13 +147,14 @@ export const AccessibilityAudit: Story = {
         <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
           {ALL_COLORS.map((c) => {
             const ramp = RAMPS[c];
+            const picked = pickAccessibleStep(ramp, 0, WCAG.AA_NORMAL).index;
             return (
               <div key={c} style={{ display: "grid", gridTemplateColumns: "100px 1fr", alignItems: "center", gap: 12 }}>
                 <span style={{ font: "var(--fw-semibold) 13px var(--font-sans)" }}>{c}</span>
                 <div style={{ display: "grid", gridTemplateColumns: `repeat(${ramp.length}, 1fr)`, gap: 2 }}>
                   {ramp.map((hex, i) => {
                     const r = contrastRatio(ramp[0], hex);
-                    const ok = r >= WCAG.AA_NORMAL && i >= 6;
+                    const ok = i === picked;
                     return (
                       <div
                         key={hex + i}

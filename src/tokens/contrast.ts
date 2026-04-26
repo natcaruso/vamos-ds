@@ -39,12 +39,17 @@ export interface AccessiblePick {
  * Walk a color ramp from `startIndex` toward the dark end and return the
  * first step that meets `minRatio` against the color at `bgIndex`. Falls
  * back to the darkest step if nothing in range qualifies.
+ *
+ * Default `startIndex` is 5 (= ramp step 6 — the most saturated
+ * "primary" tone). Hues whose step 6 already meets the threshold get
+ * the more vibrant text colour; hues that fail there fall through to
+ * the next darker step automatically.
  */
 export function pickAccessibleStep(
   ramp: readonly string[],
   bgIndex: number,
   minRatio: number = WCAG.AA_NORMAL,
-  startIndex: number = 6
+  startIndex: number = 5
 ): AccessiblePick {
   const bg = ramp[bgIndex];
   for (let i = startIndex; i < ramp.length; i++) {
