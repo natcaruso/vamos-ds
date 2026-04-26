@@ -7,6 +7,7 @@ export * from "./motion";
 export * from "./zIndex";
 export * from "./iconSize";
 export * from "./borderWidth";
+export * from "./controlHeight";
 
 import { colors } from "./colors";
 import { typography } from "./typography";
@@ -17,6 +18,7 @@ import { motion } from "./motion";
 import { zIndex } from "./zIndex";
 import { iconSize } from "./iconSize";
 import { borderWidth } from "./borderWidth";
+import { controlHeight } from "./controlHeight";
 
 export const tokens = {
   colors,
@@ -27,5 +29,6 @@ export const tokens = {
   motion,
   zIndex,
   iconSize,
-  borderWidth
+  borderWidth,
+  controlHeight
 } as const;
