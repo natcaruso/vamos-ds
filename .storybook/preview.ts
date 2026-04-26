@@ -33,7 +33,7 @@ const preview: Preview = {
             "Iconography"
           ],
           "Components",
-          ["Button", "IconButton", "Tag", "Chip · Input", "Chip · Filter", "Chip · Dropdown"]
+          ["Button", "IconButton", "Tag", "Divider", "Chip · Input", "Chip · Filter", "Chip · Dropdown"]
         ]
       }
     },

@@ -1,0 +1,72 @@
+/* ──────────────────────────────────────────────────────────────────────
+ * Divider — horizontal + vertical separator.
+ *
+ * subtle  → --divider           (rgba 0/0/0/0.06, between content rows)
+ * default → --border-default    (component edge weight)
+ * strong  → --border-strong     (heavy emphasis)
+ *
+ * Optional `label` slot on horizontal renders text centered between
+ * two flex hairlines.
+ * ────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --divider-thickness:     var(--border-width-thin);
+  --divider-color-subtle:  var(--divider);
+  --divider-color-default: var(--border-default);
+  --divider-color-strong:  var(--border-strong);
+  --divider-label-gap:     var(--space-12);
+}
+
+.vds-divider {
+  border: 0;
+  margin: 0;
+  background: var(--divider-color-subtle);
+  flex-shrink: 0;
+}
+
+.vds-divider--default { background: var(--divider-color-default); }
+.vds-divider--strong  { background: var(--divider-color-strong);  }
+
+.vds-divider--horizontal {
+  width: 100%;
+  height: var(--divider-thickness);
+}
+
+.vds-divider--vertical {
+  width: var(--divider-thickness);
+  align-self: stretch;
+  min-height: 1em;
+}
+
+/* Inset reduces the bleed at the edges (e.g. list rows aligned to a
+   leading icon). Caller passes a token via the --divider-inset var. */
+.vds-divider--inset.vds-divider--horizontal {
+  margin-inline: var(--divider-inset, 0);
+}
+.vds-divider--inset.vds-divider--vertical {
+  margin-block: var(--divider-inset, 0);
+}
+
+/* Labelled horizontal divider — pseudo elements draw the hairlines so
+   the rule stays a single span. */
+.vds-divider-with-label {
+  display: flex;
+  align-items: center;
+  gap: var(--divider-label-gap);
+  font: var(--fw-medium) var(--fs-body-sm)/var(--lh-body-sm) var(--font-sans);
+  color: var(--text-tertiary);
+}
+
+.vds-divider-with-label::before,
+.vds-divider-with-label::after {
+  content: "";
+  flex: 1;
+  height: var(--divider-thickness);
+  background: var(--divider-color-subtle);
+}
+
+.vds-divider-with-label--default::before,
+.vds-divider-with-label--default::after { background: var(--divider-color-default); }
+
+.vds-divider-with-label--strong::before,
+.vds-divider-with-label--strong::after { background: var(--divider-color-strong); }
