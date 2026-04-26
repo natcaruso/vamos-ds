@@ -16,10 +16,11 @@
   --btn-border-width:  var(--border-width-default);
 
   /* ─── Per-size geometry ─── */
-  --btn-h-3xl:    56px;
-  --btn-h-2xl:    48px;
-  --btn-h-xl:     40px;
-  --btn-h-md:     32px;
+  /* Heights map directly to the spacing scale (56 / 48 / 40 / 32). */
+  --btn-h-3xl:    var(--space-56);
+  --btn-h-2xl:    var(--space-48);
+  --btn-h-xl:     var(--space-40);
+  --btn-h-md:     var(--space-32);
 
   --btn-px-3xl:   var(--space-24);
   --btn-px-2xl:   var(--space-20);
