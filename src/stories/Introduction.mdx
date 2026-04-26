@@ -9,13 +9,20 @@ product where members browse a weekly calendar, pick a class at their favorite
 arena, and tap **Fazer check-in** to confirm their spot.
 
 This Storybook is the live documentation for the system. Foundations first
-(colors, type, space, radii, shadow) — components arrive as the library grows.
+(colors, type, space, radius, shadow) — components arrive as the library
+grows.
 
-## Token tiers
+## Token tiers — strict three-tier model
 
-1. **Primitives** — raw values (`--vamos-brand-blue`, `--vamos-gray-7`, …).
-2. **Semantic** — purpose-bound (`--color-bg`, `--color-text-muted`, …).
-3. **Component** — added per-component as the library grows.
+1. **Primitives** (`--vamos-*`) — raw values: hex, opacity, ramp steps,
+   spacing units. Never reference other tokens.
+2. **Semantic** (`--surface-*`, `--text-*`, `--border-*`, `--divider`,
+   `--overlay-*`, `--focus-*`, `--space-*`, `--radius-*`, `--shadow-*`,
+   `--font-*`, `--fw-*`, `--fs-*`, `--lh-*`, `--ls-*`) — purpose-bound
+   aliases. **This is what product code should reach for.**
+3. **Action + Feedback** (`--action-*`, `--feedback-*`, `--highlight-*`) —
+   component-leaning recipes with full state matrices (bg / hover /
+   pressed / disabled / fg / fg-disabled per role).
 
 The authoritative token source is `src/tokens/tokens.css`. The TS files in
 `src/tokens/*.ts` mirror those values for non-CSS consumers.

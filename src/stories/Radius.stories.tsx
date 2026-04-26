@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { radii } from "../tokens/radii";
+import { radius } from "../tokens/radius";
 import { Page, mono } from "./_chrome";
 
 const meta: Meta = {
-  title: "Foundations/Radii"
+  title: "Foundations/Radius"
 };
 export default meta;
 
 export const Scale: StoryObj = {
   render: () => (
     <Page
-      title="Radii"
+      title="Radius"
       intro="Corner radius scale, named by px value. 16 is the card default. full = pill / circular for buttons, chips, icon-buttons, avatars."
     >
       <div
@@ -20,7 +20,7 @@ export const Scale: StoryObj = {
           gap: 16
         }}
       >
-        {Object.entries(radii).map(([k, v]) => (
+        {Object.entries(radius).map(([k, v]) => (
           <div key={k} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
             <div
               style={{

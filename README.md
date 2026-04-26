@@ -26,7 +26,7 @@ vamos-ds/
 ├─ src/
 │  ├─ fonts/          Inter (3 optical sizes, weights 300–900)
 │  ├─ tokens/         tokens.css (authoritative) + TS exports
-│  └─ stories/        Foundations stories (colors, type, space, radii, shadow)
+│  └─ stories/        Foundations stories (colors, type, space, radius, shadow)
 ├─ package.json
 └─ tsconfig.json
 ```

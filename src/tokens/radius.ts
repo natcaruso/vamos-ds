@@ -1,7 +1,7 @@
 // Corner radius scale. `full` is the pill / circular value
 // (10000px — large enough to round any element).
 
-export const radii = {
+export const radius = {
   "0":    "0px",
   "4":    "4px",
   "8":    "8px",
@@ -11,4 +11,4 @@ export const radii = {
   full:   "10000px"
 } as const;
 
-export type RadiusToken = keyof typeof radii;
+export type RadiusToken = keyof typeof radius;
