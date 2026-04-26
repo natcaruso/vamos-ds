@@ -1,0 +1,35 @@
+/* ──────────────────────────────────────────────────────────────────────
+ * Icon — Material Symbols Rounded (Google Fonts).
+ *
+ * Variable axes loaded:
+ *   opsz: 20–48   (optical size)
+ *   wght: 100–700 (stroke weight)
+ *   FILL: 0–1     (outlined → filled)
+ *   GRAD: -50–200 (grade — fine-tunes thickness)
+ *
+ * Default rendering matches the brand spec: opsz 24 · wght 400 · FILL 0
+ * · GRAD 0. Override per-instance via the Icon component's props.
+ * Brand-only glyphs (Instagram, WhatsApp) ship as inline SVG and are
+ * NOT served through Material Symbols.
+ * ────────────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+.vds-icon {
+  font-family: var(--font-icon);
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'liga';
+  flex-shrink: 0;
+}

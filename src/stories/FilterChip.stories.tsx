@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Zap, Users } from "lucide-react";
+import { Icon } from "../components/icon";
+import { iconSize } from "../tokens/iconSize";
 import { FilterChip } from "../components/chips";
 
 const meta: Meta<typeof FilterChip> = {
@@ -29,7 +30,7 @@ export const Selected: Story = {
 };
 
 export const WithLeadingIcon: Story = {
-  args: { icon: <Zap size={14} /> }
+  args: { icon: <Icon name="bolt" size={iconSize.sm} /> }
 };
 
 export const Disabled: Story = {
@@ -41,7 +42,7 @@ export const States: Story = {
   render: () => (
     <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
       <FilterChip label="Unselected" />
-      <FilterChip label="Unselected · ícone" icon={<Users size={14} />} />
+      <FilterChip label="Unselected · ícone" icon={<Icon name="group" size={iconSize.sm} />} />
       <FilterChip label="Selected" selected />
       <FilterChip label="Disabled" disabled />
       <FilterChip label="Selected disabled" selected disabled />
@@ -54,8 +55,8 @@ export const MultiSelect: Story = {
   render: () => {
     const [selected, setSelected] = useState<string[]>(["beach"]);
     const filters = [
-      { id: "beach",   label: "Beach Tennis", icon: <Zap size={14} /> },
-      { id: "fitness", label: "Fitness",      icon: <Users size={14} /> },
+      { id: "beach",   label: "Beach Tennis", icon: <Icon name="bolt" size={iconSize.sm} /> },
+      { id: "fitness", label: "Fitness",      icon: <Icon name="group" size={iconSize.sm} /> },
       { id: "yoga",    label: "Yoga" },
       { id: "boxe",    label: "Boxe" }
     ];

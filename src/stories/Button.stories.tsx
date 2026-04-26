@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Calendar, ChevronRight, Heart } from "lucide-react";
+import { Icon } from "../components/icon";
 import { Button } from "../components/buttons";
 import type { ButtonSize, ButtonVariant } from "../components/buttons";
 import { iconSize } from "../tokens/iconSize";
@@ -126,7 +126,7 @@ export const LeadingIcon: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
       {ALL_SIZES.map((s) => (
-        <Button key={s} size={s} leadingIcon={<Calendar size={sizeIcon(s)} />}>
+        <Button key={s} size={s} leadingIcon={<Icon name="calendar_month" size={sizeIcon(s)} />}>
           Agendar aula · {s.toUpperCase()}
         </Button>
       ))}
@@ -139,7 +139,7 @@ export const TrailingIcon: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
       {ALL_SIZES.map((s) => (
-        <Button key={s} size={s} trailingIcon={<ChevronRight size={sizeIcon(s)} />}>
+        <Button key={s} size={s} trailingIcon={<Icon name="chevron_right" size={sizeIcon(s)} />}>
           Continuar · {s.toUpperCase()}
         </Button>
       ))}
@@ -156,8 +156,8 @@ export const BothIcons: Story = {
           key={v}
           variant={v}
           size="2xl"
-          leadingIcon={<Heart size={iconSize.md} />}
-          trailingIcon={<ChevronRight size={iconSize.md} />}
+          leadingIcon={<Icon name="favorite" size={iconSize.md} />}
+          trailingIcon={<Icon name="chevron_right" size={iconSize.md} />}
         >
           Variante {v}
         </Button>

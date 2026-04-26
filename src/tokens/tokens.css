@@ -243,6 +243,7 @@
   --font-display: "Inter 28", "Inter", -apple-system, sans-serif;
   --font-caption: "Inter 18", "Inter", -apple-system, sans-serif;
   --font-mono:    "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+  --font-icon:    "Material Symbols Rounded";
 
   --fw-light:     300;
   --fw-regular:   400;

@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { Check, ChevronDown } from "lucide-react";
+import { Icon } from "../icon";
 import { iconSize } from "../../tokens/iconSize";
 import type { DropdownChipProps } from "./types";
 import "./chips.css";
@@ -51,12 +51,16 @@ export function DropdownChip({
         onClick={() => setOpen((v) => !v)}
       >
         {isSelected && (
-          <Check className="vds-chip__icon" size={iconSize.sm} strokeWidth={2.5} aria-hidden="true" />
+          <Icon name="check" size={iconSize.sm} weight={600} className="vds-chip__icon" />
         )}
         <span className="vds-chip__label">
           {selectedOption ? selectedOption.label : placeholder}
         </span>
-        <ChevronDown className="vds-chip__icon vds-chip__chevron" size={iconSize.sm} aria-hidden="true" />
+        <Icon
+          name="expand_more"
+          size={iconSize.sm}
+          className="vds-chip__icon vds-chip__chevron"
+        />
       </button>
       {open && (
         <ul className="vds-chip-menu" id={menuId} role="listbox">

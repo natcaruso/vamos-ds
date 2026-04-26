@@ -22,7 +22,7 @@ const preview: Preview = {
           "Foundations",
           ["Colors", "Typography", "Spacing", "Radius", "Shadows"],
           "Components",
-          ["Button", "Chip · Input", "Chip · Filter", "Chip · Dropdown"]
+          ["Icon", "Button", "Chip · Input", "Chip · Filter", "Chip · Dropdown"]
         ]
       }
     },
