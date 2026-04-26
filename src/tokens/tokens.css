@@ -87,11 +87,9 @@
   --vamos-brand-lightblue:         #E9F0FE;
   --vamos-brand-lightblue-pressed: #D0E0FF;
 
-  /* ─── Palette · Ant Design 12 hues × 10 steps ───
-   * Step 6 is the "primary" of each hue. Step 1 = lightest, step 10 = darkest.
-   * Highlight pairs use step-1 (bg) / step-7 (fg). ant-blue / ant-purple are
-   * renamed from Daybreak Blue / Golden Purple to avoid collision with
-   * --vamos-brand-blue / --vamos-brand-purple. */
+  /* ─── Palette · 12 hues × 10 steps ───
+   * Step 6 = primary of each hue. Step 1 = lightest, step 10 = darkest.
+   * Highlight pairs use step-1 (bg) / step-7 (fg). */
   --vamos-red-1:  #fff1f0;  --vamos-red-2:  #ffccc7;  --vamos-red-3:  #ffa39e;
   --vamos-red-4:  #ff7875;  --vamos-red-5:  #ff4d4f;  --vamos-red-6:  #f5222d;
   --vamos-red-7:  #cf1322;  --vamos-red-8:  #a8071a;  --vamos-red-9:  #820014;
@@ -132,20 +130,20 @@
   --vamos-cyan-7:  #08979c;  --vamos-cyan-8:  #006d75;  --vamos-cyan-9:  #00474f;
   --vamos-cyan-10: #002329;
 
-  --vamos-ant-blue-1:  #e6f7ff;  --vamos-ant-blue-2:  #bae7ff;  --vamos-ant-blue-3:  #91d5ff;
-  --vamos-ant-blue-4:  #69c0ff;  --vamos-ant-blue-5:  #40a9ff;  --vamos-ant-blue-6:  #1890ff;
-  --vamos-ant-blue-7:  #096dd9;  --vamos-ant-blue-8:  #0050b3;  --vamos-ant-blue-9:  #003a8c;
-  --vamos-ant-blue-10: #002766;
+  --vamos-blue-1:  #e6f7ff;  --vamos-blue-2:  #bae7ff;  --vamos-blue-3:  #91d5ff;
+  --vamos-blue-4:  #69c0ff;  --vamos-blue-5:  #40a9ff;  --vamos-blue-6:  #1890ff;
+  --vamos-blue-7:  #096dd9;  --vamos-blue-8:  #0050b3;  --vamos-blue-9:  #003a8c;
+  --vamos-blue-10: #002766;
 
-  --vamos-geekblue-1:  #f0f5ff;  --vamos-geekblue-2:  #d6e4ff;  --vamos-geekblue-3:  #adc6ff;
-  --vamos-geekblue-4:  #85a5ff;  --vamos-geekblue-5:  #597ef7;  --vamos-geekblue-6:  #2f54eb;
-  --vamos-geekblue-7:  #1d39c4;  --vamos-geekblue-8:  #10239e;  --vamos-geekblue-9:  #061178;
-  --vamos-geekblue-10: #030852;
+  --vamos-indigo-1:  #f0f5ff;  --vamos-indigo-2:  #d6e4ff;  --vamos-indigo-3:  #adc6ff;
+  --vamos-indigo-4:  #85a5ff;  --vamos-indigo-5:  #597ef7;  --vamos-indigo-6:  #2f54eb;
+  --vamos-indigo-7:  #1d39c4;  --vamos-indigo-8:  #10239e;  --vamos-indigo-9:  #061178;
+  --vamos-indigo-10: #030852;
 
-  --vamos-ant-purple-1:  #f9f0ff;  --vamos-ant-purple-2:  #efdbff;  --vamos-ant-purple-3:  #d3adf7;
-  --vamos-ant-purple-4:  #b37feb;  --vamos-ant-purple-5:  #9254de;  --vamos-ant-purple-6:  #722ed1;
-  --vamos-ant-purple-7:  #531dab;  --vamos-ant-purple-8:  #391085;  --vamos-ant-purple-9:  #22075e;
-  --vamos-ant-purple-10: #120338;
+  --vamos-purple-1:  #f9f0ff;  --vamos-purple-2:  #efdbff;  --vamos-purple-3:  #d3adf7;
+  --vamos-purple-4:  #b37feb;  --vamos-purple-5:  #9254de;  --vamos-purple-6:  #722ed1;
+  --vamos-purple-7:  #531dab;  --vamos-purple-8:  #391085;  --vamos-purple-9:  #22075e;
+  --vamos-purple-10: #120338;
 
   --vamos-magenta-1:  #fff0f6;  --vamos-magenta-2:  #ffd6e7;  --vamos-magenta-3:  #ffadd2;
   --vamos-magenta-4:  #ff85c0;  --vamos-magenta-5:  #f759ab;  --vamos-magenta-6:  #eb2f96;
@@ -406,8 +404,8 @@
   --action-lightblue-fg-disabled:  var(--vamos-ink-45);
 
   /* ─── Feedback · status pairs (bg + fg, always used together) ─── */
-  --feedback-info-bg:        var(--vamos-ant-blue-1);
-  --feedback-info-fg:        var(--vamos-ant-blue-7);
+  --feedback-info-bg:        var(--vamos-blue-1);
+  --feedback-info-fg:        var(--vamos-blue-7);
   --feedback-positive-bg:    var(--vamos-green-1);
   --feedback-positive-fg:    var(--vamos-green-7);
   --feedback-warning-bg:     var(--vamos-gold-1);
@@ -427,9 +425,9 @@
   --highlight-lime-bg:      var(--vamos-lime-1);       --highlight-lime-fg:      var(--vamos-lime-7);
   --highlight-green-bg:     var(--vamos-green-1);      --highlight-green-fg:     var(--vamos-green-7);
   --highlight-cyan-bg:      var(--vamos-cyan-1);       --highlight-cyan-fg:      var(--vamos-cyan-7);
-  --highlight-blue-bg:      var(--vamos-ant-blue-1);   --highlight-blue-fg:      var(--vamos-ant-blue-7);
-  --highlight-geekblue-bg:  var(--vamos-geekblue-1);   --highlight-geekblue-fg:  var(--vamos-geekblue-7);
-  --highlight-purple-bg:    var(--vamos-ant-purple-1); --highlight-purple-fg:    var(--vamos-ant-purple-7);
+  --highlight-blue-bg:      var(--vamos-blue-1);   --highlight-blue-fg:      var(--vamos-blue-7);
+  --highlight-indigo-bg:  var(--vamos-indigo-1);   --highlight-indigo-fg:  var(--vamos-indigo-7);
+  --highlight-purple-bg:    var(--vamos-purple-1); --highlight-purple-fg:    var(--vamos-purple-7);
   --highlight-magenta-bg:   var(--vamos-magenta-1);    --highlight-magenta-fg:   var(--vamos-magenta-7);
   --highlight-neutral-bg:   var(--vamos-gray-2);       --highlight-neutral-fg:   var(--vamos-gray-8);
 }

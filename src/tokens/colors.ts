@@ -36,9 +36,9 @@ export const palette = {
   lime:       ["#fcffe6","#f4ffb8","#eaff8f","#d3f261","#bae637","#a0d911","#7cb305","#5b8c00","#3f6600","#254000"],
   green:      ["#f6ffed","#d9f7be","#b7eb8f","#95de64","#73d13d","#52c41a","#389e0d","#237804","#135200","#092b00"],
   cyan:       ["#e6fffb","#b5f5ec","#87e8de","#5cdbd3","#36cfc9","#13c2c2","#08979c","#006d75","#00474f","#002329"],
-  antBlue:    ["#e6f7ff","#bae7ff","#91d5ff","#69c0ff","#40a9ff","#1890ff","#096dd9","#0050b3","#003a8c","#002766"],
-  geekblue:   ["#f0f5ff","#d6e4ff","#adc6ff","#85a5ff","#597ef7","#2f54eb","#1d39c4","#10239e","#061178","#030852"],
-  antPurple:  ["#f9f0ff","#efdbff","#d3adf7","#b37feb","#9254de","#722ed1","#531dab","#391085","#22075e","#120338"],
+  blue:       ["#e6f7ff","#bae7ff","#91d5ff","#69c0ff","#40a9ff","#1890ff","#096dd9","#0050b3","#003a8c","#002766"],
+  indigo:     ["#f0f5ff","#d6e4ff","#adc6ff","#85a5ff","#597ef7","#2f54eb","#1d39c4","#10239e","#061178","#030852"],
+  purple:     ["#f9f0ff","#efdbff","#d3adf7","#b37feb","#9254de","#722ed1","#531dab","#391085","#22075e","#120338"],
   magenta:    ["#fff0f6","#ffd6e7","#ffadd2","#ff85c0","#f759ab","#eb2f96","#c41d7f","#9e1068","#780650","#520339"]
 } as const;
 
@@ -196,7 +196,7 @@ export const action: Record<
 };
 
 export const feedback = {
-  info:     { bg: palette.antBlue[0],  fg: palette.antBlue[6],  label: "Info" },
+  info:     { bg: palette.blue[0],  fg: palette.blue[6],  label: "Info" },
   positive: { bg: palette.green[0],    fg: palette.green[6],    label: "Positive" },
   warning:  { bg: palette.gold[0],     fg: palette.gold[6],     label: "Warning" },
   critical: { bg: palette.red[0],      fg: palette.red[6],      label: "Critical" },
@@ -204,19 +204,19 @@ export const feedback = {
 } as const;
 
 export const highlight = {
-  red:      { bg: palette.red[0],       fg: palette.red[6],      label: "Dust Red" },
-  volcano:  { bg: palette.volcano[0],   fg: palette.volcano[6],  label: "Volcano" },
-  orange:   { bg: palette.orange[0],    fg: palette.orange[6],   label: "Sunset Orange" },
-  gold:     { bg: palette.gold[0],      fg: palette.gold[6],     label: "Calendula Gold" },
-  yellow:   { bg: palette.yellow[0],    fg: palette.yellow[6],   label: "Sunrise Yellow" },
-  lime:     { bg: palette.lime[0],      fg: palette.lime[6],     label: "Lime" },
-  green:    { bg: palette.green[0],     fg: palette.green[6],    label: "Polar Green" },
-  cyan:     { bg: palette.cyan[0],      fg: palette.cyan[6],     label: "Cyan" },
-  blue:     { bg: palette.antBlue[0],   fg: palette.antBlue[6],  label: "Daybreak Blue" },
-  geekblue: { bg: palette.geekblue[0],  fg: palette.geekblue[6], label: "Geek Blue" },
-  purple:   { bg: palette.antPurple[0], fg: palette.antPurple[6],label: "Golden Purple" },
-  magenta:  { bg: palette.magenta[0],   fg: palette.magenta[6],  label: "Magenta" },
-  neutral:  { bg: gray[1],              fg: gray[7],             label: "Neutral" }
+  red:      { bg: palette.red[0],     fg: palette.red[6],     label: "Red" },
+  volcano:  { bg: palette.volcano[0], fg: palette.volcano[6], label: "Volcano" },
+  orange:   { bg: palette.orange[0],  fg: palette.orange[6],  label: "Orange" },
+  gold:     { bg: palette.gold[0],    fg: palette.gold[6],    label: "Gold" },
+  yellow:   { bg: palette.yellow[0],  fg: palette.yellow[6],  label: "Yellow" },
+  lime:     { bg: palette.lime[0],    fg: palette.lime[6],    label: "Lime" },
+  green:    { bg: palette.green[0],   fg: palette.green[6],   label: "Green" },
+  cyan:     { bg: palette.cyan[0],    fg: palette.cyan[6],    label: "Cyan" },
+  blue:     { bg: palette.blue[0],    fg: palette.blue[6],    label: "Blue" },
+  indigo:   { bg: palette.indigo[0],  fg: palette.indigo[6],  label: "Indigo" },
+  purple:   { bg: palette.purple[0],  fg: palette.purple[6],  label: "Purple" },
+  magenta:  { bg: palette.magenta[0], fg: palette.magenta[6], label: "Magenta" },
+  neutral:  { bg: gray[1],            fg: gray[7],            label: "Neutral" }
 } as const;
 
 /* ─────────── Aggregate ─────────── */

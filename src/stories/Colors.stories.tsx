@@ -138,11 +138,11 @@ export const Primitives_Brand: StoryObj = {
 };
 
 export const Primitives_Palette: StoryObj = {
-  name: "Primitives · Palette (Ant Design)",
+  name: "Primitives · Palette",
   render: () => (
     <Page
-      title="Palette · Ant Design base"
-      intro="12 hues × 10 steps. Step 1 is the lightest, step 10 the darkest. Use steps 1+7 as bg/fg pair for status / highlight chips."
+      title="Palette"
+      intro="12 hues × 10 steps. Step 1 = lightest, step 10 = darkest. Use steps 1 + 7 as bg/fg pair for status / highlight chips."
     >
       {Object.entries(palette).map(([k, ramp]) => (
         <PaletteRow

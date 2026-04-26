@@ -1,17 +1,12 @@
-// Recommended Material Symbols stroke weight by icon pixel size.
+// Icon stroke weight by pixel size. Smaller icons need a heavier weight
+// to keep strokes legible; larger icons read cleanly at the standard
+// outline weight.
 //
-// Variable-font icons need a heavier weight at small sizes to keep the
-// stroke legible (a 14px outline at wght 400 reads thin and broken on
-// non-retina screens). Larger icons render cleanly at the standard
-// wght 400. This map encodes the convention shared by Material Design 3
-// and Apple's SF Symbols guidance:
+//   ≤ 16px   →  weight 500
+//   ≥ 20px   →  weight 400
 //
-//   ≤ 16px   →  weight 500   (small, density compensation)
-//   ≥ 20px   →  weight 400   (standard outline)
-//
-// Use `iconWeightForSize` whenever you compute icon size dynamically;
-// reach for the per-key constants in `iconWeight` when the size token
-// is known (e.g. inside a component recipe).
+// Use `iconWeightForSize` for dynamic sizes; reach for the per-key
+// constants in `iconWeight` when the size token is known statically.
 
 export const iconWeight = {
   xs:    500,
