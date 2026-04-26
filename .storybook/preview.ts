@@ -21,7 +21,8 @@ const preview: Preview = {
           "Introduction",
           "Foundations",
           ["Colors", "Typography", "Spacing", "Radius", "Shadows"],
-          "Components"
+          "Components",
+          ["Chip · Input", "Chip · Filter", "Chip · Dropdown"]
         ]
       }
     },

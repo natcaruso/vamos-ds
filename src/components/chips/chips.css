@@ -1,0 +1,229 @@
+/* ──────────────────────────────────────────────────────────────────────
+ * Chip components — design system (component-tier tokens + styles).
+ *
+ * Component tokens reference SEMANTIC tokens only. To re-skin a chip,
+ * edit the component token block; do not chase brand primitives through
+ * the component CSS.
+ * ────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── Geometry shared across chip variants ─── */
+  --chip-padding-block:   var(--space-4);
+  --chip-padding-inline:  var(--space-12);
+  --chip-gap:             var(--space-4);
+  --chip-radius:          var(--radius-full);
+  --chip-icon-size:       14px;
+  --chip-border-width:    2px;
+  --chip-transition:      all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ─── Input chip (removable) ─── */
+  --chip-input-bg:           var(--surface-default);
+  --chip-input-bg-hover:     var(--surface-strong);
+  --chip-input-bg-pressed:   var(--border-default);
+  --chip-input-bg-disabled:  var(--overlay-disabled);
+  --chip-input-fg:           var(--text-primary);
+  --chip-input-fg-disabled:  var(--text-quaternary);
+
+  /* ─── Filter chip — unselected ─── */
+  --chip-filter-bg:           transparent;
+  --chip-filter-bg-hover:     var(--overlay-disabled);
+  --chip-filter-bg-pressed:   var(--border-default);
+  --chip-filter-border:       var(--border-default);
+  --chip-filter-fg:           var(--text-primary);
+
+  /* ─── Filter chip — selected ─── */
+  --chip-filter-selected-bg:          var(--vamos-brand-grey);
+  --chip-filter-selected-bg-hover:    var(--vamos-brand-grey-pressed);
+  --chip-filter-selected-bg-pressed:  var(--vamos-brand-grey-pressed);
+  --chip-filter-selected-fg:          var(--text-on-inverse-primary);
+
+  /* ─── Dropdown menu ─── */
+  --chip-menu-bg:                var(--surface-canvas);
+  --chip-menu-border:            var(--border-default);
+  --chip-menu-radius:            var(--radius-16);
+  --chip-menu-padding:           var(--space-4);
+  --chip-menu-shadow:            var(--shadow-card);
+  --chip-menu-item-radius:       var(--radius-full);
+  --chip-menu-item-bg-active:    var(--surface-default);
+  --chip-menu-item-bg-hover:     var(--overlay-disabled);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Shared chip base
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--chip-gap);
+  padding: var(--chip-padding-block) var(--chip-padding-inline);
+  border-radius: var(--chip-radius);
+  border: 0;
+  font: var(--fw-medium) var(--fs-body-sm)/var(--lh-body-sm) var(--font-sans);
+  letter-spacing: 0;
+  cursor: pointer;
+  transition: var(--chip-transition);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.vds-chip:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.vds-chip[disabled],
+.vds-chip[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vds-chip__icon {
+  width: var(--chip-icon-size);
+  height: var(--chip-icon-size);
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Input chip — removable
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-chip--input {
+  background: var(--chip-input-bg);
+  color: var(--chip-input-fg);
+}
+
+.vds-chip--input:hover:not([disabled]) {
+  background: var(--chip-input-bg-hover);
+}
+
+.vds-chip--input:active:not([disabled]) {
+  background: var(--chip-input-bg-pressed);
+}
+
+.vds-chip--input[disabled],
+.vds-chip--input[aria-disabled="true"] {
+  background: var(--chip-input-bg-disabled);
+  color: var(--chip-input-fg-disabled);
+}
+
+.vds-chip__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: var(--chip-transition);
+}
+
+.vds-chip__remove:hover {
+  opacity: 0.7;
+}
+
+.vds-chip__remove:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: 1px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Filter chip — toggle
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-chip--filter {
+  background: var(--chip-filter-bg);
+  color: var(--chip-filter-fg);
+  border: var(--chip-border-width) solid var(--chip-filter-border);
+  /* Compensate the 2px border so the height matches non-bordered chips. */
+  padding: calc(var(--chip-padding-block) - var(--chip-border-width))
+           calc(var(--chip-padding-inline) - var(--chip-border-width));
+}
+
+.vds-chip--filter:hover:not([aria-disabled="true"]) {
+  background: var(--chip-filter-bg-hover);
+}
+
+.vds-chip--filter:active:not([aria-disabled="true"]) {
+  background: var(--chip-filter-bg-pressed);
+}
+
+.vds-chip--filter[aria-pressed="true"] {
+  background: var(--chip-filter-selected-bg);
+  color: var(--chip-filter-selected-fg);
+  border-color: var(--chip-filter-selected-bg);
+}
+
+.vds-chip--filter[aria-pressed="true"]:hover:not([aria-disabled="true"]) {
+  background: var(--chip-filter-selected-bg-hover);
+  border-color: var(--chip-filter-selected-bg-hover);
+}
+
+.vds-chip--filter[aria-pressed="true"]:active:not([aria-disabled="true"]) {
+  background: var(--chip-filter-selected-bg-pressed);
+  border-color: var(--chip-filter-selected-bg-pressed);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Dropdown chip
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-chip-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.vds-chip__chevron {
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.vds-chip--filter[aria-expanded="true"] .vds-chip__chevron {
+  transform: rotate(180deg);
+}
+
+.vds-chip-menu {
+  position: absolute;
+  top: calc(100% + var(--space-4));
+  left: 0;
+  z-index: 20;
+  background: var(--chip-menu-bg);
+  border: var(--chip-border-width) solid var(--chip-menu-border);
+  border-radius: var(--chip-menu-radius);
+  padding: var(--chip-menu-padding);
+  box-shadow: var(--chip-menu-shadow);
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vds-chip-menu__item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: var(--chip-padding-block) var(--chip-padding-inline);
+  border-radius: var(--chip-menu-item-radius);
+  font: var(--fw-medium) var(--fs-body-sm)/var(--lh-body-sm) var(--font-sans);
+  color: var(--text-primary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--chip-transition);
+}
+
+.vds-chip-menu__item:hover {
+  background: var(--chip-menu-item-bg-hover);
+}
+
+.vds-chip-menu__item[aria-selected="true"] {
+  background: var(--chip-menu-item-bg-active);
+}
+
+.vds-chip-menu__item:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: -1px;
+}
