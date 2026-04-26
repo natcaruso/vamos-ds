@@ -49,7 +49,7 @@
 
   /* ─── Outline (blue) variant tokens ─── */
   --btn-outline-bg:               transparent;
-  --btn-outline-bg-hover:         var(--action-lightblue-bg);
+  --btn-outline-bg-hover:         var(--action-lightblue-bg-pressed);
   --btn-outline-bg-pressed:       var(--action-lightblue-bg-pressed);
   --btn-outline-bg-disabled:      transparent;
   --btn-outline-fg:               var(--action-blue-bg);
