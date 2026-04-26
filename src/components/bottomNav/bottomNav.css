@@ -1,0 +1,97 @@
+/* ──────────────────────────────────────────────────────────────────────
+ * BottomNav — pill-shaped tab bar.
+ *
+ * Container: surface-default fill, full radius, soft shadow.
+ * Item: stacked icon + label, text shifts from tertiary (rest) → primary
+ * (active). Active item also flips the Material Symbol to its filled
+ * variant — the accepted Material idiom for "selected".
+ * ────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --bottom-nav-bg:               var(--surface-default);
+  --bottom-nav-radius:           var(--radius-full);
+  --bottom-nav-padding-block:    var(--space-12);
+  --bottom-nav-padding-inline:   var(--space-16);
+  --bottom-nav-shadow:           var(--shadow-card);
+
+  --bottom-nav-item-padding-y:   var(--space-12);
+  --bottom-nav-item-padding-x:   var(--space-16);
+  --bottom-nav-item-gap:         var(--space-4);
+  --bottom-nav-item-min-w:       var(--space-80);
+
+  --bottom-nav-item-fg:          var(--text-tertiary);
+  --bottom-nav-item-fg-hover:    var(--text-secondary);
+  --bottom-nav-item-fg-active:   var(--text-primary);
+
+  --bottom-nav-icon-size:        var(--icon-size-xl);
+  --bottom-nav-avatar-size:      var(--icon-size-2xl);
+}
+
+.vds-bottom-nav {
+  display: inline-flex;
+  background: var(--bottom-nav-bg);
+  border-radius: var(--bottom-nav-radius);
+  padding: var(--bottom-nav-padding-block) var(--bottom-nav-padding-inline);
+  box-shadow: var(--bottom-nav-shadow);
+}
+
+.vds-bottom-nav__list {
+  display: flex;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.vds-bottom-nav__list > li {
+  list-style: none;
+  flex: 1;
+  display: flex;
+}
+
+.vds-bottom-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bottom-nav-item-gap);
+  padding: var(--bottom-nav-item-padding-y) var(--bottom-nav-item-padding-x);
+  min-width: var(--bottom-nav-item-min-w);
+  width: 100%;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: var(--bottom-nav-item-fg);
+  font: var(--fw-medium) var(--fs-body-sm)/var(--lh-body-sm) var(--font-sans);
+  border-radius: var(--radius-16);
+  transition: color var(--motion-duration-fast) var(--motion-easing-standard);
+  text-align: center;
+}
+
+.vds-bottom-nav__item:hover {
+  color: var(--bottom-nav-item-fg-hover);
+}
+
+.vds-bottom-nav__item[aria-current="page"] {
+  color: var(--bottom-nav-item-fg-active);
+}
+
+.vds-bottom-nav__item:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.vds-bottom-nav__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--bottom-nav-avatar-size);
+}
+
+.vds-bottom-nav__avatar {
+  width: var(--bottom-nav-avatar-size);
+  height: var(--bottom-nav-avatar-size);
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
