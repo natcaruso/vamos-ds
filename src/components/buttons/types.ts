@@ -1,11 +1,11 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 export type ButtonVariant =
-  | "primary"
-  | "success"
-  | "waitlist"
-  | "danger"
-  | "neutral"
+  | "blue"
+  | "green"
+  | "purple"
+  | "pink"
+  | "grey"
   | "outline"
   | "ghost";
 

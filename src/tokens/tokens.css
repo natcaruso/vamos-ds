@@ -339,46 +339,50 @@
    * fg / fg-disabled — components don't reinvent these.
    * ════════════════════════════════════════════════════════════════════ */
 
-  /* ─── Action · primary (default CTA — "Fazer check-in") ─── */
-  --action-primary-bg:           var(--vamos-brand-blue);
-  --action-primary-bg-hover:     var(--vamos-brand-blue-pressed);
-  --action-primary-bg-pressed:   var(--vamos-brand-blue-pressed);
-  --action-primary-bg-disabled:  var(--vamos-surface-soft);
-  --action-primary-fg:           var(--vamos-ink-inverse-100);
-  --action-primary-fg-disabled:  var(--vamos-ink-45);
+  /* ─── Action recipes — named by brand color, not by semantic role.
+   *   The five brand primaries are interchangeable by design; the
+   *   product-specific meaning of a CTA lives at the call site, not
+   *   in the token layer. ─── */
 
-  /* ─── Action · success (positive confirm — "Check-in confirmado") ─── */
-  --action-success-bg:           var(--vamos-brand-green);
-  --action-success-bg-hover:     var(--vamos-brand-green-pressed);
-  --action-success-bg-pressed:   var(--vamos-brand-green-pressed);
-  --action-success-bg-disabled:  var(--vamos-surface-soft);
-  --action-success-fg:           var(--vamos-ink-inverse-100);
-  --action-success-fg-disabled:  var(--vamos-ink-45);
+  /* ─── Action · blue ─── */
+  --action-blue-bg:           var(--vamos-brand-blue);
+  --action-blue-bg-hover:     var(--vamos-brand-blue-pressed);
+  --action-blue-bg-pressed:   var(--vamos-brand-blue-pressed);
+  --action-blue-bg-disabled:  var(--vamos-surface-soft);
+  --action-blue-fg:           var(--vamos-ink-inverse-100);
+  --action-blue-fg-disabled:  var(--vamos-ink-45);
 
-  /* ─── Action · danger (destructive — "Cancelar check-in") ─── */
-  --action-danger-bg:            var(--vamos-brand-pink);
-  --action-danger-bg-hover:      var(--vamos-brand-pink-pressed);
-  --action-danger-bg-pressed:    var(--vamos-brand-pink-pressed);
-  --action-danger-bg-disabled:   var(--vamos-surface-soft);
-  --action-danger-fg:            var(--vamos-ink-inverse-100);
-  --action-danger-fg-disabled:   var(--vamos-ink-45);
+  /* ─── Action · green ─── */
+  --action-green-bg:          var(--vamos-brand-green);
+  --action-green-bg-hover:    var(--vamos-brand-green-pressed);
+  --action-green-bg-pressed:  var(--vamos-brand-green-pressed);
+  --action-green-bg-disabled: var(--vamos-surface-soft);
+  --action-green-fg:          var(--vamos-ink-inverse-100);
+  --action-green-fg-disabled: var(--vamos-ink-45);
 
-  /* ─── Action · waitlist (domain — "Entrar na fila de espera")
-   *   Reserved meaning, do not use decoratively. ─── */
-  --action-waitlist-bg:          var(--vamos-brand-purple);
-  --action-waitlist-bg-hover:    var(--vamos-brand-purple-pressed);
-  --action-waitlist-bg-pressed:  var(--vamos-brand-purple-pressed);
-  --action-waitlist-bg-disabled: var(--vamos-surface-soft);
-  --action-waitlist-fg:          var(--vamos-ink-inverse-100);
-  --action-waitlist-fg-disabled: var(--vamos-ink-45);
+  /* ─── Action · purple ─── */
+  --action-purple-bg:           var(--vamos-brand-purple);
+  --action-purple-bg-hover:     var(--vamos-brand-purple-pressed);
+  --action-purple-bg-pressed:   var(--vamos-brand-purple-pressed);
+  --action-purple-bg-disabled:  var(--vamos-surface-soft);
+  --action-purple-fg:           var(--vamos-ink-inverse-100);
+  --action-purple-fg-disabled:  var(--vamos-ink-45);
 
-  /* ─── Action · neutral (brand grey CTA) ─── */
-  --action-neutral-bg:           var(--vamos-brand-grey);
-  --action-neutral-bg-hover:     var(--vamos-brand-grey-pressed);
-  --action-neutral-bg-pressed:   var(--vamos-brand-grey-pressed);
-  --action-neutral-bg-disabled:  var(--vamos-surface-soft);
-  --action-neutral-fg:           var(--vamos-ink-inverse-100);
-  --action-neutral-fg-disabled:  var(--vamos-ink-45);
+  /* ─── Action · pink ─── */
+  --action-pink-bg:           var(--vamos-brand-pink);
+  --action-pink-bg-hover:     var(--vamos-brand-pink-pressed);
+  --action-pink-bg-pressed:   var(--vamos-brand-pink-pressed);
+  --action-pink-bg-disabled:  var(--vamos-surface-soft);
+  --action-pink-fg:           var(--vamos-ink-inverse-100);
+  --action-pink-fg-disabled:  var(--vamos-ink-45);
+
+  /* ─── Action · grey ─── */
+  --action-grey-bg:           var(--vamos-brand-grey);
+  --action-grey-bg-hover:     var(--vamos-brand-grey-pressed);
+  --action-grey-bg-pressed:   var(--vamos-brand-grey-pressed);
+  --action-grey-bg-disabled:  var(--vamos-surface-soft);
+  --action-grey-fg:           var(--vamos-ink-inverse-100);
+  --action-grey-fg-disabled:  var(--vamos-ink-45);
 
   /* ─── Feedback · status pairs (bg + fg, always used together) ─── */
   --feedback-info-bg:        var(--vamos-ant-blue-1);

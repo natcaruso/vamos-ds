@@ -12,7 +12,7 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["primary", "success", "waitlist", "danger", "neutral", "outline", "ghost"]
+      options: ["blue", "green", "purple", "pink", "grey", "outline", "ghost"]
     },
     size:      { control: "select", options: ["3xl", "2xl", "xl", "md"] },
     fullWidth: { control: "boolean" },
@@ -20,7 +20,7 @@ const meta: Meta<typeof Button> = {
     children:  { control: "text" }
   },
   args: {
-    variant:  "primary",
+    variant:  "blue",
     size:     "2xl",
     children: "Fazer check-in",
     fullWidth: false,
@@ -32,7 +32,7 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 const ALL_VARIANTS: ButtonVariant[] = [
-  "primary", "success", "waitlist", "danger", "neutral", "outline", "ghost"
+  "blue", "green", "purple", "pink", "grey", "outline", "ghost"
 ];
 const ALL_SIZES: ButtonSize[] = ["3xl", "2xl", "xl", "md"];
 
@@ -51,13 +51,13 @@ export const Variants: Story = {
     <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "flex-start" }}>
       {ALL_VARIANTS.map((v) => (
         <Button key={v} variant={v} size="2xl">
-          {v === "primary"  && "Fazer check-in"}
-          {v === "success"  && "Check-in confirmado"}
-          {v === "waitlist" && "Entrar na fila de espera"}
-          {v === "danger"   && "Cancelar check-in"}
-          {v === "neutral"  && "Voltar"}
-          {v === "outline"  && "Ver mais detalhes"}
-          {v === "ghost"    && "Cancelar"}
+          {v === "blue"    && "Brand · blue"}
+          {v === "green"   && "Brand · green"}
+          {v === "purple"  && "Brand · purple"}
+          {v === "pink"    && "Brand · pink"}
+          {v === "grey"    && "Brand · grey"}
+          {v === "outline" && "Outline · blue"}
+          {v === "ghost"   && "Ghost"}
         </Button>
       ))}
     </div>
@@ -169,11 +169,11 @@ export const IconOnly: Story = {
   parameters: { layout: "padded" },
   render: () => (
     <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-      <Button variant="primary"  size="2xl" leadingIcon={<Plus  size={iconSize.md} />} aria-label="Adicionar" />
-      <Button variant="success"  size="2xl" leadingIcon={<Check size={iconSize.md} />} aria-label="Confirmar" />
-      <Button variant="danger"   size="2xl" leadingIcon={<X     size={iconSize.md} />} aria-label="Cancelar" />
-      <Button variant="outline"  size="2xl" leadingIcon={<Plus  size={iconSize.md} />} aria-label="Adicionar" />
-      <Button variant="ghost"    size="2xl" leadingIcon={<Plus  size={iconSize.md} />} aria-label="Adicionar" />
+      <Button variant="blue"    size="2xl" leadingIcon={<Plus  size={iconSize.md} />} aria-label="Adicionar" />
+      <Button variant="green"   size="2xl" leadingIcon={<Check size={iconSize.md} />} aria-label="Confirmar" />
+      <Button variant="pink"    size="2xl" leadingIcon={<X     size={iconSize.md} />} aria-label="Cancelar" />
+      <Button variant="outline" size="2xl" leadingIcon={<Plus  size={iconSize.md} />} aria-label="Adicionar" />
+      <Button variant="ghost"   size="2xl" leadingIcon={<Plus  size={iconSize.md} />} aria-label="Adicionar" />
     </div>
   )
 };
@@ -207,9 +207,9 @@ export const FullWidth: Story = {
   parameters: { layout: "padded" },
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 360 }}>
-      <Button variant="primary"  size="3xl" fullWidth>Fazer check-in</Button>
-      <Button variant="outline"  size="3xl" fullWidth>Ver detalhes</Button>
-      <Button variant="ghost"    size="3xl" fullWidth>Cancelar</Button>
+      <Button variant="blue"    size="3xl" fullWidth>Fazer check-in</Button>
+      <Button variant="outline" size="3xl" fullWidth>Ver detalhes</Button>
+      <Button variant="ghost"   size="3xl" fullWidth>Cancelar</Button>
     </div>
   )
 };

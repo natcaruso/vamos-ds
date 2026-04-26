@@ -348,7 +348,7 @@ export const Semantic_Overlay: StoryObj = {
 export const Action_States: StoryObj = {
   name: "Action · State matrix",
   render: () => {
-    const order: (keyof typeof action)[] = ["primary", "success", "danger", "waitlist", "neutral"];
+    const order: (keyof typeof action)[] = ["blue", "green", "purple", "pink", "grey"];
     const cols = ["bg", "bgHover", "bgPressed", "bgDisabled"] as const;
     return (
       <Page
@@ -382,7 +382,7 @@ export const Action_States: StoryObj = {
                       textAlign: "center"
                     }}
                   >
-                    {role === "neutral" || cols[i] === "bgDisabled" ? "Texto" : "Fazer check-in"}
+                    {cols[i] === "bgDisabled" ? "Texto" : "Action"}
                   </div>
                 ))}
               </Fragment>

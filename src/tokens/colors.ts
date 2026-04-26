@@ -146,44 +146,43 @@ const sharedDisabled = {
 };
 
 export const action: Record<
-  "primary" | "success" | "danger" | "waitlist" | "neutral",
+  "blue" | "green" | "purple" | "pink" | "grey",
   ActionRole
 > = {
-  primary: {
+  blue: {
     bg:        brand.blue,
     bgHover:   brandPressed.blue,
     bgPressed: brandPressed.blue,
     fg:        ink.inverse[100],
     ...sharedDisabled
   },
-  success: {
+  green: {
     bg:        brand.green,
     bgHover:   brandPressed.green,
     bgPressed: brandPressed.green,
     fg:        ink.inverse[100],
     ...sharedDisabled
   },
-  danger: {
-    bg:        brand.pink,
-    bgHover:   brandPressed.pink,
-    bgPressed: brandPressed.pink,
-    fg:        ink.inverse[100],
-    ...sharedDisabled
-  },
-  waitlist: {
+  purple: {
     bg:        brand.purple,
     bgHover:   brandPressed.purple,
     bgPressed: brandPressed.purple,
     fg:        ink.inverse[100],
     ...sharedDisabled
   },
-  neutral: {
-    bg:         brand.grey,
-    bgHover:    brandPressed.grey,
-    bgPressed:  brandPressed.grey,
-    bgDisabled: surfacePrimitive.soft,
-    fg:         ink.inverse[100],
-    fgDisabled: ink[45]
+  pink: {
+    bg:        brand.pink,
+    bgHover:   brandPressed.pink,
+    bgPressed: brandPressed.pink,
+    fg:        ink.inverse[100],
+    ...sharedDisabled
+  },
+  grey: {
+    bg:        brand.grey,
+    bgHover:   brandPressed.grey,
+    bgPressed: brandPressed.grey,
+    fg:        ink.inverse[100],
+    ...sharedDisabled
   }
 };
 

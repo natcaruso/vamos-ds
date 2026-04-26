@@ -4,7 +4,7 @@ import "./buttons.css";
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
-    variant = "primary",
+    variant = "blue",
     size = "2xl",
     leadingIcon,
     trailingIcon,
