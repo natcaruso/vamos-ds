@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Calendar, Check, ChevronRight, Heart, Plus, X } from "lucide-react";
+import { Calendar, ChevronRight, Heart } from "lucide-react";
 import { Button } from "../components/buttons";
 import type { ButtonSize, ButtonVariant } from "../components/buttons";
 import { iconSize } from "../tokens/iconSize";
@@ -162,19 +162,6 @@ export const BothIcons: Story = {
           Variante {v}
         </Button>
       ))}
-    </div>
-  )
-};
-
-export const IconOnly: Story = {
-  parameters: { layout: "padded" },
-  render: () => (
-    <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-      <Button variant="blue"    size="2xl" leadingIcon={<Plus  size={iconSize.md} />} aria-label="Adicionar" />
-      <Button variant="green"   size="2xl" leadingIcon={<Check size={iconSize.md} />} aria-label="Confirmar" />
-      <Button variant="pink"    size="2xl" leadingIcon={<X     size={iconSize.md} />} aria-label="Cancelar" />
-      <Button variant="outline" size="2xl" leadingIcon={<Plus  size={iconSize.md} />} aria-label="Adicionar" />
-      <Button variant="ghost"   size="2xl" leadingIcon={<Plus  size={iconSize.md} />} aria-label="Adicionar" />
     </div>
   )
 };
