@@ -1,17 +1,13 @@
-// Authoritative source: src/tokens/tokens.css. These exports mirror the CSS
-// variables as typed JS values so non-CSS consumers (React inline styles,
-// canvas, charting libs) can access them without duplicating literals.
-//
-// Naming follows Vamos primitive layers:
-//  - brand          5 brand primaries (interchangeable, no fixed semantic)
-//  - brandPressed   pressed-state tones for the brand primaries
-//  - palette        Ant Design 12-hue × 10-step ramps
-//  - gray           13-step neutral
-//  - highlight      bg/fg pairs for chips/badges (always used together)
-//  - content        text colors (light + inverse) with opacity ladder
-//  - canvas         surface ladder for backgrounds & containers
-//  - utility        dividers, borders, backdrops, scrims
-//  - semantic       purpose-bound aliases (primary, success, warn, danger)
+// TS mirror of the color tokens. Authoritative source: src/tokens/tokens.css.
+// Three-tier model:
+//   1. PRIMITIVES — `brand`, `brandPressed`, `palette`, `gray`, `ink`,
+//      `surface`, `line`, `overlay`. Raw values, no cross-references.
+//   2. SEMANTIC   — `text`, `border`, `divider`, `overlay (semantic)`,
+//      `surfaceSemantic`, `focusRing`. Purpose-bound aliases.
+//   3. ACTION + FEEDBACK — `action`, `feedback`, `highlight`. Component
+//      recipes with full state matrices. Reach for these in product code.
+
+/* ─────────── 1 · PRIMITIVES ─────────── */
 
 export const brand = {
   blue:   "#0066FE",
@@ -49,80 +45,196 @@ export const gray = [
   "#8c8c8c","#595959","#434343","#262626","#1f1f1f","#141414","#000000"
 ] as const;
 
-export const highlight = {
-  red:      { bg: "#fff1f0", fg: "#cf1322", label: "Dust Red" },
-  volcano:  { bg: "#fff2e8", fg: "#d4380d", label: "Volcano" },
-  orange:   { bg: "#fff7e6", fg: "#d46b08", label: "Sunset Orange" },
-  gold:     { bg: "#fffbe6", fg: "#d48806", label: "Calendula Gold" },
-  yellow:   { bg: "#feffe6", fg: "#d4b106", label: "Sunrise Yellow" },
-  lime:     { bg: "#fcffe6", fg: "#7cb305", label: "Lime" },
-  green:    { bg: "#f6ffed", fg: "#389e0d", label: "Polar Green" },
-  cyan:     { bg: "#e6fffb", fg: "#08979c", label: "Cyan" },
-  blue:     { bg: "#e6f7ff", fg: "#096dd9", label: "Daybreak Blue" },
-  geekblue: { bg: "#f0f5ff", fg: "#1d39c4", label: "Geek Blue" },
-  purple:   { bg: "#f9f0ff", fg: "#531dab", label: "Golden Purple" },
-  magenta:  { bg: "#fff0f6", fg: "#c41d7f", label: "Magenta" },
-  gray:     { bg: "#fafafa", fg: "#595959", label: "Neutral" }
-} as const;
-
-export const content = {
-  default:   "#1E1E1E",
-  strong:    "rgba(30,30,30,0.85)",
-  muted:     "rgba(30,30,30,0.65)",
-  faint:     "rgba(30,30,30,0.45)",
-  disabled:  "rgba(30,30,30,0.25)",
+export const ink = {
+  100: "#1E1E1E",
+  85:  "rgba(30,30,30,0.85)",
+  65:  "rgba(30,30,30,0.65)",
+  45:  "rgba(30,30,30,0.45)",
+  25:  "rgba(30,30,30,0.25)",
   inverse: {
-    default:  "#FFFFFF",
-    strong:   "rgba(255,255,255,0.85)",
-    muted:    "rgba(255,255,255,0.65)",
-    faint:    "rgba(255,255,255,0.45)",
-    disabled: "rgba(255,255,255,0.25)"
+    100: "#FFFFFF",
+    85:  "rgba(255,255,255,0.85)",
+    65:  "rgba(255,255,255,0.65)",
+    45:  "rgba(255,255,255,0.45)",
+    25:  "rgba(255,255,255,0.25)"
   }
 } as const;
 
-export const canvas = {
+export const surfacePrimitive = {
   white:  "#FFFFFF",
   subtle: "#FAFAFA",
   soft:   "#F5F5F5",
   strong: "#E7E5E4",
-  warm:   "#FFEED2",
-  scrim:  "rgba(0,0,0,0.10)"
+  warm:   "#FFEED2"
 } as const;
 
-export const utility = {
-  divider:  "rgba(0,0,0,0.06)",
-  border:   "rgba(0,0,0,0.15)",
-  backdrop: "rgba(0,0,0,0.43)",
-  disabled: "rgba(0,0,0,0.04)"
+export const line = {
+  faint:   "rgba(0,0,0,0.06)",
+  default: "rgba(0,0,0,0.15)"
 } as const;
 
-export const semantic = {
-  bg:        canvas.white,
-  surface:   canvas.soft,
-  surface2:  canvas.subtle,
-  text:      content.default,
-  textMuted: content.muted,
-  textFaint: content.faint,
-  border:    utility.border,
-  primary:   brand.blue,
-  success:   "#52C41A",
-  warn:      "#FAAD14",
-  danger:    brand.pink,
-  waitlist:  "#8A38F5"
+export const overlayPrimitive = {
+  "04": "rgba(0,0,0,0.04)",
+  "10": "rgba(0,0,0,0.10)",
+  "43": "rgba(0,0,0,0.43)"
 } as const;
+
+/* ─────────── 2 · SEMANTIC ─────────── */
+
+export const surface = {
+  canvas:  surfacePrimitive.white,
+  default: surfacePrimitive.soft,
+  subtle:  surfacePrimitive.subtle,
+  strong:  surfacePrimitive.strong,
+  warm:    surfacePrimitive.warm,
+  inverse: gray[11]
+} as const;
+
+export const text = {
+  primary:     ink[100],
+  secondary:   ink[85],
+  tertiary:    ink[65],
+  quaternary:  ink[45],
+  disabled:    ink[25],
+  onInverse: {
+    primary:    ink.inverse[100],
+    secondary:  ink.inverse[85],
+    tertiary:   ink.inverse[65],
+    quaternary: ink.inverse[45],
+    disabled:   ink.inverse[25]
+  },
+  link:      brand.blue,
+  linkHover: brandPressed.blue
+} as const;
+
+export const border = {
+  subtle:  line.faint,
+  default: line.default,
+  strong:  gray[8],
+  focus:   brand.blue
+} as const;
+
+export const divider = line.faint;
+
+export const overlay = {
+  scrim:    overlayPrimitive["10"],
+  backdrop: overlayPrimitive["43"],
+  disabled: overlayPrimitive["04"]
+} as const;
+
+export const focusRing = {
+  color:  brand.blue,
+  width:  "2px",
+  offset: "2px",
+  shadow: `0 0 0 2px ${brand.blue}`
+} as const;
+
+/* ─────────── 3 · ACTION + FEEDBACK ─────────── */
+
+type ActionRole = {
+  bg:           string;
+  bgHover:      string;
+  bgPressed:    string;
+  bgDisabled:   string;
+  fg:           string;
+  fgDisabled:   string;
+};
+
+const sharedDisabled = {
+  bgDisabled: surfacePrimitive.soft,
+  fgDisabled: ink[45]
+};
+
+export const action: Record<
+  "primary" | "success" | "danger" | "waitlist" | "neutral",
+  ActionRole
+> = {
+  primary: {
+    bg:        brand.blue,
+    bgHover:   brandPressed.blue,
+    bgPressed: brandPressed.blue,
+    fg:        ink.inverse[100],
+    ...sharedDisabled
+  },
+  success: {
+    bg:        brand.green,
+    bgHover:   brandPressed.green,
+    bgPressed: brandPressed.green,
+    fg:        ink.inverse[100],
+    ...sharedDisabled
+  },
+  danger: {
+    bg:        brand.pink,
+    bgHover:   brandPressed.pink,
+    bgPressed: brandPressed.pink,
+    fg:        ink.inverse[100],
+    ...sharedDisabled
+  },
+  waitlist: {
+    bg:        brand.purple,
+    bgHover:   brandPressed.purple,
+    bgPressed: brandPressed.purple,
+    fg:        ink.inverse[100],
+    ...sharedDisabled
+  },
+  neutral: {
+    bg:         surfacePrimitive.soft,
+    bgHover:    surfacePrimitive.strong,
+    bgPressed:  gray[4],
+    bgDisabled: surfacePrimitive.subtle,
+    fg:         ink[100],
+    fgDisabled: ink[45]
+  }
+};
+
+export const feedback = {
+  info:     { bg: palette.antBlue[0],  fg: palette.antBlue[6],  label: "Info" },
+  positive: { bg: palette.green[0],    fg: palette.green[6],    label: "Positive" },
+  warning:  { bg: palette.gold[0],     fg: palette.gold[6],     label: "Warning" },
+  critical: { bg: palette.red[0],      fg: palette.red[6],      label: "Critical" },
+  neutral:  { bg: gray[1],             fg: gray[7],             label: "Neutral" }
+} as const;
+
+export const highlight = {
+  red:      { bg: palette.red[0],       fg: palette.red[6],      label: "Dust Red" },
+  volcano:  { bg: palette.volcano[0],   fg: palette.volcano[6],  label: "Volcano" },
+  orange:   { bg: palette.orange[0],    fg: palette.orange[6],   label: "Sunset Orange" },
+  gold:     { bg: palette.gold[0],      fg: palette.gold[6],     label: "Calendula Gold" },
+  yellow:   { bg: palette.yellow[0],    fg: palette.yellow[6],   label: "Sunrise Yellow" },
+  lime:     { bg: palette.lime[0],      fg: palette.lime[6],     label: "Lime" },
+  green:    { bg: palette.green[0],     fg: palette.green[6],    label: "Polar Green" },
+  cyan:     { bg: palette.cyan[0],      fg: palette.cyan[6],     label: "Cyan" },
+  blue:     { bg: palette.antBlue[0],   fg: palette.antBlue[6],  label: "Daybreak Blue" },
+  geekblue: { bg: palette.geekblue[0],  fg: palette.geekblue[6], label: "Geek Blue" },
+  purple:   { bg: palette.antPurple[0], fg: palette.antPurple[6],label: "Golden Purple" },
+  magenta:  { bg: palette.magenta[0],   fg: palette.magenta[6],  label: "Magenta" },
+  neutral:  { bg: gray[1],              fg: gray[7],             label: "Neutral" }
+} as const;
+
+/* ─────────── Aggregate ─────────── */
 
 export const colors = {
   brand,
   brandPressed,
   palette,
   gray,
-  highlight,
-  content,
-  canvas,
-  utility,
-  semantic
+  ink,
+  surfacePrimitive,
+  line,
+  overlayPrimitive,
+  surface,
+  text,
+  border,
+  divider,
+  overlay,
+  focusRing,
+  action,
+  feedback,
+  highlight
 } as const;
 
 export type Brand = keyof typeof brand;
 export type PaletteHue = keyof typeof palette;
 export type HighlightHue = keyof typeof highlight;
+export type FeedbackTone = keyof typeof feedback;
+export type ActionRoleName = keyof typeof action;

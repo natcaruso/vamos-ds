@@ -1,5 +1,6 @@
-// Elevation. Vamos is mostly flat — `card` is rare, `float` is reserved
-// for one floating specimen, `pressed` is an inset for tap feedback.
+// Elevation. Vamos is mostly flat — `card` is rare, `float` is reserved for
+// one floating specimen, `pressed` is an inset for tap feedback. Focus ring
+// is a recipe under semantic (focusRing in colors.ts).
 
 export const shadows = {
   card:    "0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04)",

@@ -31,20 +31,43 @@ vamos-ds/
 └─ tsconfig.json
 ```
 
-## Tokens
+## Token tiers — strict three-tier model
 
-`src/tokens/tokens.css` is the single source of truth. The TS files in
-`src/tokens/*.ts` mirror the CSS variables for typed consumption from JS:
-
-```ts
-import { colors, typography, spacing, radii, shadows } from "vamos-ds/tokens";
+```
+PRIMITIVES                    SEMANTIC                    ACTION + FEEDBACK
+────────────                  ──────────                  ──────────────────
+--vamos-brand-blue        →   --text-link             →   --action-primary-bg
+--vamos-ink-65            →   --text-tertiary             --action-primary-bg-hover
+--vamos-gray-3            →   --surface-default           --feedback-positive-bg
+--vamos-line-faint        →   --border-subtle / --divider --highlight-magenta-bg
 ```
 
-Token tiers:
+1. **Primitives** (`--vamos-*`) — raw values: hex, opacity, ramp steps,
+   spacing units. Never reference other tokens.
+2. **Semantic** (`--surface-*`, `--text-*`, `--border-*`, `--divider`,
+   `--overlay-*`, `--focus-*`, `--space-*`, `--radius-*`, `--shadow-*`,
+   `--font-*`, `--fw-*`, `--fs-*`, `--lh-*`, `--ls-*`) — purpose-bound
+   aliases. **This is what product code should reach for.**
+3. **Action + Feedback** (`--action-*`, `--feedback-*`, `--highlight-*`) —
+   component-leaning recipes with full state matrices (bg / hover / pressed /
+   disabled / fg / fg-disabled per role).
 
-1. **Primitives** — raw values (`--vamos-brand-blue`, `--vamos-gray-7`, …).
-2. **Semantic** — purpose-bound (`--color-bg`, `--color-text-muted`, …).
-3. **Component** — added per-component as the library grows.
+### Editing rules
+
+- New colors land as **primitives** first, then bind via a semantic.
+- Component code consumes **tier 2 / tier 3** — never tier 1 directly.
+- No aliases that duplicate the same value under another name.
+
+### TS access
+
+```ts
+import { surface, text, border, action, feedback, highlight } from "vamos-ds/tokens";
+
+// Examples
+const cardBg = surface.default;          // "#F5F5F5"
+const ctaBg  = action.primary.bg;        // "#0066FE"
+const okBg   = feedback.positive.bg;     // "#f6ffed"
+```
 
 ## Brand snapshot
 

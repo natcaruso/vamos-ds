@@ -11,7 +11,7 @@ export const Scale: StoryObj = {
   render: () => (
     <Page
       title="Spacing"
-      intro="Base 4-px grid. Aliases (1, 3, 5) map to (4, 12, 20). Use the numeric token names — they are the value in pixels."
+      intro="Single 4-px scale (with 2, 6, 18 as approved exceptions). The token names are the value in pixels — no aliases, no surprises."
     >
       <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
         {Object.entries(spacing).map(([k, v]) => (
@@ -19,11 +19,11 @@ export const Scale: StoryObj = {
             key={k}
             style={{
               display: "grid",
-              gridTemplateColumns: "80px 80px 1fr",
+              gridTemplateColumns: "100px 80px 1fr",
               gap: 16,
               alignItems: "center",
               padding: "6px 0",
-              borderBottom: "1px solid var(--vamos-divider)"
+              borderBottom: "1px solid var(--divider)"
             }}
           >
             <div style={{ font: "var(--fw-semibold) 13px var(--font-sans)" }}>--space-{k}</div>

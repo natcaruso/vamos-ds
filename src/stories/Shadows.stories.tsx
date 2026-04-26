@@ -11,7 +11,7 @@ export const Scale: StoryObj = {
   render: () => (
     <Page
       title="Shadows"
-      intro="Vamos is mostly flat. `card` is rare, `float` is reserved for one floating specimen, `pressed` is an inset for tap feedback."
+      intro="Vamos is mostly flat. card is rare. float is reserved for one floating specimen. pressed is an inset for tap feedback. focus-ring (recipe) lives under semantic."
     >
       <div
         style={{
@@ -27,9 +27,10 @@ export const Scale: StoryObj = {
               style={{
                 width: "100%",
                 height: 120,
-                background: "var(--vamos-canvas-white)",
+                background: "var(--surface-canvas)",
                 borderRadius: 16,
-                boxShadow: v
+                boxShadow: v,
+                border: "1px solid var(--border-subtle)"
               }}
             />
             <div style={{ font: "var(--fw-semibold) 13px var(--font-sans)", marginTop: 12 }}>

@@ -11,7 +11,7 @@ export const Scale: StoryObj = {
   render: () => (
     <Page
       title="Radii"
-      intro="Corner radius scale. 16-px is the card default. `full` is the pill / circular value used for buttons, chips, icon-buttons, avatars."
+      intro="Corner radius scale, named by px value. 16 is the card default. full = pill / circular for buttons, chips, icon-buttons, avatars."
     >
       <div
         style={{
@@ -26,9 +26,9 @@ export const Scale: StoryObj = {
               style={{
                 width: 120,
                 height: 120,
-                background: "var(--vamos-canvas-soft)",
+                background: "var(--surface-default)",
                 borderRadius: v,
-                border: "1px solid var(--vamos-border)"
+                border: "1px solid var(--border-default)"
               }}
             />
             <div style={{ font: "var(--fw-semibold) 13px var(--font-sans)" }}>--radius-{k}</div>

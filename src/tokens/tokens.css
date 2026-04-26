@@ -1,7 +1,27 @@
-/* ───────── Vamos DS — foundations ───────── */
-/* Single family: Inter (local .ttf, 3 optical sizes: 18pt / 24pt / 28pt). */
+/* ──────────────────────────────────────────────────────────────────────
+ * Vamos DS — design tokens
+ *
+ * Strict three-tier model:
+ *   1. PRIMITIVES (--vamos-*)   raw, brand-namespaced values.
+ *                                Never reference other tokens.
+ *   2. SEMANTIC                  purpose-bound aliases.
+ *      (--surface-*, --text-*,   Reference primitives only.
+ *       --border-*, --divider,   This is what product code should reach for.
+ *       --overlay-*, --focus-*,
+ *       --space-*, --radius-*,
+ *       --shadow-*, --font-*,
+ *       --fw-*, --fs-*, --lh-*, --ls-*)
+ *   3. ACTION + FEEDBACK         component-leaning recipes
+ *      (--action-*, --feedback-*, --highlight-*).
+ *      Reference semantics only. Each role exposes the full state matrix.
+ *
+ * Editing rules:
+ *   - Add new colors as PRIMITIVES first, then bind via a semantic.
+ *   - Component code MUST consume tier 2 / tier 3 — never tier 1 directly.
+ *   - No aliases that duplicate the same value under another name.
+ * ────────────────────────────────────────────────────────────────────── */
 
-/* Inter 24pt — default UI optical size (14–22px range) */
+/* Inter — 24pt: default UI optical size (14–22px). */
 @font-face { font-family: "Inter"; font-style: normal; font-weight: 300; font-display: swap;
   src: url("../fonts/Inter_24pt-Light.ttf") format("truetype"); }
 @font-face { font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap;
@@ -23,7 +43,7 @@
 @font-face { font-family: "Inter"; font-style: italic; font-weight: 700; font-display: swap;
   src: url("../fonts/Inter_24pt-BoldItalic.ttf") format("truetype"); }
 
-/* Inter 18pt — tight captions / small UI (12–13px) */
+/* Inter 18pt — tight captions / small UI (12–13px). */
 @font-face { font-family: "Inter 18"; font-style: normal; font-weight: 400; font-display: swap;
   src: url("../fonts/Inter_18pt-Regular.ttf") format("truetype"); }
 @font-face { font-family: "Inter 18"; font-style: normal; font-weight: 500; font-display: swap;
@@ -31,7 +51,7 @@
 @font-face { font-family: "Inter 18"; font-style: normal; font-weight: 700; font-display: swap;
   src: url("../fonts/Inter_18pt-Bold.ttf") format("truetype"); }
 
-/* Inter 28pt — display (24px+) */
+/* Inter 28pt — display (≥24px). */
 @font-face { font-family: "Inter 28"; font-style: normal; font-weight: 400; font-display: swap;
   src: url("../fonts/Inter_28pt-Regular.ttf") format("truetype"); }
 @font-face { font-family: "Inter 28"; font-style: normal; font-weight: 500; font-display: swap;
@@ -44,249 +64,204 @@
   src: url("../fonts/Inter_28pt-Black.ttf") format("truetype"); }
 
 :root {
-  /* ═══ COLOR — primitives ═══ */
-  /* Brand — 5 brand primaries (interchangeable, no fixed semantic role) */
-  --vamos-brand-blue:   #0066FE;
-  --vamos-brand-green:  #16A34A;
-  --vamos-brand-purple: #9863FF;
-  --vamos-brand-pink:   #FF5983;
-  --vamos-brand-grey:   #4E4E4E;
+  /* ════════════════════════════════════════════════════════════════════
+   * 1 · PRIMITIVES
+   * Raw values. Never compose; never alias another token. The single
+   * source of brand-truth for hex, opacity, hue ramps, spacing units.
+   * ════════════════════════════════════════════════════════════════════ */
 
-  /* Brand — pressed tones */
+  /* ─── Brand · 5 primaries (interchangeable, no fixed semantic role) ─── */
+  --vamos-brand-blue:           #0066FE;
+  --vamos-brand-green:          #16A34A;
+  --vamos-brand-purple:         #9863FF;
+  --vamos-brand-pink:           #FF5983;
+  --vamos-brand-grey:           #4E4E4E;
+
   --vamos-brand-blue-pressed:   #0052CC;
   --vamos-brand-green-pressed:  #15803D;
   --vamos-brand-purple-pressed: #8B5CFF;
   --vamos-brand-pink-pressed:   #F43F5E;
   --vamos-brand-grey-pressed:   #3A3A3A;
 
-  /* Aliases kept for back-compat with components built earlier */
-  --vamos-blue-600:   var(--vamos-brand-blue);
-  --vamos-purple-400: var(--vamos-brand-purple);
-  --vamos-pink-500:   var(--vamos-brand-pink);
-
-  /* Highlight — Ant Design base palette.
-     Each hue is an (bg = step-1 / fg = step-7) pair from the Ant Design
-     12-color system (+ neutral gray). Always use the pair together. */
-  --vamos-hl-red-bg:       #fff1f0;   --vamos-hl-red-fg:       #cf1322;   /* Dust Red */
-  --vamos-hl-volcano-bg:   #fff2e8;   --vamos-hl-volcano-fg:   #d4380d;   /* Volcano */
-  --vamos-hl-orange-bg:    #fff7e6;   --vamos-hl-orange-fg:    #d46b08;   /* Sunset Orange */
-  --vamos-hl-gold-bg:      #fffbe6;   --vamos-hl-gold-fg:      #d48806;   /* Calendula Gold */
-  --vamos-hl-yellow-bg:    #feffe6;   --vamos-hl-yellow-fg:    #d4b106;   /* Sunrise Yellow */
-  --vamos-hl-lime-bg:      #fcffe6;   --vamos-hl-lime-fg:      #7cb305;   /* Lime */
-  --vamos-hl-green-bg:     #f6ffed;   --vamos-hl-green-fg:     #389e0d;   /* Polar Green */
-  --vamos-hl-cyan-bg:      #e6fffb;   --vamos-hl-cyan-fg:      #08979c;   /* Cyan */
-  --vamos-hl-blue-bg:      #e6f7ff;   --vamos-hl-blue-fg:      #096dd9;   /* Daybreak Blue */
-  --vamos-hl-geekblue-bg:  #f0f5ff;   --vamos-hl-geekblue-fg:  #1d39c4;   /* Geek Blue */
-  --vamos-hl-purple-bg:    #f9f0ff;   --vamos-hl-purple-fg:    #531dab;   /* Golden Purple */
-  --vamos-hl-magenta-bg:   #fff0f6;   --vamos-hl-magenta-fg:   #c41d7f;   /* Magenta */
-  --vamos-hl-gray-bg:      #fafafa;   --vamos-hl-gray-fg:      #595959;   /* Neutral */
-
-  /* ═══ Palette — full 10-step graduation (Ant Design base) ═══
-     12 hues × 10 steps. Step-6 is the "primary" of each hue;
-     step-1 is the lightest tint, step-10 the darkest shade.
-     Highlight tokens above reference step-1 / step-7 of this scale. */
-
-  /* Dust Red / 薄暮 — 斗志、奔放 */
+  /* ─── Palette · Ant Design 12 hues × 10 steps ───
+   * Step 6 is the "primary" of each hue. Step 1 = lightest, step 10 = darkest.
+   * Highlight pairs use step-1 (bg) / step-7 (fg). ant-blue / ant-purple are
+   * renamed from Daybreak Blue / Golden Purple to avoid collision with
+   * --vamos-brand-blue / --vamos-brand-purple. */
   --vamos-red-1:  #fff1f0;  --vamos-red-2:  #ffccc7;  --vamos-red-3:  #ffa39e;
   --vamos-red-4:  #ff7875;  --vamos-red-5:  #ff4d4f;  --vamos-red-6:  #f5222d;
   --vamos-red-7:  #cf1322;  --vamos-red-8:  #a8071a;  --vamos-red-9:  #820014;
   --vamos-red-10: #5c0011;
 
-  /* Volcano / 火山 — 醒目、澎湃 */
   --vamos-volcano-1:  #fff2e8;  --vamos-volcano-2:  #ffd8bf;  --vamos-volcano-3:  #ffbb96;
   --vamos-volcano-4:  #ff9c6e;  --vamos-volcano-5:  #ff7a45;  --vamos-volcano-6:  #fa541c;
   --vamos-volcano-7:  #d4380d;  --vamos-volcano-8:  #ad2102;  --vamos-volcano-9:  #871400;
   --vamos-volcano-10: #610b00;
 
-  /* Sunset Orange / 日暮 — 温暖、欢快 */
   --vamos-orange-1:  #fff7e6;  --vamos-orange-2:  #ffe7ba;  --vamos-orange-3:  #ffd591;
   --vamos-orange-4:  #ffc069;  --vamos-orange-5:  #ffa940;  --vamos-orange-6:  #fa8c16;
   --vamos-orange-7:  #d46b08;  --vamos-orange-8:  #ad4e00;  --vamos-orange-9:  #873800;
   --vamos-orange-10: #612500;
 
-  /* Calendula Gold / 金盏花 — 活力、积极 */
   --vamos-gold-1:  #fffbe6;  --vamos-gold-2:  #fff1b8;  --vamos-gold-3:  #ffe58f;
   --vamos-gold-4:  #ffd666;  --vamos-gold-5:  #ffc53d;  --vamos-gold-6:  #faad14;
   --vamos-gold-7:  #d48806;  --vamos-gold-8:  #ad6800;  --vamos-gold-9:  #874d00;
   --vamos-gold-10: #613400;
 
-  /* Sunrise Yellow / 日出 — 出生、阳光 */
   --vamos-yellow-1:  #feffe6;  --vamos-yellow-2:  #ffffb8;  --vamos-yellow-3:  #fffb8f;
   --vamos-yellow-4:  #fff566;  --vamos-yellow-5:  #ffec3d;  --vamos-yellow-6:  #fadb14;
   --vamos-yellow-7:  #d4b106;  --vamos-yellow-8:  #ad8b00;  --vamos-yellow-9:  #876800;
   --vamos-yellow-10: #614700;
 
-  /* Lime / 青柠 — 自然、生机 */
   --vamos-lime-1:  #fcffe6;  --vamos-lime-2:  #f4ffb8;  --vamos-lime-3:  #eaff8f;
   --vamos-lime-4:  #d3f261;  --vamos-lime-5:  #bae637;  --vamos-lime-6:  #a0d911;
   --vamos-lime-7:  #7cb305;  --vamos-lime-8:  #5b8c00;  --vamos-lime-9:  #3f6600;
   --vamos-lime-10: #254000;
 
-  /* Polar Green / 极光绿 — 健康、创新 */
   --vamos-green-1:  #f6ffed;  --vamos-green-2:  #d9f7be;  --vamos-green-3:  #b7eb8f;
   --vamos-green-4:  #95de64;  --vamos-green-5:  #73d13d;  --vamos-green-6:  #52c41a;
   --vamos-green-7:  #389e0d;  --vamos-green-8:  #237804;  --vamos-green-9:  #135200;
   --vamos-green-10: #092b00;
 
-  /* Cyan / 明青 — 希望、坚强 */
   --vamos-cyan-1:  #e6fffb;  --vamos-cyan-2:  #b5f5ec;  --vamos-cyan-3:  #87e8de;
   --vamos-cyan-4:  #5cdbd3;  --vamos-cyan-5:  #36cfc9;  --vamos-cyan-6:  #13c2c2;
   --vamos-cyan-7:  #08979c;  --vamos-cyan-8:  #006d75;  --vamos-cyan-9:  #00474f;
   --vamos-cyan-10: #002329;
 
-  /* Daybreak Blue / 拂晓蓝 — 包容、科技、普惠 */
   --vamos-ant-blue-1:  #e6f7ff;  --vamos-ant-blue-2:  #bae7ff;  --vamos-ant-blue-3:  #91d5ff;
   --vamos-ant-blue-4:  #69c0ff;  --vamos-ant-blue-5:  #40a9ff;  --vamos-ant-blue-6:  #1890ff;
   --vamos-ant-blue-7:  #096dd9;  --vamos-ant-blue-8:  #0050b3;  --vamos-ant-blue-9:  #003a8c;
   --vamos-ant-blue-10: #002766;
 
-  /* Geek Blue / 极客蓝 — 探索、钻研 */
   --vamos-geekblue-1:  #f0f5ff;  --vamos-geekblue-2:  #d6e4ff;  --vamos-geekblue-3:  #adc6ff;
   --vamos-geekblue-4:  #85a5ff;  --vamos-geekblue-5:  #597ef7;  --vamos-geekblue-6:  #2f54eb;
   --vamos-geekblue-7:  #1d39c4;  --vamos-geekblue-8:  #10239e;  --vamos-geekblue-9:  #061178;
   --vamos-geekblue-10: #030852;
 
-  /* Golden Purple / 酱紫 — 优雅、浪漫 */
   --vamos-ant-purple-1:  #f9f0ff;  --vamos-ant-purple-2:  #efdbff;  --vamos-ant-purple-3:  #d3adf7;
   --vamos-ant-purple-4:  #b37feb;  --vamos-ant-purple-5:  #9254de;  --vamos-ant-purple-6:  #722ed1;
   --vamos-ant-purple-7:  #531dab;  --vamos-ant-purple-8:  #391085;  --vamos-ant-purple-9:  #22075e;
   --vamos-ant-purple-10: #120338;
 
-  /* Magenta / 法式洋红 — 明快、感性 */
   --vamos-magenta-1:  #fff0f6;  --vamos-magenta-2:  #ffd6e7;  --vamos-magenta-3:  #ffadd2;
   --vamos-magenta-4:  #ff85c0;  --vamos-magenta-5:  #f759ab;  --vamos-magenta-6:  #eb2f96;
   --vamos-magenta-7:  #c41d7f;  --vamos-magenta-8:  #9e1068;  --vamos-magenta-9:  #780650;
   --vamos-magenta-10: #520339;
 
-  /* Neutral — 13-step grayscale (text, borders, surfaces) */
+  /* ─── Neutral · 13-step grayscale (text, borders, surfaces) ─── */
   --vamos-gray-1:  #ffffff;  --vamos-gray-2:  #fafafa;  --vamos-gray-3:  #f5f5f5;
   --vamos-gray-4:  #f0f0f0;  --vamos-gray-5:  #d9d9d9;  --vamos-gray-6:  #bfbfbf;
   --vamos-gray-7:  #8c8c8c;  --vamos-gray-8:  #595959;  --vamos-gray-9:  #434343;
   --vamos-gray-10: #262626;  --vamos-gray-11: #1f1f1f;  --vamos-gray-12: #141414;
   --vamos-gray-13: #000000;
 
-  /* Brand support — blue family extensions */
-  --vamos-blue-500:   #1890FF;
-  --vamos-blue-100:   #E9F0FE;
-  --vamos-blue-050:   #F0F5FF;
-  --vamos-blue-light: #D0E0FF;
-  --vamos-blue-800:   #0052CC;
+  /* ─── Ink · text-only opacity ladder over light + inverse surfaces ─── */
+  --vamos-ink-100:         #1E1E1E;
+  --vamos-ink-85:          rgba(30,30,30,0.85);
+  --vamos-ink-65:          rgba(30,30,30,0.65);
+  --vamos-ink-45:          rgba(30,30,30,0.45);
+  --vamos-ink-25:          rgba(30,30,30,0.25);
 
-  /* Content — text-only colors (light + inverse scales) */
-  --vamos-content-100:      #1E1E1E;              /* default body / heading */
-  --vamos-content-85:       rgba(30,30,30,0.85);  /* strong secondary */
-  --vamos-content-65:       rgba(30,30,30,0.65);  /* muted */
-  --vamos-content-45:       rgba(30,30,30,0.45);  /* faint / placeholder */
-  --vamos-content-disabled: rgba(30,30,30,0.25);  /* disabled only */
+  --vamos-ink-inverse-100: #FFFFFF;
+  --vamos-ink-inverse-85:  rgba(255,255,255,0.85);
+  --vamos-ink-inverse-65:  rgba(255,255,255,0.65);
+  --vamos-ink-inverse-45:  rgba(255,255,255,0.45);
+  --vamos-ink-inverse-25:  rgba(255,255,255,0.25);
 
-  --vamos-content-inverse-100:      #FFFFFF;
-  --vamos-content-inverse-85:       rgba(255,255,255,0.85);
-  --vamos-content-inverse-65:       rgba(255,255,255,0.65);
-  --vamos-content-inverse-45:       rgba(255,255,255,0.45);
-  --vamos-content-inverse-disabled: rgba(255,255,255,0.25);
+  /* ─── Surface · ladder for backgrounds (light theme) ─── */
+  --vamos-surface-white:   #FFFFFF;
+  --vamos-surface-subtle:  #FAFAFA;
+  --vamos-surface-soft:    #F5F5F5;
+  --vamos-surface-strong:  #E7E5E4;
+  --vamos-surface-warm:    #FFEED2;
 
-  /* Surface / canvas — semantic ladder for backgrounds & containers */
-  --vamos-canvas-white:   #FFFFFF;   /* base canvas */
-  --vamos-canvas-subtle:  #FAFAFA;   /* subtle elevation, list rows */
-  --vamos-canvas-soft:    #F5F5F5;   /* soft surface, cards */
-  --vamos-canvas-strong:  #E7E5E4;   /* strong surface, sunken wells */
-  --vamos-canvas-warm:    #FFEED2;   /* warm canvas — promo / highlight area */
-  --vamos-canvas-scrim:   rgba(0,0,0,0.10); /* black 10% scrim over canvas */
+  /* ─── Line · hairlines + dividers + borders (over light) ─── */
+  --vamos-line-faint:    rgba(0,0,0,0.06);  /* inter-row dividers */
+  --vamos-line-default:  rgba(0,0,0,0.15);  /* component borders */
 
-  /* Others — single-purpose utility colors */
-  --vamos-divider:    rgba(0,0,0,0.06);  /* hairline dividers between rows */
-  --vamos-border:     rgba(0,0,0,0.15);  /* default component border */
-  --vamos-backdrop:   rgba(0,0,0,0.43);  /* modal / sheet backdrop */
-  --vamos-disabled:   rgba(0,0,0,0.04);  /* disabled component fill */
+  /* ─── Overlay · transparent layers used over content ─── */
+  --vamos-overlay-04:      rgba(0,0,0,0.04);  /* disabled fill */
+  --vamos-overlay-10:      rgba(0,0,0,0.10);  /* light scrim */
+  --vamos-overlay-43:      rgba(0,0,0,0.43);  /* modal backdrop */
 
-  /* Semantic accents */
-  --vamos-green-500:  #52C41A;
-  --vamos-green-600:  #16A34A;
-  --vamos-green-700:  #15803D;
-  --vamos-amber-500:  #FAAD14;
-  --vamos-red-500:    #F5222D;
-  --vamos-purple-500: #8A38F5;
-  --vamos-purple-300: #8B5CFF;
-  --vamos-amber-050:  #FFEED2;
-  --vamos-pink-050:   #FFF0F6;
+  /* ════════════════════════════════════════════════════════════════════
+   * 2 · SEMANTIC
+   * Purpose-bound aliases. THIS IS WHAT PRODUCT CODE USES.
+   * Reference primitives only — never literal hex values.
+   * ════════════════════════════════════════════════════════════════════ */
 
-  /* Back-compat aliases — older components still reference these names */
-  --vamos-black:      #000000;
-  --vamos-ink-900:    var(--vamos-content-100);
-  --vamos-bg:         var(--vamos-canvas-white);
-  --vamos-surface-1:  var(--vamos-canvas-subtle);
-  --vamos-surface-2:  var(--vamos-canvas-soft);
-  --vamos-line:       #D9D9D9;
-  --vamos-cream:      #FDFBF6;
+  /* ─── Surface (where content sits) ─── */
+  --surface-canvas:    var(--vamos-surface-white);   /* page background */
+  --surface-default:   var(--vamos-surface-soft);    /* default card */
+  --surface-subtle:    var(--vamos-surface-subtle);  /* row stripe / inset */
+  --surface-strong:    var(--vamos-surface-strong);  /* sunken well */
+  --surface-warm:      var(--vamos-surface-warm);    /* promo / highlight area */
+  --surface-inverse:   var(--vamos-gray-12);         /* dark surface */
 
-  --vamos-fg:          var(--vamos-content-100);
-  --vamos-fg-strong:   var(--vamos-content-85);
-  --vamos-fg-muted:    var(--vamos-content-65);
-  --vamos-fg-faint:    var(--vamos-content-45);
-  --vamos-fg-disabled: var(--vamos-content-disabled);
+  /* ─── Text ─── */
+  --text-primary:      var(--vamos-ink-100);
+  --text-secondary:    var(--vamos-ink-85);
+  --text-tertiary:     var(--vamos-ink-65);
+  --text-quaternary:   var(--vamos-ink-45);
+  --text-disabled:     var(--vamos-ink-25);
 
-  --vamos-border-soft: var(--vamos-divider);
-  --vamos-dot-off:     var(--vamos-divider);
-  --vamos-overlay-04:  var(--vamos-disabled);
+  --text-on-inverse-primary:    var(--vamos-ink-inverse-100);
+  --text-on-inverse-secondary:  var(--vamos-ink-inverse-85);
+  --text-on-inverse-tertiary:   var(--vamos-ink-inverse-65);
+  --text-on-inverse-quaternary: var(--vamos-ink-inverse-45);
+  --text-on-inverse-disabled:   var(--vamos-ink-inverse-25);
 
-  /* ═══ SEMANTIC COLOR ═══ */
-  --color-bg:         var(--vamos-canvas-white);
-  --color-surface:    var(--vamos-canvas-soft);
-  --color-surface-2:  var(--vamos-canvas-subtle);
-  --color-text:       var(--vamos-content-100);
-  --color-text-muted: var(--vamos-content-65);
-  --color-text-faint: var(--vamos-content-45);
-  --color-border:     var(--vamos-border);
-  --color-primary:    var(--vamos-blue-600);
-  --color-success:    var(--vamos-green-500);
-  --color-warn:       var(--vamos-amber-500);
-  --color-danger:     var(--vamos-pink-500);
-  --color-waitlist:   var(--vamos-purple-500);
+  --text-link:         var(--vamos-brand-blue);
+  --text-link-hover:   var(--vamos-brand-blue-pressed);
 
-  /* ═══ TYPE primitives ═══ */
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-display: "Inter 28", "Inter", -apple-system, sans-serif;   /* ≥24px */
-  --font-caption: "Inter 18", "Inter", -apple-system, sans-serif;   /* ≤13px */
-  --font-form: var(--font-sans); /* form primitives use Inter too */
+  /* ─── Border (component edges) ─── */
+  --border-subtle:     var(--vamos-line-faint);    /* card edge / hairline */
+  --border-default:    var(--vamos-line-default);  /* input / chip / tag */
+  --border-strong:     var(--vamos-gray-9);
+  --border-focus:      var(--vamos-brand-blue);
 
-  --fw-light: 300;
-  --fw-regular: 400;
-  --fw-medium: 500;
-  --fw-semibold: 600;
-  --fw-bold: 700;
+  /* ─── Divider (between content rows — distinct intent from border) ─── */
+  --divider:           var(--vamos-line-faint);
 
-  /* Display / heading */
-  --fs-display: 38px;  --lh-display: 46px;       /* alias of H1 */
-  --fs-h1: 38px;       --lh-h1: 46px;
-  --fs-h2: 30px;       --lh-h2: 40px;
-  --fs-h3: 24px;       --lh-h3: 32px;
-  --fs-h4: 20px;       --lh-h4: 28px;
-  --fs-h5: 16px;       --lh-h5: 24px;
+  /* ─── Overlay (transparent layers) ─── */
+  --overlay-scrim:     var(--vamos-overlay-10);    /* veil over content */
+  --overlay-backdrop:  var(--vamos-overlay-43);    /* modal / sheet backdrop */
+  --overlay-disabled:  var(--vamos-overlay-04);    /* disabled component fill */
 
-  /* Body */
+  /* ─── Focus ring (recipe — apply via outline or box-shadow) ─── */
+  --focus-ring-color:   var(--vamos-brand-blue);
+  --focus-ring-width:   2px;
+  --focus-ring-offset:  2px;
+  --focus-ring-shadow:  0 0 0 var(--focus-ring-width) var(--focus-ring-color);
+
+  /* ─── Type primitives ─── */
+  --font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Inter 28", "Inter", -apple-system, sans-serif;
+  --font-caption: "Inter 18", "Inter", -apple-system, sans-serif;
+  --font-mono:    "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+
+  --fw-light:     300;
+  --fw-regular:   400;
+  --fw-medium:    500;
+  --fw-semibold:  600;
+  --fw-bold:      700;
+  --fw-extrabold: 800;
+  --fw-black:     900;
+
+  --fs-h1: 38px;       --lh-h1: 46px;       --ls-h1: -0.6px;
+  --fs-h2: 30px;       --lh-h2: 40px;       --ls-h2: -0.5px;
+  --fs-h3: 24px;       --lh-h3: 32px;       --ls-h3: -0.4px;
+  --fs-h4: 20px;       --lh-h4: 28px;       --ls-h4: -0.3px;
+  --fs-h5: 16px;       --lh-h5: 24px;       --ls-h5: -0.313px;
+
   --fs-body-lg: 18px;  --lh-body-lg: 26px;
   --fs-body:    16px;  --lh-body:    24px;
   --fs-body-sm: 14px;  --lh-body-sm: 22px;
   --fs-caption: 12px;  --lh-caption: 20px;
-  --ls-tight:   -0.313px;   /* pulled straight from Figma */
 
-  /* ═══ RADII / SHADOWS / SPACE ═══ */
-  /* Corner radius — named by value; `full` = pill / circular */
-  --radius-0:    0px;
-  --radius-4:    4px;
-  --radius-8:    8px;
-  --radius-16:   16px;
-  --radius-24:   24px;
-  --radius-32:   32px;
-  --radius-full: 10000px;
+  --ls-tight: -0.313px;
 
-  /* legacy aliases */
-  --r-xs:   var(--radius-4);
-  --r-sm:   var(--radius-8);
-  --r-md:   var(--radius-16);
-  --r-lg:   var(--radius-16);
-  --r-pill: var(--radius-full);
-
+  /* ─── Space (single 4-px scale, no aliases) ─── */
   --space-0:   0px;
   --space-2:   2px;
   --space-4:   4px;
@@ -309,32 +284,122 @@
   --space-224: 224px;
   --space-288: 288px;
 
-  /* legacy aliases — older components reference these */
-  --space-1: var(--space-4);
-  --space-3: var(--space-12);
-  --space-5: var(--space-20);
+  /* ─── Radius (named by px value; full = pill) ─── */
+  --radius-0:    0px;
+  --radius-4:    4px;
+  --radius-8:    8px;
+  --radius-16:   16px;
+  --radius-24:   24px;
+  --radius-32:   32px;
+  --radius-full: 10000px;
 
-  --shadow-card: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
-  --shadow-float: 0 8px 20px rgba(143,168,191,0.35);
+  /* ─── Shadow ─── */
+  --shadow-card:    0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+  --shadow-float:   0 8px 20px rgba(143,168,191,0.35);
   --shadow-pressed: inset 0 1px 0 rgba(0,0,0,0.08);
+
+  /* ════════════════════════════════════════════════════════════════════
+   * 3 · ACTION + FEEDBACK
+   * Component-leaning recipes. Reference semantics only. Each role
+   * exposes the full state matrix: bg / hover / pressed / disabled /
+   * fg / fg-disabled — components don't reinvent these.
+   * ════════════════════════════════════════════════════════════════════ */
+
+  /* ─── Action · primary (default CTA — "Fazer check-in") ─── */
+  --action-primary-bg:           var(--vamos-brand-blue);
+  --action-primary-bg-hover:     var(--vamos-brand-blue-pressed);
+  --action-primary-bg-pressed:   var(--vamos-brand-blue-pressed);
+  --action-primary-bg-disabled:  var(--vamos-surface-soft);
+  --action-primary-fg:           var(--vamos-ink-inverse-100);
+  --action-primary-fg-disabled:  var(--vamos-ink-45);
+
+  /* ─── Action · success (positive confirm — "Check-in confirmado") ─── */
+  --action-success-bg:           var(--vamos-brand-green);
+  --action-success-bg-hover:     var(--vamos-brand-green-pressed);
+  --action-success-bg-pressed:   var(--vamos-brand-green-pressed);
+  --action-success-bg-disabled:  var(--vamos-surface-soft);
+  --action-success-fg:           var(--vamos-ink-inverse-100);
+  --action-success-fg-disabled:  var(--vamos-ink-45);
+
+  /* ─── Action · danger (destructive — "Cancelar check-in") ─── */
+  --action-danger-bg:            var(--vamos-brand-pink);
+  --action-danger-bg-hover:      var(--vamos-brand-pink-pressed);
+  --action-danger-bg-pressed:    var(--vamos-brand-pink-pressed);
+  --action-danger-bg-disabled:   var(--vamos-surface-soft);
+  --action-danger-fg:            var(--vamos-ink-inverse-100);
+  --action-danger-fg-disabled:   var(--vamos-ink-45);
+
+  /* ─── Action · waitlist (domain — "Entrar na fila de espera")
+   *   Reserved meaning, do not use decoratively. ─── */
+  --action-waitlist-bg:          var(--vamos-brand-purple);
+  --action-waitlist-bg-hover:    var(--vamos-brand-purple-pressed);
+  --action-waitlist-bg-pressed:  var(--vamos-brand-purple-pressed);
+  --action-waitlist-bg-disabled: var(--vamos-surface-soft);
+  --action-waitlist-fg:          var(--vamos-ink-inverse-100);
+  --action-waitlist-fg-disabled: var(--vamos-ink-45);
+
+  /* ─── Action · neutral (secondary / ghost) ─── */
+  --action-neutral-bg:           var(--vamos-surface-soft);
+  --action-neutral-bg-hover:     var(--vamos-surface-strong);
+  --action-neutral-bg-pressed:   var(--vamos-gray-5);
+  --action-neutral-bg-disabled:  var(--vamos-surface-subtle);
+  --action-neutral-fg:           var(--vamos-ink-100);
+  --action-neutral-fg-disabled:  var(--vamos-ink-45);
+
+  /* ─── Feedback · status pairs (bg + fg, always used together) ─── */
+  --feedback-info-bg:        var(--vamos-ant-blue-1);
+  --feedback-info-fg:        var(--vamos-ant-blue-7);
+  --feedback-positive-bg:    var(--vamos-green-1);
+  --feedback-positive-fg:    var(--vamos-green-7);
+  --feedback-warning-bg:     var(--vamos-gold-1);
+  --feedback-warning-fg:     var(--vamos-gold-7);
+  --feedback-critical-bg:    var(--vamos-red-1);
+  --feedback-critical-fg:    var(--vamos-red-7);
+  --feedback-neutral-bg:     var(--vamos-gray-2);
+  --feedback-neutral-fg:     var(--vamos-gray-8);
+
+  /* ─── Highlight · same family as feedback, exposed for chips/tags
+   *   that need the full hue range (info ≠ blue, positive ≠ green). ─── */
+  --highlight-red-bg:       var(--vamos-red-1);        --highlight-red-fg:       var(--vamos-red-7);
+  --highlight-volcano-bg:   var(--vamos-volcano-1);    --highlight-volcano-fg:   var(--vamos-volcano-7);
+  --highlight-orange-bg:    var(--vamos-orange-1);     --highlight-orange-fg:    var(--vamos-orange-7);
+  --highlight-gold-bg:      var(--vamos-gold-1);       --highlight-gold-fg:      var(--vamos-gold-7);
+  --highlight-yellow-bg:    var(--vamos-yellow-1);     --highlight-yellow-fg:    var(--vamos-yellow-7);
+  --highlight-lime-bg:      var(--vamos-lime-1);       --highlight-lime-fg:      var(--vamos-lime-7);
+  --highlight-green-bg:     var(--vamos-green-1);      --highlight-green-fg:     var(--vamos-green-7);
+  --highlight-cyan-bg:      var(--vamos-cyan-1);       --highlight-cyan-fg:      var(--vamos-cyan-7);
+  --highlight-blue-bg:      var(--vamos-ant-blue-1);   --highlight-blue-fg:      var(--vamos-ant-blue-7);
+  --highlight-geekblue-bg:  var(--vamos-geekblue-1);   --highlight-geekblue-fg:  var(--vamos-geekblue-7);
+  --highlight-purple-bg:    var(--vamos-ant-purple-1); --highlight-purple-fg:    var(--vamos-ant-purple-7);
+  --highlight-magenta-bg:   var(--vamos-magenta-1);    --highlight-magenta-fg:   var(--vamos-magenta-7);
+  --highlight-neutral-bg:   var(--vamos-gray-2);       --highlight-neutral-fg:   var(--vamos-gray-8);
 }
 
-/* ───────── semantic element styles ───────── */
-html, body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+/* ──────────────────────────────────────────────────────────────────────
+ * Element styles — bind the cascade to the semantic layer.
+ * Components compose tokens directly; these rules only set sensible
+ * defaults for plain HTML.
+ * ────────────────────────────────────────────────────────────────────── */
+html, body {
+  background: var(--surface-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
 
-h1, .h1 { font: var(--fw-bold) var(--fs-h1)/var(--lh-h1) var(--font-display); letter-spacing: -0.6px; color: var(--color-text); }
-h2, .h2 { font: var(--fw-bold) var(--fs-h2)/var(--lh-h2) var(--font-display); letter-spacing: -0.5px; }
-h3, .h3 { font: var(--fw-bold) var(--fs-h3)/var(--lh-h3) var(--font-display); letter-spacing: -0.4px; }
-h4, .h4 { font: var(--fw-bold) var(--fs-h4)/var(--lh-h4) var(--font-sans); letter-spacing: -0.3px; }
-h5, .h5 { font: var(--fw-bold) var(--fs-h5)/var(--lh-h5) var(--font-sans); letter-spacing: var(--ls-tight); }
+h1, .h1 { font: var(--fw-bold) var(--fs-h1)/var(--lh-h1) var(--font-display); letter-spacing: var(--ls-h1); color: var(--text-primary); }
+h2, .h2 { font: var(--fw-bold) var(--fs-h2)/var(--lh-h2) var(--font-display); letter-spacing: var(--ls-h2); }
+h3, .h3 { font: var(--fw-bold) var(--fs-h3)/var(--lh-h3) var(--font-display); letter-spacing: var(--ls-h3); }
+h4, .h4 { font: var(--fw-bold) var(--fs-h4)/var(--lh-h4) var(--font-sans);    letter-spacing: var(--ls-h4); }
+h5, .h5 { font: var(--fw-bold) var(--fs-h5)/var(--lh-h5) var(--font-sans);    letter-spacing: var(--ls-h5); }
 h6, .h6 { font: var(--fw-semibold) var(--fs-body-lg)/var(--lh-body-lg) var(--font-sans); }
 
-p, .body    { font: var(--fw-regular) var(--fs-body)/var(--lh-body) var(--font-sans); color: var(--color-text-muted); }
+p, .body    { font: var(--fw-regular) var(--fs-body)/var(--lh-body) var(--font-sans);     color: var(--text-tertiary); }
 .body-lg    { font: var(--fw-regular) var(--fs-body-lg)/var(--lh-body-lg) var(--font-sans); }
 .body-sm    { font: var(--fw-regular) var(--fs-body-sm)/var(--lh-body-sm) var(--font-sans); }
-.caption    { font: var(--fw-medium)  var(--fs-caption)/var(--lh-caption) var(--font-caption); color: var(--color-text-faint); }
-.label      { font: var(--fw-semibold) var(--fs-body-sm)/var(--lh-body-sm) var(--font-sans); color: var(--color-text); }
+.caption    { font: var(--fw-medium)  var(--fs-caption)/var(--lh-caption) var(--font-caption); color: var(--text-quaternary); }
+.label      { font: var(--fw-semibold) var(--fs-body-sm)/var(--lh-body-sm) var(--font-sans); color: var(--text-primary); }
 .btn-label  { font: var(--fw-bold) var(--fs-h5)/1.32 var(--font-sans); }
-.meta       { font: var(--fw-medium) var(--fs-body)/var(--lh-body) var(--font-sans); color: var(--color-text-muted); letter-spacing: var(--ls-tight); }
+.meta       { font: var(--fw-medium) var(--fs-body)/var(--lh-body) var(--font-sans); color: var(--text-tertiary); letter-spacing: var(--ls-tight); }
 
-code, pre { font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace; }
+code, pre { font-family: var(--font-mono); }

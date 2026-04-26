@@ -22,7 +22,7 @@ function Specimen({
     <div
       style={{
         padding: "16px 0",
-        borderBottom: "1px solid var(--vamos-divider)",
+        borderBottom: "1px solid var(--divider)",
         display: "grid",
         gridTemplateColumns: "180px 1fr",
         gap: 24,
@@ -74,7 +74,7 @@ export const Families: StoryObj = {
           <div style={{ fontFamily: fontFamilies[key], fontSize: 28, lineHeight: 1.3 }}>
             The quick brown fox jumps over the lazy dog
           </div>
-          <div style={{ fontFamily: fontFamilies[key], fontSize: 16, lineHeight: 1.5, color: "var(--color-text-muted)" }}>
+          <div style={{ fontFamily: fontFamilies[key], fontSize: 16, lineHeight: 1.5, color: "var(--text-tertiary)" }}>
             0123456789 — Faya Sports · 09:00 às 10:00 · 60 min
           </div>
         </Section>
@@ -94,7 +94,7 @@ export const Weights: StoryObj = {
           key={name}
           style={{
             padding: "10px 0",
-            borderBottom: "1px solid var(--vamos-divider)",
+            borderBottom: "1px solid var(--divider)",
             display: "grid",
             gridTemplateColumns: "180px 1fr",
             gap: 24

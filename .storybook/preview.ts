@@ -5,13 +5,14 @@ const preview: Preview = {
   parameters: {
     layout: "fullscreen",
     backgrounds: {
-      default: "canvas-white",
+      default: "surface-canvas",
       values: [
-        { name: "canvas-white", value: "#FFFFFF" },
-        { name: "canvas-subtle", value: "#FAFAFA" },
-        { name: "canvas-soft", value: "#F5F5F5" },
-        { name: "canvas-strong", value: "#E7E5E4" },
-        { name: "canvas-warm", value: "#FFEED2" }
+        { name: "surface-canvas",  value: "#FFFFFF" },
+        { name: "surface-subtle",  value: "#FAFAFA" },
+        { name: "surface-default", value: "#F5F5F5" },
+        { name: "surface-strong",  value: "#E7E5E4" },
+        { name: "surface-warm",    value: "#FFEED2" },
+        { name: "surface-inverse", value: "#1F1F1F" }
       ]
     },
     options: {
