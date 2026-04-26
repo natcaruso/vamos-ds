@@ -1,0 +1,110 @@
+/* ──────────────────────────────────────────────────────────────────────
+ * Checkbox — accessible native checkbox with a custom box.
+ *
+ * Composition: a visually-hidden native <input> drives the state and
+ * keyboard / form behaviour; a sibling <span> renders the visual box +
+ * Material Symbols glyph (check or remove for indeterminate).
+ *
+ * Brand colors come in via the action-* recipes — the component reads
+ * --checkbox-active-bg / --checkbox-active-fg / --checkbox-active-bg-hover
+ * which the React layer points at action-{color}-bg|fg|bg-hover.
+ * ────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --checkbox-size-sm:           var(--space-16);
+  --checkbox-size-md:           var(--space-20);
+  --checkbox-radius:            var(--radius-4);
+  --checkbox-border-width:      var(--border-width-default);
+
+  --checkbox-bg:                var(--surface-canvas);
+  --checkbox-bg-hover:          var(--surface-soft);
+  --checkbox-border:            var(--border-default);
+
+  --checkbox-disabled-opacity:  0.5;
+
+  --checkbox-label-gap:         var(--space-8);
+  --checkbox-label-color:       var(--text-primary);
+  --checkbox-label-color-disabled: var(--text-disabled);
+
+  /* sr-only convention — kept as component-tier tokens so the literal
+     lives in one place and the consuming rule reads from a token. */
+  --checkbox-native-size:       1px;
+  --checkbox-native-margin:    -1px;
+}
+
+.vds-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--checkbox-label-gap);
+  cursor: pointer;
+  user-select: none;
+  font: var(--fw-medium) var(--fs-body-sm)/var(--lh-body-sm) var(--font-sans);
+  color: var(--checkbox-label-color);
+}
+
+.vds-checkbox--disabled {
+  opacity: var(--checkbox-disabled-opacity);
+  cursor: not-allowed;
+  color: var(--checkbox-label-color-disabled);
+}
+
+/* Native input — visually hidden but kept in the layout for assistive
+   tech, label association, and form submission. */
+.vds-checkbox__native {
+  position: absolute;
+  width: var(--checkbox-native-size);
+  height: var(--checkbox-native-size);
+  padding: 0;
+  margin: var(--checkbox-native-margin);
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.vds-checkbox__box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--checkbox-border-width) solid var(--checkbox-border);
+  border-radius: var(--checkbox-radius);
+  background: var(--checkbox-bg);
+  color: transparent;
+  flex-shrink: 0;
+  transition:
+    background var(--motion-duration-fast) var(--motion-easing-standard),
+    border-color var(--motion-duration-fast) var(--motion-easing-standard),
+    color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.vds-checkbox--sm .vds-checkbox__box {
+  width: var(--checkbox-size-sm);
+  height: var(--checkbox-size-sm);
+}
+
+.vds-checkbox--md .vds-checkbox__box {
+  width: var(--checkbox-size-md);
+  height: var(--checkbox-size-md);
+}
+
+.vds-checkbox:hover:not(.vds-checkbox--disabled) .vds-checkbox__box {
+  background: var(--checkbox-bg-hover);
+}
+
+.vds-checkbox__box[data-checked],
+.vds-checkbox__box[data-indeterminate] {
+  background: var(--checkbox-active-bg);
+  border-color: var(--checkbox-active-bg);
+  color: var(--checkbox-active-fg);
+}
+
+.vds-checkbox:hover:not(.vds-checkbox--disabled) .vds-checkbox__box[data-checked],
+.vds-checkbox:hover:not(.vds-checkbox--disabled) .vds-checkbox__box[data-indeterminate] {
+  background: var(--checkbox-active-bg-hover);
+  border-color: var(--checkbox-active-bg-hover);
+}
+
+.vds-checkbox__native:focus-visible + .vds-checkbox__box {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
