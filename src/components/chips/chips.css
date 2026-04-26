@@ -193,11 +193,19 @@
   border: var(--chip-border-width) solid var(--chip-menu-border);
   border-radius: var(--chip-menu-radius);
   padding: var(--chip-menu-padding);
+  margin: 0;
   box-shadow: var(--chip-menu-shadow);
   min-width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2px;
+  list-style: none;
+}
+
+.vds-chip-menu li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .vds-chip-menu__item {
