@@ -277,10 +277,11 @@
 }
 .vds-btn--outline:hover:not([disabled]):not([aria-disabled="true"]) {
   background: var(--btn-outline-bg-hover);
+  border-color: transparent;
 }
 .vds-btn--outline:active:not([disabled]):not([aria-disabled="true"]) {
   background: var(--btn-outline-bg-pressed);
-  border-color: var(--btn-outline-border-pressed);
+  border-color: transparent;
 }
 .vds-btn--outline[disabled],
 .vds-btn--outline[aria-disabled="true"] {
