@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Icon } from "../icon";
 import { iconSize } from "../../tokens/iconSize";
+import { iconWeightForSize } from "../../tokens/iconWeight";
 import type { DropdownChipProps } from "./types";
 import "./chips.css";
 
@@ -51,7 +52,7 @@ export function DropdownChip({
         onClick={() => setOpen((v) => !v)}
       >
         {isSelected && (
-          <Icon name="check" size={iconSize.sm} weight={600} className="vds-chip__icon" />
+          <Icon name="check" size={iconSize.sm} weight={iconWeightForSize(iconSize.sm)} className="vds-chip__icon" />
         )}
         <span className="vds-chip__label">
           {selectedOption ? selectedOption.label : placeholder}
@@ -59,6 +60,7 @@ export function DropdownChip({
         <Icon
           name="expand_more"
           size={iconSize.sm}
+          weight={iconWeightForSize(iconSize.sm)}
           className="vds-chip__icon vds-chip__chevron"
         />
       </button>

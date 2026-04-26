@@ -1,5 +1,6 @@
 import { Icon } from "../icon";
 import { iconSize } from "../../tokens/iconSize";
+import { iconWeightForSize } from "../../tokens/iconWeight";
 import type { FilterChipProps } from "./types";
 import "./chips.css";
 
@@ -17,7 +18,7 @@ export function FilterChip({
     <Icon
       name="check"
       size={iconSize.sm}
-      weight={600}
+      weight={iconWeightForSize(iconSize.sm)}
       className="vds-chip__icon"
       data-testid="check-icon"
     />

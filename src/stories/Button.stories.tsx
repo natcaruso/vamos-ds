@@ -4,6 +4,7 @@ import { Icon } from "../components/icon";
 import { Button } from "../components/buttons";
 import type { ButtonSize, ButtonVariant } from "../components/buttons";
 import { iconSize } from "../tokens/iconSize";
+import { iconWeightForSize } from "../tokens/iconWeight";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -130,7 +131,7 @@ export const LeadingIcon: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
       {ALL_SIZES.map((s) => (
-        <Button key={s} size={s} leadingIcon={<Icon name="calendar_month" size={sizeIcon(s)} weight={500} />}>
+        <Button key={s} size={s} leadingIcon={<Icon name="calendar_month" size={sizeIcon(s)} weight={iconWeightForSize(sizeIcon(s))} />}>
           Agendar aula · {s.toUpperCase()}
         </Button>
       ))}
@@ -143,7 +144,7 @@ export const TrailingIcon: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
       {ALL_SIZES.map((s) => (
-        <Button key={s} size={s} trailingIcon={<Icon name="chevron_right" size={sizeIcon(s)} weight={500} />}>
+        <Button key={s} size={s} trailingIcon={<Icon name="chevron_right" size={sizeIcon(s)} weight={iconWeightForSize(sizeIcon(s))} />}>
           Continuar · {s.toUpperCase()}
         </Button>
       ))}
@@ -160,8 +161,8 @@ export const BothIcons: Story = {
           key={v}
           variant={v}
           size="2xl"
-          leadingIcon={<Icon name="favorite" size={iconSize.lg} weight={500} />}
-          trailingIcon={<Icon name="chevron_right" size={iconSize.lg} weight={500} />}
+          leadingIcon={<Icon name="favorite" size={iconSize.lg} weight={iconWeightForSize(iconSize.lg)} />}
+          trailingIcon={<Icon name="chevron_right" size={iconSize.lg} weight={iconWeightForSize(iconSize.lg)} />}
         >
           Variante {v}
         </Button>

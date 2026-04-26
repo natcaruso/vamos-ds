@@ -8,6 +8,7 @@ export * from "./zIndex";
 export * from "./iconSize";
 export * from "./borderWidth";
 export * from "./controlHeight";
+export * from "./iconWeight";
 
 import { colors } from "./colors";
 import { typography } from "./typography";
@@ -19,6 +20,7 @@ import { zIndex } from "./zIndex";
 import { iconSize } from "./iconSize";
 import { borderWidth } from "./borderWidth";
 import { controlHeight } from "./controlHeight";
+import { iconWeight } from "./iconWeight";
 
 export const tokens = {
   colors,
@@ -30,5 +32,6 @@ export const tokens = {
   zIndex,
   iconSize,
   borderWidth,
-  controlHeight
+  controlHeight,
+  iconWeight
 } as const;

@@ -52,7 +52,9 @@
   --btn-icon-xl:  var(--icon-size-md); /* 16 */
   --btn-icon-md:  var(--icon-size-sm); /* 14 */
   --btn-icon-sm:  var(--icon-size-xs); /* 12 */
-  --btn-icon-weight: 500;              /* match bold label optically */
+  /* Icon weight is a JS-side concern — see src/tokens/iconWeight.ts.
+     It cannot live as a CSS var because the Icon component sets
+     font-variation-settings inline; CSS vars would be ignored. */
 
   /* ─── Outline (blue) variant tokens ─── */
   --btn-outline-bg:               transparent;

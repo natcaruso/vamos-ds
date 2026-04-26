@@ -1,5 +1,6 @@
 import { Icon } from "../icon";
 import { iconSize } from "../../tokens/iconSize";
+import { iconWeightForSize } from "../../tokens/iconWeight";
 import type { InputChipProps } from "./types";
 import "./chips.css";
 
@@ -20,7 +21,7 @@ export function Chip({ label, onRemove, disabled = false, className }: InputChip
           aria-label={`Remover ${label}`}
           onClick={onRemove}
         >
-          <Icon name="close" size={iconSize.sm} className="vds-chip__icon" />
+          <Icon name="close" size={iconSize.sm} weight={iconWeightForSize(iconSize.sm)} className="vds-chip__icon" />
         </button>
       )}
     </span>

@@ -26,8 +26,7 @@
   --ibtn-icon-xl:  var(--icon-size-lg);  /* 20 */
   --ibtn-icon-md:  var(--icon-size-md);  /* 16 */
   --ibtn-icon-sm:  var(--icon-size-sm);  /* 14 */
-
-  --ibtn-icon-weight: 500;
+  /* Icon weight is JS-side — see src/tokens/iconWeight.ts. */
 }
 
 /* ──────────────────────────────────────────────────────────────────────

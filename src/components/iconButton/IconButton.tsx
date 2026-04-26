@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { Icon } from "../icon";
 import { iconSize } from "../../tokens/iconSize";
+import { iconWeightForSize } from "../../tokens/iconWeight";
 import type { IconButtonProps, IconButtonSize } from "./types";
 import "../buttons/buttons.css";
 import "./iconButton.css";
@@ -17,7 +18,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   function IconButton(
     {
       iconName,
-      iconWeight = 500,
+      iconWeight,
       iconFilled = false,
       variant = "blue",
       size = "xl",
@@ -37,6 +38,9 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       .filter(Boolean)
       .join(" ");
 
+    const iconPx = SIZE_TO_ICON_PX[size];
+    const resolvedWeight = iconWeight ?? iconWeightForSize(iconPx);
+
     return (
       <button
         {...rest}
@@ -48,8 +52,8 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       >
         <Icon
           name={iconName}
-          size={SIZE_TO_ICON_PX[size]}
-          weight={iconWeight}
+          size={iconPx}
+          weight={resolvedWeight}
           filled={iconFilled}
         />
       </button>
