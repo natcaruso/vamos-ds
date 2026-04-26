@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import { iconSize } from "../../tokens/iconSize";
 import type { FilterChipProps } from "./types";
 import "./chips.css";
 
@@ -15,7 +16,7 @@ export function FilterChip({
   const leadingIcon = selected ? (
     <Check
       className="vds-chip__icon"
-      size={14}
+      size={iconSize.sm}
       strokeWidth={2.5}
       aria-hidden="true"
       data-testid="check-icon"

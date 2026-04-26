@@ -1,4 +1,5 @@
 import { X } from "lucide-react";
+import { iconSize } from "../../tokens/iconSize";
 import type { InputChipProps } from "./types";
 import "./chips.css";
 
@@ -19,7 +20,7 @@ export function Chip({ label, onRemove, disabled = false, className }: InputChip
           aria-label={`Remover ${label}`}
           onClick={onRemove}
         >
-          <X className="vds-chip__icon" size={14} aria-hidden="true" />
+          <X className="vds-chip__icon" size={iconSize.sm} aria-hidden="true" />
         </button>
       )}
     </span>

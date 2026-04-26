@@ -298,6 +298,40 @@
   --shadow-float:   0 8px 20px rgba(143,168,191,0.35);
   --shadow-pressed: inset 0 1px 0 rgba(0,0,0,0.08);
 
+  /* ─── Border width ─── */
+  --border-width-thin:    1px;
+  --border-width-default: 2px;
+  --border-width-thick:   3px;
+
+  /* ─── Icon size ─── */
+  --icon-size-xs: 12px;
+  --icon-size-sm: 14px;
+  --icon-size-md: 16px;
+  --icon-size-lg: 20px;
+  --icon-size-xl: 24px;
+  --icon-size-2xl: 32px;
+
+  /* ─── Motion ─── */
+  --motion-duration-instant: 80ms;
+  --motion-duration-fast:    150ms;   /* default UI transition */
+  --motion-duration-base:    180ms;   /* per brand spec */
+  --motion-duration-slow:    240ms;
+  --motion-easing-standard:  cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-easing-quiet:     cubic-bezier(0.2, 0, 0, 1);  /* brand transitions */
+  --motion-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+
+  /* ─── Z-index scale ─── */
+  --z-base:      0;
+  --z-raised:    1;
+  --z-sticky:    100;
+  --z-dropdown:  1000;
+  --z-popover:   1100;
+  --z-overlay:   1200;
+  --z-modal:     1300;
+  --z-toast:     1400;
+  --z-tooltip:   1500;
+
   /* ════════════════════════════════════════════════════════════════════
    * 3 · ACTION + FEEDBACK
    * Component-leaning recipes. Reference semantics only. Each role
