@@ -1,0 +1,41 @@
+/* ──────────────────────────────────────────────────────────────────────
+ * Tag — palette-tinted label.
+ *
+ * bg  = palette[hue][1]   (step 1 — lightest tint)
+ * border = palette[hue][3] (step 3)
+ * fg  = palette[hue][N]   N = first step that meets WCAG AA (≥4.5:1)
+ *                          against the bg, computed at module load.
+ *
+ * The component sets --tag-bg / --tag-border / --tag-fg as inline custom
+ * properties; the CSS reads them, so the rule set stays color-agnostic.
+ * ────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --tag-padding-block:  var(--space-2);
+  --tag-padding-inline: var(--space-8);
+  --tag-gap:            var(--space-4);
+  --tag-radius:         var(--radius-8);
+  --tag-border-width:   var(--border-width-thin);
+  --tag-icon-size:      var(--icon-size-sm);
+}
+
+.vds-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tag-gap);
+  padding: var(--tag-padding-block) var(--tag-padding-inline);
+  border-radius: var(--tag-radius);
+  border: var(--tag-border-width) solid var(--tag-border);
+  background: var(--tag-bg);
+  color: var(--tag-fg);
+  font: var(--fw-semibold) var(--fs-body-sm)/var(--lh-body-sm) var(--font-sans);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.vds-tag__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
