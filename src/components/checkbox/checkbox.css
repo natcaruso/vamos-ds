@@ -26,6 +26,10 @@
   --checkbox-label-color:       var(--text-primary);
   --checkbox-label-color-disabled: var(--text-disabled);
 
+  --checkbox-text-stack-gap:    var(--space-2);
+  --checkbox-description-color: var(--text-tertiary);
+  --checkbox-description-color-disabled: var(--text-disabled);
+
   /* sr-only convention — kept as component-tier tokens so the literal
      lives in one place and the consuming rule reads from a token. */
   --checkbox-native-size:       1px;
@@ -107,4 +111,41 @@
 .vds-checkbox__native:focus-visible + .vds-checkbox__box {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * With supporting text — label + description stacked.
+ * Box top-aligns to the first line of the label via line-height math
+ * so the visual baseline is centered on the label cap-height.
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-checkbox--with-description {
+  align-items: flex-start;
+}
+
+.vds-checkbox--with-description.vds-checkbox--md .vds-checkbox__box {
+  margin-top: calc((var(--lh-body-sm) - var(--checkbox-size-md)) / 2);
+}
+
+.vds-checkbox--with-description.vds-checkbox--sm .vds-checkbox__box {
+  margin-top: calc((var(--lh-body-sm) - var(--checkbox-size-sm)) / 2);
+}
+
+.vds-checkbox__text {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--checkbox-text-stack-gap);
+}
+
+.vds-checkbox--with-description .vds-checkbox__label {
+  font-weight: var(--fw-semibold);
+}
+
+.vds-checkbox__description {
+  font: var(--fw-regular) var(--fs-body-sm)/var(--lh-body-sm) var(--font-sans);
+  color: var(--checkbox-description-color);
+}
+
+.vds-checkbox--disabled .vds-checkbox__description {
+  color: var(--checkbox-description-color-disabled);
 }

@@ -19,6 +19,7 @@ export function Checkbox({
   size = "md",
   onChange,
   children,
+  description,
   id,
   name,
   value,
@@ -44,6 +45,7 @@ export function Checkbox({
     "vds-checkbox",
     `vds-checkbox--${size}`,
     disabled && "vds-checkbox--disabled",
+    description && "vds-checkbox--with-description",
     className
   ]
     .filter(Boolean)
@@ -78,7 +80,12 @@ export function Checkbox({
           />
         )}
       </span>
-      {children && <span className="vds-checkbox__label">{children}</span>}
+      {(children || description) && (
+        <span className="vds-checkbox__text">
+          {children && <span className="vds-checkbox__label">{children}</span>}
+          {description && <span className="vds-checkbox__description">{description}</span>}
+        </span>
+      )}
     </label>
   );
 }

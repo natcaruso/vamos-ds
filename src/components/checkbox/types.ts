@@ -18,6 +18,8 @@ export interface CheckboxProps {
   size?: CheckboxSize;
   onChange?: (checked: boolean) => void;
   children?: ReactNode;
+  /** Optional supporting text rendered below the label. */
+  description?: ReactNode;
   id?: string;
   name?: string;
   value?: string;

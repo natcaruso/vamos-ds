@@ -100,6 +100,47 @@ export const Sizes: Story = {
   )
 };
 
+export const WithDescription: Story = {
+  parameters: { layout: "padded" },
+  render: () => {
+    const [checked, setChecked] = useState(true);
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: 480 }}>
+        <Checkbox
+          checked={checked}
+          onChange={setChecked}
+          description="Ao marcar este checkbox, você concorda com os termos e condições da plataforma."
+        >
+          Aceitar termos e condições
+        </Checkbox>
+
+        <Checkbox
+          color="green"
+          description="Receba lembretes 30 minutos antes do início da aula."
+        >
+          Notificações de check-in
+        </Checkbox>
+
+        <Checkbox
+          color="purple"
+          indeterminate
+          description="Algumas modalidades estão selecionadas."
+        >
+          Filtros aplicados
+        </Checkbox>
+
+        <Checkbox
+          disabled
+          checked
+          description="Esta opção foi configurada pela administração do estúdio e não pode ser alterada."
+        >
+          Permitir compartilhamento de presença
+        </Checkbox>
+      </div>
+    );
+  }
+};
+
 export const Group: Story = {
   parameters: { layout: "padded" },
   render: () => {
