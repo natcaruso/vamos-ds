@@ -1,0 +1,208 @@
+/* ──────────────────────────────────────────────────────────────────────
+ * IconButton — square button with a single Material Symbols glyph.
+ *
+ * width === height per size; pill radius keeps the surface circular.
+ * Variant colors reuse the existing --action-* recipes and the shared
+ * --btn-outline-* / --btn-ghost-* component tokens declared in
+ * buttons.css, so a re-skin propagates to both Button and IconButton.
+ * ────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── Shape ─── */
+  --ibtn-radius:        var(--radius-full);
+  --ibtn-border-width:  var(--border-width-default);
+
+  /* ─── Per-size geometry (square: width = height) ─── */
+  --ibtn-h-2xl:    var(--space-48);
+  --ibtn-h-xl:     var(--space-40);
+  --ibtn-h-md:     var(--space-32);
+  --ibtn-h-sm:     var(--space-24);
+
+  --ibtn-icon-2xl: var(--icon-size-xl); /* 24 */
+  --ibtn-icon-xl:  var(--icon-size-lg); /* 20 */
+  --ibtn-icon-md:  var(--icon-size-md); /* 16 */
+  --ibtn-icon-sm:  var(--icon-size-sm); /* 14 */
+
+  --ibtn-icon-weight: 500;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Base
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ibtn-radius);
+  border: var(--ibtn-border-width) solid transparent;
+  cursor: pointer;
+  user-select: none;
+  padding: 0;
+  background: transparent;
+  transition: var(--motion-duration-fast) var(--motion-easing-standard);
+  transition-property: background-color, color, border-color, box-shadow, opacity;
+  flex-shrink: 0;
+}
+
+.vds-icon-btn:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.vds-icon-btn[disabled],
+.vds-icon-btn[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Sizes — width === height
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-icon-btn--2xl { width: var(--ibtn-h-2xl); height: var(--ibtn-h-2xl); }
+.vds-icon-btn--xl  { width: var(--ibtn-h-xl);  height: var(--ibtn-h-xl);  }
+.vds-icon-btn--md  { width: var(--ibtn-h-md);  height: var(--ibtn-h-md);  }
+.vds-icon-btn--sm  { width: var(--ibtn-h-sm);  height: var(--ibtn-h-sm);  }
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Variants — reuse the action recipes
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-icon-btn--blue {
+  background: var(--action-blue-bg);
+  color: var(--action-blue-fg);
+}
+.vds-icon-btn--blue:hover:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--action-blue-bg-hover);
+}
+.vds-icon-btn--blue:active:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--action-blue-bg-pressed);
+  box-shadow: var(--shadow-pressed);
+}
+.vds-icon-btn--blue[disabled],
+.vds-icon-btn--blue[aria-disabled="true"] {
+  background: var(--action-blue-bg-disabled);
+  color: var(--action-blue-fg-disabled);
+}
+
+.vds-icon-btn--green {
+  background: var(--action-green-bg);
+  color: var(--action-green-fg);
+}
+.vds-icon-btn--green:hover:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--action-green-bg-hover);
+}
+.vds-icon-btn--green:active:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--action-green-bg-pressed);
+  box-shadow: var(--shadow-pressed);
+}
+.vds-icon-btn--green[disabled],
+.vds-icon-btn--green[aria-disabled="true"] {
+  background: var(--action-green-bg-disabled);
+  color: var(--action-green-fg-disabled);
+}
+
+.vds-icon-btn--purple {
+  background: var(--action-purple-bg);
+  color: var(--action-purple-fg);
+}
+.vds-icon-btn--purple:hover:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--action-purple-bg-hover);
+}
+.vds-icon-btn--purple:active:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--action-purple-bg-pressed);
+  box-shadow: var(--shadow-pressed);
+}
+.vds-icon-btn--purple[disabled],
+.vds-icon-btn--purple[aria-disabled="true"] {
+  background: var(--action-purple-bg-disabled);
+  color: var(--action-purple-fg-disabled);
+}
+
+.vds-icon-btn--pink {
+  background: var(--action-pink-bg);
+  color: var(--action-pink-fg);
+}
+.vds-icon-btn--pink:hover:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--action-pink-bg-hover);
+}
+.vds-icon-btn--pink:active:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--action-pink-bg-pressed);
+  box-shadow: var(--shadow-pressed);
+}
+.vds-icon-btn--pink[disabled],
+.vds-icon-btn--pink[aria-disabled="true"] {
+  background: var(--action-pink-bg-disabled);
+  color: var(--action-pink-fg-disabled);
+}
+
+.vds-icon-btn--grey {
+  background: var(--action-grey-bg);
+  color: var(--action-grey-fg);
+}
+.vds-icon-btn--grey:hover:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--action-grey-bg-hover);
+}
+.vds-icon-btn--grey:active:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--action-grey-bg-pressed);
+  box-shadow: var(--shadow-pressed);
+}
+.vds-icon-btn--grey[disabled],
+.vds-icon-btn--grey[aria-disabled="true"] {
+  background: var(--action-grey-bg-disabled);
+  color: var(--action-grey-fg-disabled);
+}
+
+.vds-icon-btn--lightblue {
+  background: var(--action-lightblue-bg);
+  color: var(--action-lightblue-fg);
+}
+.vds-icon-btn--lightblue:hover:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--action-lightblue-bg-hover);
+}
+.vds-icon-btn--lightblue:active:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--action-lightblue-bg-pressed);
+  box-shadow: var(--shadow-pressed);
+}
+.vds-icon-btn--lightblue[disabled],
+.vds-icon-btn--lightblue[aria-disabled="true"] {
+  background: var(--action-lightblue-bg-disabled);
+  color: var(--action-lightblue-fg-disabled);
+}
+
+.vds-icon-btn--outline {
+  background: var(--btn-outline-bg);
+  color: var(--btn-outline-fg);
+  border-color: var(--btn-outline-border);
+}
+.vds-icon-btn--outline:hover:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--btn-outline-bg-hover);
+  border-color: transparent;
+}
+.vds-icon-btn--outline:active:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--btn-outline-bg-pressed);
+  border-color: transparent;
+}
+.vds-icon-btn--outline[disabled],
+.vds-icon-btn--outline[aria-disabled="true"] {
+  background: var(--btn-outline-bg-disabled);
+  color: var(--btn-outline-fg-disabled);
+  border-color: var(--btn-outline-border-disabled);
+}
+
+.vds-icon-btn--ghost {
+  background: var(--btn-ghost-bg);
+  color: var(--btn-ghost-fg);
+  border-color: transparent;
+}
+.vds-icon-btn--ghost:hover:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--btn-ghost-bg-hover);
+}
+.vds-icon-btn--ghost:active:not([disabled]):not([aria-disabled="true"]) {
+  background: var(--btn-ghost-bg-pressed);
+}
+.vds-icon-btn--ghost[disabled],
+.vds-icon-btn--ghost[aria-disabled="true"] {
+  background: var(--btn-ghost-bg-disabled);
+  color: var(--btn-ghost-fg-disabled);
+}
