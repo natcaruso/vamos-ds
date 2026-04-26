@@ -85,7 +85,7 @@ export const Sizes: Story = {
 export const SizeVariantMatrix: Story = {
   parameters: { layout: "padded" },
   render: () => (
-    <div style={{ display: "grid", gridTemplateColumns: "auto repeat(7, max-content)", gap: 16, alignItems: "center" }}>
+    <div style={{ display: "grid", gridTemplateColumns: `auto repeat(${ALL_VARIANTS.length}, max-content)`, gap: 16, alignItems: "center" }}>
       <div />
       {ALL_VARIANTS.map((v) => (
         <div key={v} style={{
