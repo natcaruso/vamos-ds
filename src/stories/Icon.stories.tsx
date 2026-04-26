@@ -5,7 +5,7 @@ import { iconSize } from "../tokens/iconSize";
 import { Page, Section, mono } from "./_chrome";
 
 const meta: Meta<typeof Icon> = {
-  title: "Components/Icon",
+  title: "Foundations/Iconography",
   component: Icon,
   parameters: { layout: "centered" },
   argTypes: {

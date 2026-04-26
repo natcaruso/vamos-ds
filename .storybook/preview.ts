@@ -20,9 +20,20 @@ const preview: Preview = {
         order: [
           "Introduction",
           "Foundations",
-          ["Colors", "Typography", "Spacing", "Radius", "Shadows", "Control heights"],
+          [
+            "Colors",
+            "Typography",
+            "Spacing",
+            "Control heights",
+            "Border widths",
+            "Radius",
+            "Shadows",
+            "Motion",
+            "Z-index",
+            "Iconography"
+          ],
           "Components",
-          ["Icon", "Button", "IconButton", "Chip · Input", "Chip · Filter", "Chip · Dropdown"]
+          ["Button", "IconButton", "Chip · Input", "Chip · Filter", "Chip · Dropdown"]
         ]
       }
     },
