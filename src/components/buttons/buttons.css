@@ -42,10 +42,11 @@
   --btn-lh-xl:    var(--lh-body-sm);
   --btn-lh-md:    var(--lh-body-sm);
 
-  --btn-icon-3xl: var(--icon-size-lg); /* 20 */
-  --btn-icon-2xl: var(--icon-size-md); /* 16 */
-  --btn-icon-xl:  var(--icon-size-sm); /* 14 */
+  --btn-icon-3xl: var(--icon-size-xl); /* 24 */
+  --btn-icon-2xl: var(--icon-size-lg); /* 20 */
+  --btn-icon-xl:  var(--icon-size-md); /* 16 */
   --btn-icon-md:  var(--icon-size-sm); /* 14 */
+  --btn-icon-weight: 500;              /* match bold label optically */
 
   /* ─── Outline (blue) variant tokens ─── */
   --btn-outline-bg:               transparent;

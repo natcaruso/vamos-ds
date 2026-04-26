@@ -37,7 +37,10 @@ const ALL_VARIANTS: ButtonVariant[] = [
 const ALL_SIZES: ButtonSize[] = ["3xl", "2xl", "xl", "md"];
 
 const sizeIcon = (s: ButtonSize) =>
-  s === "3xl" ? iconSize.lg : s === "2xl" ? iconSize.md : iconSize.sm;
+  s === "3xl" ? iconSize.xl
+  : s === "2xl" ? iconSize.lg
+  : s === "xl" ? iconSize.md
+  : iconSize.sm;
 
 /* ─────────── Playground ─────────── */
 
@@ -126,7 +129,7 @@ export const LeadingIcon: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
       {ALL_SIZES.map((s) => (
-        <Button key={s} size={s} leadingIcon={<Icon name="calendar_month" size={sizeIcon(s)} />}>
+        <Button key={s} size={s} leadingIcon={<Icon name="calendar_month" size={sizeIcon(s)} weight={500} />}>
           Agendar aula · {s.toUpperCase()}
         </Button>
       ))}
@@ -139,7 +142,7 @@ export const TrailingIcon: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
       {ALL_SIZES.map((s) => (
-        <Button key={s} size={s} trailingIcon={<Icon name="chevron_right" size={sizeIcon(s)} />}>
+        <Button key={s} size={s} trailingIcon={<Icon name="chevron_right" size={sizeIcon(s)} weight={500} />}>
           Continuar · {s.toUpperCase()}
         </Button>
       ))}
@@ -156,8 +159,8 @@ export const BothIcons: Story = {
           key={v}
           variant={v}
           size="2xl"
-          leadingIcon={<Icon name="favorite" size={iconSize.md} />}
-          trailingIcon={<Icon name="chevron_right" size={iconSize.md} />}
+          leadingIcon={<Icon name="favorite" size={iconSize.lg} weight={500} />}
+          trailingIcon={<Icon name="chevron_right" size={iconSize.lg} weight={500} />}
         >
           Variante {v}
         </Button>
