@@ -22,13 +22,13 @@ const meta: Meta<typeof IconButton> = {
     disabled:    { control: "boolean" }
   },
   args: {
-    iconName: "favorite",
+    iconName: "package_2",
     variant: "blue",
     size: "xl",
     iconWeight: 500,
     iconFilled: false,
     disabled: false,
-    "aria-label": "Favoritar"
+    "aria-label": "Pacote"
   }
 };
 export default meta;
@@ -49,7 +49,7 @@ export const Sizes: Story = {
       {ALL_SIZES.map((s) => (
         <div key={s} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
           <IconButton
-            iconName="favorite"
+            iconName="package_2"
             size={s}
             aria-label={`Favoritar · ${s}`}
           />
@@ -69,7 +69,7 @@ export const Variants: Story = {
       {ALL_VARIANTS.map((v) => (
         <IconButton
           key={v}
-          iconName="favorite"
+          iconName="package_2"
           variant={v}
           size="xl"
           aria-label={`Favoritar · ${v}`}
@@ -113,7 +113,7 @@ export const SizeVariantMatrix: Story = {
           {ALL_VARIANTS.map((v) => (
             <IconButton
               key={`${s}-${v}`}
-              iconName="favorite"
+              iconName="package_2"
               variant={v}
               size={s}
               aria-label={`${v} ${s}`}
@@ -129,10 +129,10 @@ export const Filled: Story = {
   parameters: { layout: "padded" },
   render: () => (
     <div style={{ display: "flex", gap: 16 }}>
-      <IconButton iconName="favorite" variant="ghost"   size="xl" aria-label="Favoritar (outline)" />
-      <IconButton iconName="favorite" variant="ghost"   size="xl" iconFilled aria-label="Favoritado" />
-      <IconButton iconName="star"     variant="outline" size="xl" aria-label="Avaliar (outline)" />
-      <IconButton iconName="star"     variant="outline" size="xl" iconFilled aria-label="Avaliado" />
+      <IconButton iconName="package_2" variant="ghost"   size="xl" aria-label="Pacote (outline)" />
+      <IconButton iconName="package_2" variant="ghost"   size="xl" iconFilled aria-label="Pacote (filled)" />
+      <IconButton iconName="package_2" variant="outline" size="xl" aria-label="Pacote · outline" />
+      <IconButton iconName="package_2" variant="outline" size="xl" iconFilled aria-label="Pacote · outline filled" />
     </div>
   )
 };
@@ -155,8 +155,8 @@ export const States: Story = {
           <div style={{ font: "var(--fw-semibold) 12px var(--font-sans)", color: "var(--text-tertiary)", textTransform: "uppercase" }}>
             {v}
           </div>
-          <IconButton iconName="favorite" variant={v} size="xl" aria-label={`${v}`} />
-          <IconButton iconName="favorite" variant={v} size="xl" disabled aria-label={`${v} disabled`} />
+          <IconButton iconName="package_2" variant={v} size="xl" aria-label={`${v}`} />
+          <IconButton iconName="package_2" variant={v} size="xl" disabled aria-label={`${v} disabled`} />
         </Fragment>
       ))}
     </div>
