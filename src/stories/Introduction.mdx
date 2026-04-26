@@ -1,0 +1,37 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Introduction" />
+
+# Vamos DS
+
+Design system for the **Vamos** sports-class booking app — a PT-BR mobile
+product where members browse a weekly calendar, pick a class at their favorite
+arena, and tap **Fazer check-in** to confirm their spot.
+
+This Storybook is the live documentation for the system. Foundations first
+(colors, type, space, radii, shadow) — components arrive as the library grows.
+
+## Token tiers
+
+1. **Primitives** — raw values (`--vamos-brand-blue`, `--vamos-gray-7`, …).
+2. **Semantic** — purpose-bound (`--color-bg`, `--color-text-muted`, …).
+3. **Component** — added per-component as the library grows.
+
+The authoritative token source is `src/tokens/tokens.css`. The TS files in
+`src/tokens/*.ts` mirror those values for non-CSS consumers.
+
+## Brand snapshot
+
+- Primary `#0066FE`, success `#52C41A`, waitlist purple `#8A38F5`,
+  danger pink `#FF5983`, warning amber `#FAAD14`.
+- Inter only, three optical sizes (18 / 24 / 28 pt), self-hosted.
+- 4-px spacing scale, 16-px card radius, pill (∞) for buttons/chips/avatars.
+- Mostly flat — one shadow used sparingly for floating specimens.
+- Voice: PT-BR, informal "você", verb-first CTAs, sentence case, no emoji.
+
+## Signature detail — "Vagas preenchidas" dot meter
+
+A fixed `6px`-tall row of equal segments (typically 8 or 16) with `2px` gaps
+and `2px` corner radius. Dots fill left-to-right: green → amber when nearly
+full, all green when *lotado*, all grey when *vazio*. The visual heartbeat of
+the brand.
