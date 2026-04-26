@@ -372,12 +372,12 @@
   --action-waitlist-fg:          var(--vamos-ink-inverse-100);
   --action-waitlist-fg-disabled: var(--vamos-ink-45);
 
-  /* ─── Action · neutral (secondary / ghost) ─── */
-  --action-neutral-bg:           var(--vamos-surface-soft);
-  --action-neutral-bg-hover:     var(--vamos-surface-strong);
-  --action-neutral-bg-pressed:   var(--vamos-gray-5);
-  --action-neutral-bg-disabled:  var(--vamos-surface-subtle);
-  --action-neutral-fg:           var(--vamos-ink-100);
+  /* ─── Action · neutral (brand grey CTA) ─── */
+  --action-neutral-bg:           var(--vamos-brand-grey);
+  --action-neutral-bg-hover:     var(--vamos-brand-grey-pressed);
+  --action-neutral-bg-pressed:   var(--vamos-brand-grey-pressed);
+  --action-neutral-bg-disabled:  var(--vamos-surface-soft);
+  --action-neutral-fg:           var(--vamos-ink-inverse-100);
   --action-neutral-fg-disabled:  var(--vamos-ink-45);
 
   /* ─── Feedback · status pairs (bg + fg, always used together) ─── */

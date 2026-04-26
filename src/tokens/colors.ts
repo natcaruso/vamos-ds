@@ -178,11 +178,11 @@ export const action: Record<
     ...sharedDisabled
   },
   neutral: {
-    bg:         surfacePrimitive.soft,
-    bgHover:    surfacePrimitive.strong,
-    bgPressed:  gray[4],
-    bgDisabled: surfacePrimitive.subtle,
-    fg:         ink[100],
+    bg:         brand.grey,
+    bgHover:    brandPressed.grey,
+    bgPressed:  brandPressed.grey,
+    bgDisabled: surfacePrimitive.soft,
+    fg:         ink.inverse[100],
     fgDisabled: ink[45]
   }
 };
