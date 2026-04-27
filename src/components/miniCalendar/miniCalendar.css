@@ -39,7 +39,7 @@
 
   --mini-cal-day-color:           var(--text-primary);
   --mini-cal-day-color-muted:     var(--text-tertiary);
-  --mini-cal-day-color-past:      var(--text-tertiary);
+  --mini-cal-day-color-past:      var(--text-quaternary);
   --mini-cal-day-color-selected:  var(--action-blue-fg);
 
   --mini-cal-nav-size:            var(--control-h-md);
@@ -125,6 +125,7 @@
   background: var(--mini-cal-day-bg-past);
 }
 
+.vds-mini-cal__day[data-past] .vds-mini-cal__day-dow,
 .vds-mini-cal__day[data-past] .vds-mini-cal__day-number {
   color: var(--mini-cal-day-color-past);
 }
