@@ -9,13 +9,19 @@ import {
   subWeeks
 } from "date-fns";
 import { ptBR } from "date-fns/locale/pt-BR";
-import { IconButton } from "../iconButton";
+import { Icon } from "../icon";
+import { iconSize } from "../../tokens/iconSize";
+import { iconWeightForSize } from "../../tokens/iconWeight";
 import type { MiniCalendarProps } from "./types";
 import "./miniCalendar.css";
 
 const DOW_PT_BR: [string, string, string, string, string, string, string] = [
-  "dom", "seg", "ter", "qua", "qui", "sex", "sáb"
+  "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"
 ];
+
+function pluralizeItens(n: number): string {
+  return `${n} ${n === 1 ? "item" : "itens"}`;
+}
 
 export function MiniCalendar({
   value,
@@ -23,6 +29,11 @@ export function MiniCalendar({
   onChange,
   onWeekChange,
   weekStartsOn = 0,
+  highlightedDates = [],
+  showHeader = true,
+  showNavigation = true,
+  itemCount,
+  headerMeta,
   locale = ptBR,
   dayOfWeekLabels = DOW_PT_BR,
   ariaLabel = "Calendário",
@@ -56,8 +67,16 @@ export function MiniCalendar({
     onWeekChange?.(startOfWeek(next, { weekStartsOn }));
   };
 
-  const titleRaw = format(currentWeek, "MMMM yyyy", { locale });
-  const title = titleRaw.charAt(0).toUpperCase() + titleRaw.slice(1);
+  // Title: "Hoje, quarta-feira" when the selected date is today, otherwise
+  // "Quarta-feira, 27 de abril" for any other selection.
+  const isSelectedToday = isSameDay(selected, today);
+  const weekday = format(selected, "EEEE", { locale });
+  const titleText = isSelectedToday
+    ? `Hoje, ${weekday}`
+    : `${weekday.charAt(0).toUpperCase() + weekday.slice(1)}, ${format(selected, "d 'de' MMMM", { locale })}`;
+
+  const isHighlighted = (d: Date) =>
+    highlightedDates.some((h) => isSameDay(h, d));
 
   return (
     <div
@@ -65,52 +84,87 @@ export function MiniCalendar({
       role="group"
       aria-label={ariaLabel}
     >
-      <div className="vds-mini-cal__header">
-        <IconButton
-          variant="ghost"
-          size="md"
-          iconName="chevron_left"
-          aria-label="Semana anterior"
-          onClick={goPrev}
-        />
-        <h2 className="vds-mini-cal__title">{title}</h2>
-        <IconButton
-          variant="ghost"
-          size="md"
-          iconName="chevron_right"
-          aria-label="Próxima semana"
-          onClick={goNext}
-        />
-      </div>
+      {showHeader && (
+        <header className="vds-mini-cal__header">
+          <h2 className="vds-mini-cal__title">
+            <span className="vds-mini-cal__title-text">{titleText}</span>
+            <Icon
+              name="expand_more"
+              size={iconSize.md}
+              weight={iconWeightForSize(iconSize.md)}
+              className="vds-mini-cal__title-icon"
+              aria-hidden="true"
+            />
+          </h2>
+          {(headerMeta ?? itemCount != null) && (
+            <span className="vds-mini-cal__meta">
+              {headerMeta ?? (itemCount != null ? pluralizeItens(itemCount) : null)}
+            </span>
+          )}
+        </header>
+      )}
 
-      <div className="vds-mini-cal__dow" aria-hidden="true">
-        {days.map((d) => (
-          <div key={d.toISOString()} className="vds-mini-cal__dow-cell">
-            {dayOfWeekLabels[d.getDay()]}
-          </div>
-        ))}
-      </div>
+      <div className="vds-mini-cal__strip-wrapper">
+        {showNavigation && (
+          <button
+            type="button"
+            className="vds-mini-cal__nav vds-mini-cal__nav--prev"
+            aria-label="Semana anterior"
+            onClick={goPrev}
+          >
+            <Icon
+              name="chevron_left"
+              size={iconSize.sm}
+              weight={iconWeightForSize(iconSize.sm)}
+              aria-hidden="true"
+            />
+          </button>
+        )}
 
-      <div className="vds-mini-cal__days">
-        {days.map((d) => {
-          const isSelected = isSameDay(d, selected);
-          const isToday = isSameDay(d, today);
-          return (
-            <button
-              key={d.toISOString()}
-              type="button"
-              className="vds-mini-cal__day"
-              data-selected={isSelected || undefined}
-              data-today={isToday || undefined}
-              aria-pressed={isSelected}
-              aria-current={isToday ? "date" : undefined}
-              aria-label={format(d, "EEEE, d 'de' MMMM 'de' yyyy", { locale })}
-              onClick={() => setDate(d)}
-            >
-              <time dateTime={format(d, "yyyy-MM-dd")}>{format(d, "d")}</time>
-            </button>
-          );
-        })}
+        <div className="vds-mini-cal__strip">
+          {days.map((d) => {
+            const isSelected = isSameDay(d, selected);
+            const highlighted = isHighlighted(d);
+            const isToday = isSameDay(d, today);
+            return (
+              <button
+                key={d.toISOString()}
+                type="button"
+                className="vds-mini-cal__day"
+                data-selected={isSelected || undefined}
+                data-highlighted={highlighted && !isSelected ? true : undefined}
+                data-today={isToday || undefined}
+                aria-pressed={isSelected}
+                aria-current={isToday ? "date" : undefined}
+                aria-label={format(d, "EEEE, d 'de' MMMM 'de' yyyy", { locale })}
+                onClick={() => setDate(d)}
+              >
+                <span className="vds-mini-cal__day-dow">
+                  {dayOfWeekLabels[d.getDay()]}
+                </span>
+                <span className="vds-mini-cal__day-number">
+                  {format(d, "d")}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {showNavigation && (
+          <button
+            type="button"
+            className="vds-mini-cal__nav vds-mini-cal__nav--next"
+            aria-label="Próxima semana"
+            onClick={goNext}
+          >
+            <Icon
+              name="chevron_right"
+              size={iconSize.sm}
+              weight={iconWeightForSize(iconSize.sm)}
+              aria-hidden="true"
+            />
+          </button>
+        )}
       </div>
     </div>
   );
