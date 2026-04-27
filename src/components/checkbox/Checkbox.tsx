@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { Icon } from "../icon";
 import { iconSize } from "../../tokens/iconSize";
@@ -12,7 +12,8 @@ const ICON_PX_FOR_SIZE: Record<CheckboxSize, number> = {
 };
 
 export function Checkbox({
-  checked = false,
+  checked,
+  defaultChecked,
   indeterminate = false,
   disabled = false,
   color = "blue",
@@ -29,11 +30,21 @@ export function Checkbox({
   const inputId = id ?? generatedId;
   const inputRef = useRef<HTMLInputElement | null>(null);
 
+  const isControlled = checked !== undefined;
+  const [uncontrolledChecked, setUncontrolledChecked] = useState(defaultChecked ?? false);
+  const currentChecked = isControlled ? (checked ?? false) : uncontrolledChecked;
+
   // Native indeterminate is a property, not an attribute — has to be
   // set via the DOM after render.
   useEffect(() => {
     if (inputRef.current) inputRef.current.indeterminate = indeterminate;
   }, [indeterminate]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const next = e.target.checked;
+    if (!isControlled) setUncontrolledChecked(next);
+    onChange?.(next);
+  };
 
   const cssVars = {
     "--checkbox-active-bg":       `var(--action-${color}-bg)`,
@@ -60,19 +71,19 @@ export function Checkbox({
         id={inputId}
         type="checkbox"
         className="vds-checkbox__native"
-        checked={checked}
+        checked={currentChecked}
         disabled={disabled}
         name={name}
         value={value}
-        onChange={(e) => onChange?.(e.target.checked)}
+        onChange={handleChange}
       />
       <span
         className="vds-checkbox__box"
-        data-checked={checked && !indeterminate ? true : undefined}
+        data-checked={currentChecked && !indeterminate ? true : undefined}
         data-indeterminate={indeterminate || undefined}
         aria-hidden="true"
       >
-        {(checked || indeterminate) && (
+        {(currentChecked || indeterminate) && (
           <Icon
             name={indeterminate ? "remove" : "check"}
             size={iconPx}

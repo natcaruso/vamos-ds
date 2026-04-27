@@ -63,7 +63,7 @@ export const BrandColors: Story = {
   render: () => (
     <div style={{ display: "grid", gridTemplateColumns: "repeat(2, max-content)", gap: 16 }}>
       {ALL_COLORS.map((c) => (
-        <Checkbox key={c} checked color={c}>{c}</Checkbox>
+        <Checkbox key={c} defaultChecked color={c}>{c}</Checkbox>
       ))}
     </div>
   )
@@ -94,8 +94,8 @@ export const Sizes: Story = {
   parameters: { layout: "padded" },
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-      <Checkbox size="sm" checked>Small (16)</Checkbox>
-      <Checkbox size="md" checked>Medium (20)</Checkbox>
+      <Checkbox size="sm" defaultChecked>Small (16)</Checkbox>
+      <Checkbox size="md" defaultChecked>Medium (20)</Checkbox>
     </div>
   )
 };
@@ -116,6 +116,7 @@ export const WithDescription: Story = {
 
         <Checkbox
           color="green"
+          defaultChecked
           description="Receba lembretes 30 minutos antes do início da aula."
         >
           Notificações de check-in

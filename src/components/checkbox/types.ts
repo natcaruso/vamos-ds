@@ -11,7 +11,10 @@ export type CheckboxColor =
 export type CheckboxSize = "sm" | "md";
 
 export interface CheckboxProps {
+  /** Controlled checked value. Pair with onChange. */
   checked?: boolean;
+  /** Uncontrolled initial value. Mutually exclusive with `checked`. */
+  defaultChecked?: boolean;
   indeterminate?: boolean;
   disabled?: boolean;
   color?: CheckboxColor;
