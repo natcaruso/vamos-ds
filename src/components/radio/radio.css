@@ -1,0 +1,180 @@
+/* ──────────────────────────────────────────────────────────────────────
+ * Radio + RadioGroup — accessible native radio with a custom box.
+ *
+ * Pattern mirrors Checkbox: visually-hidden native <input> drives state
+ * + keyboard / form behaviour, sibling <span> renders the visual disc
+ * + inner dot. Brand color is wired in at the React layer via
+ * --radio-active-bg / -fg / -bg-hover (action-{color}-* tokens).
+ * ────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --radio-size-sm:           var(--space-16);
+  --radio-size-md:           var(--space-20);
+  --radio-dot-sm:            var(--space-6);
+  --radio-dot-md:            var(--space-8);
+  --radio-radius:            var(--radius-full);
+  --radio-border-width:      var(--border-width-default);
+
+  --radio-bg:                var(--surface-canvas);
+  --radio-bg-hover:          var(--surface-soft);
+  --radio-border:            var(--border-default);
+
+  --radio-disabled-opacity:  0.5;
+
+  --radio-label-gap:         var(--space-8);
+  --radio-label-color:       var(--text-primary);
+  --radio-label-color-disabled: var(--text-disabled);
+
+  --radio-text-stack-gap:    var(--space-2);
+  --radio-description-color: var(--text-tertiary);
+  --radio-description-color-disabled: var(--text-disabled);
+
+  --radio-group-gap-vertical:   var(--space-12);
+  --radio-group-gap-horizontal: var(--space-16);
+
+  /* sr-only convention — kept as component tokens (single source). */
+  --radio-native-size:       1px;
+  --radio-native-margin:    -1px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Group
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-radio-group {
+  display: flex;
+}
+
+.vds-radio-group--vertical {
+  flex-direction: column;
+  gap: var(--radio-group-gap-vertical);
+}
+
+.vds-radio-group--horizontal {
+  flex-direction: row;
+  gap: var(--radio-group-gap-horizontal);
+  flex-wrap: wrap;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Item
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--radio-label-gap);
+  cursor: pointer;
+  user-select: none;
+  font: var(--fw-medium) var(--fs-body-sm)/var(--lh-body-sm) var(--font-sans);
+  color: var(--radio-label-color);
+}
+
+.vds-radio--disabled {
+  opacity: var(--radio-disabled-opacity);
+  cursor: not-allowed;
+  color: var(--radio-label-color-disabled);
+}
+
+/* Native input — visually hidden but kept in the layout for assistive
+   tech, label association, and form submission. */
+.vds-radio__native {
+  position: absolute;
+  width: var(--radio-native-size);
+  height: var(--radio-native-size);
+  padding: 0;
+  margin: var(--radio-native-margin);
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.vds-radio__box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--radio-border-width) solid var(--radio-border);
+  border-radius: var(--radio-radius);
+  background: var(--radio-bg);
+  flex-shrink: 0;
+  transition:
+    background var(--motion-duration-fast) var(--motion-easing-standard),
+    border-color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.vds-radio--sm .vds-radio__box { width: var(--radio-size-sm); height: var(--radio-size-sm); }
+.vds-radio--md .vds-radio__box { width: var(--radio-size-md); height: var(--radio-size-md); }
+
+.vds-radio:hover:not(.vds-radio--disabled) .vds-radio__box {
+  background: var(--radio-bg-hover);
+}
+
+.vds-radio__box[data-checked] {
+  background: var(--radio-active-bg);
+  border-color: var(--radio-active-bg);
+}
+
+.vds-radio:hover:not(.vds-radio--disabled) .vds-radio__box[data-checked] {
+  background: var(--radio-active-bg-hover);
+  border-color: var(--radio-active-bg-hover);
+}
+
+.vds-radio__dot {
+  display: block;
+  border-radius: var(--radio-radius);
+  background: var(--radio-active-fg);
+  opacity: 0;
+  transform: scale(0);
+  transition:
+    opacity var(--motion-duration-fast) var(--motion-easing-standard),
+    transform var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.vds-radio--sm .vds-radio__dot { width: var(--radio-dot-sm); height: var(--radio-dot-sm); }
+.vds-radio--md .vds-radio__dot { width: var(--radio-dot-md); height: var(--radio-dot-md); }
+
+.vds-radio__box[data-checked] .vds-radio__dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.vds-radio__native:focus-visible + .vds-radio__box {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * With supporting text
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-radio--with-description {
+  align-items: flex-start;
+}
+
+.vds-radio--with-description.vds-radio--md .vds-radio__box {
+  margin-top: calc((var(--lh-body-sm) - var(--radio-size-md)) / 2);
+}
+
+.vds-radio--with-description.vds-radio--sm .vds-radio__box {
+  margin-top: calc((var(--lh-body-sm) - var(--radio-size-sm)) / 2);
+}
+
+.vds-radio__text {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--radio-text-stack-gap);
+}
+
+.vds-radio--with-description .vds-radio__label {
+  font-weight: var(--fw-semibold);
+}
+
+.vds-radio__description {
+  font: var(--fw-regular) var(--fs-body-sm)/var(--lh-body-sm) var(--font-sans);
+  color: var(--radio-description-color);
+}
+
+.vds-radio--disabled .vds-radio__description {
+  color: var(--radio-description-color-disabled);
+}
