@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { ClassCard } from "../components/classCard";
 import faya from "./assets/faya-sports.jpg";
@@ -101,16 +101,21 @@ export const Variants: Story = {
 export const Interactive: Story = {
   args: {
     capacityTotal: 9,
-    capacityFilled: 0
+    capacityFilled: 4
   },
 
   render: (args) => {
     const total = Math.max(1, Math.floor(args.capacityTotal ?? 16));
-    const [filled, setFilled] = useState(0);
+    const seed = Math.max(0, Math.min(Math.floor(args.capacityFilled ?? 0), total));
+    const [filled, setFilled] = useState(seed);
 
-    // Re-clamp internal counter when total shrinks below it.
+    // Sync internal counter with the controls whenever the user edits
+    // capacityFilled or capacityTotal in the panel.
+    useEffect(() => {
+      setFilled(seed);
+    }, [seed, total]);
+
     const clamped = Math.min(filled, total);
-    if (clamped !== filled) setFilled(clamped);
 
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 640 }}>
