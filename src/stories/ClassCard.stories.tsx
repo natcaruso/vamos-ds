@@ -99,23 +99,27 @@ export const Variants: Story = {
 };
 
 export const Interactive: Story = {
-  render: () => {
-    const [filled, setFilled] = useState(6);
+  args: {
+    capacityTotal: 9,
+    capacityFilled: 0
+  },
+
+  render: (args) => {
+    const total = Math.max(1, Math.floor(args.capacityTotal ?? 16));
+    const [filled, setFilled] = useState(0);
+
+    // Re-clamp internal counter when total shrinks below it.
+    const clamped = Math.min(filled, total);
+    if (clamped !== filled) setFilled(clamped);
+
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 640 }}>
         <ClassCard
-          studioName="Faya Sports"
-          studioLogoSrc={faya}
-          level="Intermediário"
-          title="Beach Tennis"
-          startTime="09:00"
-          endTime="10:00"
-          duration="60 min"
-          instructor="Ana Paula"
-          capacityFilled={filled}
-          capacityTotal={16}
-          ctaLabel={filled >= 16 ? "Entrar na fila de espera" : "Fazer check-in"}
-          onCheckIn={() => setFilled((v) => Math.min(v + 1, 16))}
+          {...args}
+          capacityTotal={total}
+          capacityFilled={clamped}
+          ctaLabel={clamped >= total ? "Entrar na fila de espera" : "Fazer check-in"}
+          onCheckIn={() => setFilled((v) => Math.min(v + 1, total))}
         />
         <button
           type="button"
