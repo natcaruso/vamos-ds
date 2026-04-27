@@ -8,7 +8,7 @@ import {
   startOfWeek,
   subWeeks
 } from "date-fns";
-import { ptBR } from "date-fns/locale";
+import { ptBR } from "date-fns/locale/pt-BR";
 import { IconButton } from "../iconButton";
 import type { MiniCalendarProps } from "./types";
 import "./miniCalendar.css";
