@@ -19,6 +19,10 @@ export interface ClassCardProps {
   ctaLabel?: string;
   /** Label used when the class is full. Defaults to "Entrar na fila de espera". */
   waitlistLabel?: string;
+  /** Label used when the user is already checked in. Defaults to "Cancelar check-in". */
+  cancelLabel?: string;
+  /** True when the current user has already checked into this class. */
+  checkedIn?: boolean;
   onCheckIn?: () => void;
   className?: string;
 }

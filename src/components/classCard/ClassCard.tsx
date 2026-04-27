@@ -23,11 +23,17 @@ export function ClassCard({
   capacityTotal,
   ctaLabel = "Fazer check-in",
   waitlistLabel = "Entrar na fila de espera",
+  cancelLabel = "Cancelar check-in",
+  checkedIn = false,
   onCheckIn,
   className
 }: ClassCardProps) {
   const cls = ["vds-class-card", className].filter(Boolean).join(" ");
   const isFull = capacityFilled >= capacityTotal;
+
+  // Precedence: checked-in > full > default.
+  const ctaVariant = checkedIn ? "pink" : isFull ? "purple" : "green";
+  const ctaText    = checkedIn ? cancelLabel : isFull ? waitlistLabel : ctaLabel;
 
   return (
     <Card padding="lg" surface="default" radius="lg" className={cls}>
@@ -78,12 +84,12 @@ export function ClassCard({
       </div>
 
       <Button
-        variant={isFull ? "purple" : "green"}
+        variant={ctaVariant}
         size="3xl"
         fullWidth
         onClick={onCheckIn}
       >
-        {isFull ? waitlistLabel : ctaLabel}
+        {ctaText}
       </Button>
     </Card>
   );

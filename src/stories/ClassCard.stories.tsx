@@ -93,6 +93,19 @@ export const Variants: Story = {
         capacityFilled={16}
         capacityTotal={16}
       />
+      <ClassCard
+        studioName="Faya Sports"
+        studioLogoSrc={faya}
+        level="Intermediário"
+        title="Beach Tennis"
+        startTime="14:00"
+        endTime="15:00"
+        duration="60 min"
+        instructor="Pedro Augusto"
+        capacityFilled={9}
+        capacityTotal={16}
+        checkedIn
+      />
     </div>
   )
 };
