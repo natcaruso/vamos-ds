@@ -2,11 +2,11 @@
  * DotMeter — "vagas preenchidas" segmented capacity indicator.
  *
  * Brand spec: 6 px tall, 2 px gap, 2 px corner radius. Cells fill
- * left-to-right. Filled colour walks a three-step ladder:
- *   normal   — green       (filled ≤ midThreshold of total)
- *   mid      — yellow      (filled > midThreshold)
- *   critical — red         (vacancies ≤ criticalRemaining)
- * Empty cells stay a quiet gray.
+ * left-to-right. Each cell carries a zone (normal / mid / critical)
+ * derived from its index, midThreshold, and criticalRemaining — so the
+ * meter looks like a fixed gradient (green → yellow → red across the
+ * row) rather than swapping the whole row's colour at thresholds.
+ * Empty cells render gray.
  * ────────────────────────────────────────────────────────────────────── */
 
 :root {
@@ -35,6 +35,6 @@
   transition: background var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
-.vds-dot-meter[data-state="normal"]   .vds-dot-meter__cell[data-filled] { background: var(--dot-meter-fill-normal);   }
-.vds-dot-meter[data-state="mid"]      .vds-dot-meter__cell[data-filled] { background: var(--dot-meter-fill-mid);      }
-.vds-dot-meter[data-state="critical"] .vds-dot-meter__cell[data-filled] { background: var(--dot-meter-fill-critical); }
+.vds-dot-meter__cell[data-filled][data-zone="normal"]   { background: var(--dot-meter-fill-normal);   }
+.vds-dot-meter__cell[data-filled][data-zone="mid"]      { background: var(--dot-meter-fill-mid);      }
+.vds-dot-meter__cell[data-filled][data-zone="critical"] { background: var(--dot-meter-fill-critical); }

@@ -1,16 +1,18 @@
-import type { DotMeterProps, DotMeterState } from "./types";
+import type { DotMeterProps } from "./types";
 import "./dotMeter.css";
 
-function deriveState(
-  filled: number,
+type Zone = "normal" | "mid" | "critical";
+
+function zoneFor(
+  index: number,
   total: number,
   midThreshold: number,
   criticalRemaining: number
-): DotMeterState {
-  if (total <= 0 || filled <= 0) return "empty";
-  const remaining = total - filled;
-  if (remaining <= criticalRemaining) return "critical";
-  if (filled / total > midThreshold) return "mid";
+): Zone {
+  const nonCritical = Math.max(0, total - criticalRemaining);
+  const normalEnd = Math.floor(nonCritical * midThreshold);
+  if (index >= total - criticalRemaining) return "critical";
+  if (index >= normalEnd) return "mid";
   return "normal";
 }
 
@@ -24,7 +26,6 @@ export function DotMeter({
 }: DotMeterProps) {
   const safeTotal = Math.max(0, Math.floor(total));
   const safeFilled = Math.max(0, Math.min(Math.floor(filled), safeTotal));
-  const state = deriveState(safeFilled, safeTotal, midThreshold, criticalRemaining);
 
   return (
     <div
@@ -34,13 +35,13 @@ export function DotMeter({
       aria-valuemin={0}
       aria-valuemax={safeTotal}
       className={["vds-dot-meter", className].filter(Boolean).join(" ")}
-      data-state={state}
     >
       {Array.from({ length: safeTotal }).map((_, i) => (
         <span
           key={i}
           className="vds-dot-meter__cell"
           data-filled={i < safeFilled || undefined}
+          data-zone={zoneFor(i, safeTotal, midThreshold, criticalRemaining)}
           aria-hidden="true"
         />
       ))}

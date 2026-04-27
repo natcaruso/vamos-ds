@@ -15,4 +15,4 @@ export interface DotMeterProps {
   className?: string;
 }
 
-export type DotMeterState = "empty" | "normal" | "mid" | "critical";
+export type DotMeterZone = "normal" | "mid" | "critical";

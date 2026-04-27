@@ -100,8 +100,9 @@ export const Variants: Story = {
 
 export const Interactive: Story = {
   args: {
-    capacityTotal: 9,
-    capacityFilled: 4
+    capacityTotal: 20,
+    capacityFilled: 12,
+    levelColor: "gold"
   },
 
   render: (args) => {

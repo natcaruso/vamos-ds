@@ -26,11 +26,11 @@ export const States: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: 24, maxWidth: 480 }}>
       {[
-        { total: 16, filled: 0,  label: "Vazio" },
-        { total: 16, filled: 6,  label: "Normal (6/16, ≤ 50%)" },
-        { total: 16, filled: 10, label: "Mid (10/16, > 50%)" },
-        { total: 16, filled: 14, label: "Critical (14/16, 2 vagas)" },
-        { total: 16, filled: 16, label: "Lotado (16/16)" }
+        { total: 8,  filled: 0, label: "Vazio (0/8)" },
+        { total: 8,  filled: 3, label: "Só na zona normal (3/8)" },
+        { total: 8,  filled: 5, label: "Atravessou a metade (5/8)" },
+        { total: 8,  filled: 7, label: "Entrou na zona crítica (7/8)" },
+        { total: 8,  filled: 8, label: "Lotado (8/8)" }
       ].map((row) => (
         <div key={row.label}>
           <div style={{ font: "var(--fw-semibold) 13px var(--font-sans)", marginBottom: 8 }}>
