@@ -1,0 +1,39 @@
+/* ──────────────────────────────────────────────────────────────────────
+ * Card — generic surface container.
+ *
+ * Reads from --surface-* + --space-* + --radius-* via component tokens
+ * so the same primitive can host any product card (ClassCard, alerts,
+ * empty states, list rows, etc.).
+ * ────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --card-padding-none: 0;
+  --card-padding-sm:   var(--space-12);
+  --card-padding-md:   var(--space-16);
+  --card-padding-lg:   var(--space-24);
+  --card-padding-xl:   var(--space-32);
+
+  --card-radius-md:    var(--radius-8);
+  --card-radius-lg:    var(--radius-16);
+  --card-radius-xl:    var(--radius-24);
+}
+
+.vds-card {
+  box-sizing: border-box;
+}
+
+.vds-card--canvas  { background: var(--surface-canvas); }
+.vds-card--default { background: var(--surface-default); }
+.vds-card--subtle  { background: var(--surface-subtle); }
+.vds-card--strong  { background: var(--surface-strong); }
+.vds-card--warm    { background: var(--surface-warm); }
+
+.vds-card--padding-none { padding: var(--card-padding-none); }
+.vds-card--padding-sm   { padding: var(--card-padding-sm); }
+.vds-card--padding-md   { padding: var(--card-padding-md); }
+.vds-card--padding-lg   { padding: var(--card-padding-lg); }
+.vds-card--padding-xl   { padding: var(--card-padding-xl); }
+
+.vds-card--radius-md { border-radius: var(--card-radius-md); }
+.vds-card--radius-lg { border-radius: var(--card-radius-lg); }
+.vds-card--radius-xl { border-radius: var(--card-radius-xl); }

@@ -1,0 +1,80 @@
+/* ──────────────────────────────────────────────────────────────────────
+ * ClassCard — system-tier composition built from Card, Avatar, Tag,
+ * Icon, DotMeter, and Button. Layout-only CSS; every colour and size
+ * already comes from the underlying primitives' tokens.
+ * ────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --class-card-stack-gap:      var(--space-20);
+  --class-card-meta-gap:       var(--space-24);
+  --class-card-meta-item-gap:  var(--space-8);
+  --class-card-studio-gap:     var(--space-12);
+}
+
+.vds-class-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--class-card-stack-gap);
+}
+
+.vds-class-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--class-card-studio-gap);
+}
+
+.vds-class-card__studio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--class-card-studio-gap);
+}
+
+.vds-class-card__studio-name {
+  font: var(--fw-medium) var(--fs-body)/var(--lh-body) var(--font-sans);
+  color: var(--text-tertiary);
+}
+
+.vds-class-card__title {
+  margin: 0;
+  font: var(--fw-bold) var(--fs-h3)/var(--lh-h3) var(--font-display);
+  letter-spacing: var(--ls-h3);
+  color: var(--text-primary);
+}
+
+.vds-class-card__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--class-card-meta-gap);
+  font: var(--fw-medium) var(--fs-body)/var(--lh-body) var(--font-sans);
+  color: var(--text-tertiary);
+}
+
+.vds-class-card__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--class-card-meta-item-gap);
+}
+
+.vds-class-card__capacity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.vds-class-card__capacity-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.vds-class-card__capacity-label {
+  font: var(--fw-medium) var(--fs-body)/var(--lh-body) var(--font-sans);
+  color: var(--text-tertiary);
+}
+
+.vds-class-card__capacity-count {
+  font: var(--fw-bold) var(--fs-body-lg)/var(--lh-body-lg) var(--font-sans);
+  color: var(--text-primary);
+}
