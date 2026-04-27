@@ -30,11 +30,6 @@
 }
 
 .vds-mini-cal {
-  background: var(--mini-cal-bg);
-  border: var(--mini-cal-border-width) solid var(--mini-cal-border);
-  border-radius: var(--mini-cal-radius);
-  box-shadow: var(--mini-cal-shadow);
-  padding: var(--mini-cal-padding);
   display: flex;
   flex-direction: column;
   gap: var(--mini-cal-stack-gap);
