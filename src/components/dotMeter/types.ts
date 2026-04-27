@@ -2,12 +2,17 @@ export interface DotMeterProps {
   total: number;
   filled: number;
   /**
-   * Ratio (0..1) at which the meter switches the filled cells from the
-   * normal color to the warning color. Defaults to 0.875 (≥ 14/16).
+   * Ratio (0..1) above which the meter switches from the normal colour
+   * to the mid (yellow) warning. Defaults to 0.5.
    */
-  nearFullThreshold?: number;
+  midThreshold?: number;
+  /**
+   * When (total − filled) ≤ this number, the meter flips to the
+   * critical (red) state. Defaults to 2.
+   */
+  criticalRemaining?: number;
   ariaLabel?: string;
   className?: string;
 }
 
-export type DotMeterState = "empty" | "normal" | "near-full" | "full";
+export type DotMeterState = "empty" | "normal" | "mid" | "critical";

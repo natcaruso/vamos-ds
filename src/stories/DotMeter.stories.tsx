@@ -8,7 +8,8 @@ const meta: Meta<typeof DotMeter> = {
   argTypes: {
     total:             { control: { type: "number", min: 1, max: 32 } },
     filled:            { control: { type: "number", min: 0, max: 32 } },
-    nearFullThreshold: { control: { type: "number", min: 0, max: 1, step: 0.05 } }
+    midThreshold:      { control: { type: "number", min: 0, max: 1, step: 0.05 } },
+    criticalRemaining: { control: { type: "number", min: 0, max: 16 } }
   },
   args: {
     total: 16,
@@ -26,8 +27,9 @@ export const States: Story = {
     <div style={{ display: "flex", flexDirection: "column", gap: 24, maxWidth: 480 }}>
       {[
         { total: 16, filled: 0,  label: "Vazio" },
-        { total: 16, filled: 6,  label: "Normal (6/16)" },
-        { total: 16, filled: 14, label: "Quase lotado (14/16)" },
+        { total: 16, filled: 6,  label: "Normal (6/16, ≤ 50%)" },
+        { total: 16, filled: 10, label: "Mid (10/16, > 50%)" },
+        { total: 16, filled: 14, label: "Critical (14/16, 2 vagas)" },
         { total: 16, filled: 16, label: "Lotado (16/16)" }
       ].map((row) => (
         <div key={row.label}>

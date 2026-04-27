@@ -1,22 +1,30 @@
 import type { DotMeterProps, DotMeterState } from "./types";
 import "./dotMeter.css";
 
-function deriveState(filled: number, total: number, nearFullThreshold: number): DotMeterState {
+function deriveState(
+  filled: number,
+  total: number,
+  midThreshold: number,
+  criticalRemaining: number
+): DotMeterState {
   if (total <= 0 || filled <= 0) return "empty";
-  if (filled >= total) return "full";
-  return filled / total >= nearFullThreshold ? "near-full" : "normal";
+  const remaining = total - filled;
+  if (remaining <= criticalRemaining) return "critical";
+  if (filled / total > midThreshold) return "mid";
+  return "normal";
 }
 
 export function DotMeter({
   total,
   filled,
-  nearFullThreshold = 0.875,
+  midThreshold = 0.5,
+  criticalRemaining = 2,
   ariaLabel = "Vagas preenchidas",
   className
 }: DotMeterProps) {
   const safeTotal = Math.max(0, Math.floor(total));
   const safeFilled = Math.max(0, Math.min(Math.floor(filled), safeTotal));
-  const state = deriveState(safeFilled, safeTotal, nearFullThreshold);
+  const state = deriveState(safeFilled, safeTotal, midThreshold, criticalRemaining);
 
   return (
     <div
