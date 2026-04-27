@@ -29,12 +29,17 @@
   --mini-cal-day-radius:          var(--radius-16);
   --mini-cal-day-stack-gap:       var(--space-4);
 
-  --mini-cal-day-bg:              var(--surface-soft);
+  /* Today + future, unselected → warm (salmão) */
+  --mini-cal-day-bg:              var(--surface-warm);
   --mini-cal-day-bg-hover:        var(--surface-strong);
-  --mini-cal-day-bg-highlighted:  var(--surface-warm);
+  /* Past days → soft gray */
+  --mini-cal-day-bg-past:         var(--surface-soft);
+  /* Selected, any day → brand blue */
   --mini-cal-day-bg-selected:     var(--action-blue-bg);
+
   --mini-cal-day-color:           var(--text-primary);
   --mini-cal-day-color-muted:     var(--text-tertiary);
+  --mini-cal-day-color-past:      var(--text-tertiary);
   --mini-cal-day-color-selected:  var(--action-blue-fg);
 
   --mini-cal-nav-size:            var(--control-h-md);
@@ -116,8 +121,12 @@
     color var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
-.vds-mini-cal__day[data-highlighted] {
-  background: var(--mini-cal-day-bg-highlighted);
+.vds-mini-cal__day[data-past] {
+  background: var(--mini-cal-day-bg-past);
+}
+
+.vds-mini-cal__day[data-past] .vds-mini-cal__day-number {
+  color: var(--mini-cal-day-color-past);
 }
 
 .vds-mini-cal__day[data-selected] {

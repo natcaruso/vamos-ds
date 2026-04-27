@@ -13,8 +13,6 @@ export interface MiniCalendarProps {
   onWeekChange?: (weekStart: Date) => void;
   /** Day index where the visible week starts. 0 = Sunday, 1 = Monday. */
   weekStartsOn?: DayIndex;
-  /** Dates rendered with the warm highlight surface (e.g. days with events). */
-  highlightedDates?: Date[];
   /** Toggle the title + count header. */
   showHeader?: boolean;
   /** Toggle the prev / next floating buttons. */

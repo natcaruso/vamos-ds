@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { MiniCalendar } from "../components/miniCalendar";
 
@@ -31,34 +31,26 @@ function plus(days: number): Date {
 
 export const Default: Story = {};
 
-export const WithHighlightedDays: Story = {
-  args: {
-    itemCount: 12
-  },
-  render: (args) => {
-    const highlightedDates = useMemo(() => [plus(1), plus(2), plus(3)], []);
-    return <MiniCalendar {...args} highlightedDates={highlightedDates} />;
-  }
-};
-
 export const Controlled: Story = {
   render: (args) => {
     const [date, setDate] = useState<Date>(new Date());
-    const highlightedDates = useMemo(() => [plus(1), plus(2)], []);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-        <MiniCalendar
-          {...args}
-          value={date}
-          onChange={setDate}
-          highlightedDates={highlightedDates}
-        />
+        <MiniCalendar {...args} value={date} onChange={setDate} />
         <div style={{ font: "var(--fw-medium) 13px var(--font-sans)", color: "var(--text-tertiary)" }}>
           Selecionado: <code>{date.toISOString().slice(0, 10)}</code>
         </div>
       </div>
     );
   }
+};
+
+export const PastDaySelected: Story = {
+  render: (args) => <MiniCalendar {...args} defaultValue={plus(-3)} />
+};
+
+export const FutureDaySelected: Story = {
+  render: (args) => <MiniCalendar {...args} defaultValue={plus(2)} />
 };
 
 export const WeekStartsOnMonday: Story = {
