@@ -22,10 +22,12 @@ export function ClassCard({
   capacityFilled,
   capacityTotal,
   ctaLabel = "Fazer check-in",
+  waitlistLabel = "Entrar na fila de espera",
   onCheckIn,
   className
 }: ClassCardProps) {
   const cls = ["vds-class-card", className].filter(Boolean).join(" ");
+  const isFull = capacityFilled >= capacityTotal;
 
   return (
     <Card padding="lg" surface="default" radius="lg" className={cls}>
@@ -76,13 +78,12 @@ export function ClassCard({
       </div>
 
       <Button
-        variant="green"
+        variant={isFull ? "purple" : "green"}
         size="3xl"
         fullWidth
-        disabled={capacityFilled >= capacityTotal}
         onClick={onCheckIn}
       >
-        {ctaLabel}
+        {isFull ? waitlistLabel : ctaLabel}
       </Button>
     </Card>
   );

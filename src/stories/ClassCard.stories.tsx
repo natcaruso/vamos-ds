@@ -92,7 +92,6 @@ export const Variants: Story = {
         instructor="Mariana"
         capacityFilled={16}
         capacityTotal={16}
-        ctaLabel="Entrar na fila de espera"
       />
     </div>
   )

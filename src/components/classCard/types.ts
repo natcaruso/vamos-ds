@@ -17,6 +17,8 @@ export interface ClassCardProps {
   capacityFilled: number;
   capacityTotal: number;
   ctaLabel?: string;
+  /** Label used when the class is full. Defaults to "Entrar na fila de espera". */
+  waitlistLabel?: string;
   onCheckIn?: () => void;
   className?: string;
 }
