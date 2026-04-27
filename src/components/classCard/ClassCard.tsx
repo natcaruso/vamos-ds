@@ -75,7 +75,13 @@ export function ClassCard({
         <DotMeter total={capacityTotal} filled={capacityFilled} />
       </div>
 
-      <Button variant="green" size="3xl" fullWidth onClick={onCheckIn}>
+      <Button
+        variant="green"
+        size="3xl"
+        fullWidth
+        disabled={capacityFilled >= capacityTotal}
+        onClick={onCheckIn}
+      >
         {ctaLabel}
       </Button>
     </Card>
