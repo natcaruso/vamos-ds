@@ -1,0 +1,118 @@
+/* ──────────────────────────────────────────────────────────────────────
+ * MiniCalendar — single-week date picker.
+ *
+ * Card-shaped surface (canvas + subtle border + shadow-card), header
+ * with prev/next IconButtons, day-of-week labels row, and a row of
+ * tappable day cells. Selected day = brand-blue circle; today = blue
+ * label only; hover = soft surface.
+ * ────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --mini-cal-bg:                  var(--surface-canvas);
+  --mini-cal-border:              var(--border-subtle);
+  --mini-cal-border-width:        var(--border-width-thin);
+  --mini-cal-radius:              var(--radius-16);
+  --mini-cal-shadow:              var(--shadow-card);
+  --mini-cal-padding:             var(--space-16);
+  --mini-cal-stack-gap:           var(--space-12);
+  --mini-cal-row-gap:             var(--space-4);
+
+  --mini-cal-title-color:         var(--text-primary);
+  --mini-cal-dow-color:           var(--text-tertiary);
+
+  --mini-cal-day-size:            var(--control-h-md);
+  --mini-cal-day-radius:          var(--radius-full);
+  --mini-cal-day-color:           var(--text-primary);
+  --mini-cal-day-bg-hover:        var(--surface-soft);
+  --mini-cal-day-bg-selected:     var(--action-blue-bg);
+  --mini-cal-day-color-selected:  var(--action-blue-fg);
+  --mini-cal-day-color-today:     var(--action-blue-bg);
+}
+
+.vds-mini-cal {
+  background: var(--mini-cal-bg);
+  border: var(--mini-cal-border-width) solid var(--mini-cal-border);
+  border-radius: var(--mini-cal-radius);
+  box-shadow: var(--mini-cal-shadow);
+  padding: var(--mini-cal-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mini-cal-stack-gap);
+  font-family: var(--font-sans);
+  width: fit-content;
+}
+
+.vds-mini-cal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.vds-mini-cal__title {
+  margin: 0;
+  font: var(--fw-semibold) var(--fs-body)/var(--lh-body) var(--font-sans);
+  color: var(--mini-cal-title-color);
+  text-transform: capitalize;
+}
+
+.vds-mini-cal__dow {
+  display: grid;
+  grid-template-columns: repeat(7, var(--mini-cal-day-size));
+  gap: var(--mini-cal-row-gap);
+  text-align: center;
+}
+
+.vds-mini-cal__dow-cell {
+  font: var(--fw-medium) var(--fs-caption)/var(--lh-caption) var(--font-sans);
+  color: var(--mini-cal-dow-color);
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.vds-mini-cal__days {
+  display: grid;
+  grid-template-columns: repeat(7, var(--mini-cal-day-size));
+  gap: var(--mini-cal-row-gap);
+}
+
+.vds-mini-cal__day {
+  width: var(--mini-cal-day-size);
+  height: var(--mini-cal-day-size);
+  border-radius: var(--mini-cal-day-radius);
+  border: 0;
+  background: transparent;
+  color: var(--mini-cal-day-color);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: var(--fw-medium) var(--fs-body-sm)/1 var(--font-sans);
+  transition:
+    background var(--motion-duration-fast) var(--motion-easing-standard),
+    color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.vds-mini-cal__day:hover {
+  background: var(--mini-cal-day-bg-hover);
+}
+
+.vds-mini-cal__day:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.vds-mini-cal__day[data-today]:not([data-selected]) {
+  color: var(--mini-cal-day-color-today);
+  font-weight: var(--fw-bold);
+}
+
+.vds-mini-cal__day[data-selected] {
+  background: var(--mini-cal-day-bg-selected);
+  color: var(--mini-cal-day-color-selected);
+  font-weight: var(--fw-bold);
+}
+
+.vds-mini-cal__day[data-selected]:hover {
+  background: var(--mini-cal-day-bg-selected);
+}

@@ -40,6 +40,7 @@ const preview: Preview = {
             "Card",
             "Checkbox",
             "Dot meter",
+            "Mini calendar",
             "Radio",
             "Tag",
             "Divider",
