@@ -1,0 +1,130 @@
+/* ──────────────────────────────────────────────────────────────────────
+ * Avatar — image / initials / icon fallback.
+ *
+ * Composition: outer `.vds-avatar` controls sizing and hosts an
+ * absolutely-positioned status dot. Inner `.vds-avatar__shape` clips
+ * the image / initials with the chosen border-radius (circle | square).
+ *
+ * Brand colour for initials is wired in via custom properties at the
+ * React layer (--avatar-active-bg / -fg) → action-{color}-* tokens.
+ * ────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Sizes ─── */
+  --avatar-size-xs:   var(--space-24);
+  --avatar-size-sm:   var(--space-32);
+  --avatar-size-md:   var(--space-40);
+  --avatar-size-lg:   var(--space-48);
+  --avatar-size-xl:   var(--space-64);
+  --avatar-size-2xl:  var(--space-80);
+
+  /* Default surfaces ─── */
+  --avatar-bg:                  var(--surface-soft);
+  --avatar-fg:                  var(--text-primary);
+  --avatar-radius-circle:       var(--radius-full);
+  --avatar-radius-square:       var(--radius-16);
+
+  /* Status dot ─── */
+  --avatar-status-size-xs:      var(--space-6);
+  --avatar-status-size-sm:      var(--space-8);
+  --avatar-status-size-md:      var(--space-12);
+  --avatar-status-size-lg:      var(--space-12);
+  --avatar-status-size-xl:      var(--space-16);
+  --avatar-status-size-2xl:     var(--space-20);
+  --avatar-status-ring-width:   var(--border-width-default);
+  --avatar-status-ring-color:   var(--surface-canvas);
+
+  --avatar-status-online-bg:    var(--feedback-positive-fg);
+  --avatar-status-offline-bg:   var(--vamos-gray-7);
+  --avatar-status-busy-bg:      var(--feedback-critical-fg);
+  --avatar-status-away-bg:      var(--feedback-warning-fg);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Container
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-avatar {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  user-select: none;
+}
+
+.vds-avatar--xs   { width: var(--avatar-size-xs);  height: var(--avatar-size-xs);  }
+.vds-avatar--sm   { width: var(--avatar-size-sm);  height: var(--avatar-size-sm);  }
+.vds-avatar--md   { width: var(--avatar-size-md);  height: var(--avatar-size-md);  }
+.vds-avatar--lg   { width: var(--avatar-size-lg);  height: var(--avatar-size-lg);  }
+.vds-avatar--xl   { width: var(--avatar-size-xl);  height: var(--avatar-size-xl);  }
+.vds-avatar--2xl  { width: var(--avatar-size-2xl); height: var(--avatar-size-2xl); }
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Shape (clips image + initials)
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-avatar__shape {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--avatar-active-bg, var(--avatar-bg));
+  color: var(--avatar-active-fg, var(--avatar-fg));
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.vds-avatar--circle .vds-avatar__shape { border-radius: var(--avatar-radius-circle); }
+.vds-avatar--square .vds-avatar__shape { border-radius: var(--avatar-radius-square); }
+
+/* Per-size font for initials. The icon fallback drives its own size
+   via the Icon component. */
+.vds-avatar--xs  .vds-avatar__shape { font-size: var(--fs-caption);  }
+.vds-avatar--sm  .vds-avatar__shape { font-size: var(--fs-body-sm);  }
+.vds-avatar--md  .vds-avatar__shape { font-size: var(--fs-body-sm);  }
+.vds-avatar--lg  .vds-avatar__shape { font-size: var(--fs-body);     }
+.vds-avatar--xl  .vds-avatar__shape { font-size: var(--fs-h4);       }
+.vds-avatar--2xl .vds-avatar__shape { font-size: var(--fs-h3);       }
+
+.vds-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.vds-avatar__fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Status indicator
+ * ────────────────────────────────────────────────────────────────────── */
+
+.vds-avatar__status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: var(--radius-full);
+  border: var(--avatar-status-ring-width) solid var(--avatar-status-ring-color);
+  box-sizing: border-box;
+}
+
+.vds-avatar--xs  .vds-avatar__status { width: var(--avatar-status-size-xs);  height: var(--avatar-status-size-xs);  }
+.vds-avatar--sm  .vds-avatar__status { width: var(--avatar-status-size-sm);  height: var(--avatar-status-size-sm);  }
+.vds-avatar--md  .vds-avatar__status { width: var(--avatar-status-size-md);  height: var(--avatar-status-size-md);  }
+.vds-avatar--lg  .vds-avatar__status { width: var(--avatar-status-size-lg);  height: var(--avatar-status-size-lg);  }
+.vds-avatar--xl  .vds-avatar__status { width: var(--avatar-status-size-xl);  height: var(--avatar-status-size-xl);  }
+.vds-avatar--2xl .vds-avatar__status { width: var(--avatar-status-size-2xl); height: var(--avatar-status-size-2xl); }
+
+.vds-avatar__status--online  { background: var(--avatar-status-online-bg);  }
+.vds-avatar__status--offline { background: var(--avatar-status-offline-bg); }
+.vds-avatar__status--busy    { background: var(--avatar-status-busy-bg);    }
+.vds-avatar__status--away    { background: var(--avatar-status-away-bg);    }
