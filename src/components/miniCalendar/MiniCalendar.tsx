@@ -4,7 +4,9 @@ import {
   eachDayOfInterval,
   endOfWeek,
   format,
+  isBefore,
   isSameDay,
+  startOfDay,
   startOfWeek,
   subWeeks
 } from "date-fns";
@@ -29,7 +31,6 @@ export function MiniCalendar({
   onChange,
   onWeekChange,
   weekStartsOn = 0,
-  highlightedDates = [],
   showHeader = true,
   showNavigation = true,
   itemCount,
@@ -40,6 +41,7 @@ export function MiniCalendar({
   className
 }: MiniCalendarProps) {
   const today = new Date();
+  const todayStart = startOfDay(today);
   const isControlled = value !== undefined;
   const [uncontrolled, setUncontrolled] = useState<Date>(defaultValue ?? today);
   const selected = isControlled ? value! : uncontrolled;
@@ -74,9 +76,6 @@ export function MiniCalendar({
   const titleText = isSelectedToday
     ? `Hoje, ${weekday}`
     : `${weekday.charAt(0).toUpperCase() + weekday.slice(1)}, ${format(selected, "d 'de' MMMM", { locale })}`;
-
-  const isHighlighted = (d: Date) =>
-    highlightedDates.some((h) => isSameDay(h, d));
 
   return (
     <div
@@ -124,15 +123,15 @@ export function MiniCalendar({
         <div className="vds-mini-cal__strip">
           {days.map((d) => {
             const isSelected = isSameDay(d, selected);
-            const highlighted = isHighlighted(d);
             const isToday = isSameDay(d, today);
+            const isPast = isBefore(startOfDay(d), todayStart);
             return (
               <button
                 key={d.toISOString()}
                 type="button"
                 className="vds-mini-cal__day"
                 data-selected={isSelected || undefined}
-                data-highlighted={highlighted && !isSelected ? true : undefined}
+                data-past={isPast && !isSelected ? true : undefined}
                 data-today={isToday || undefined}
                 aria-pressed={isSelected}
                 aria-current={isToday ? "date" : undefined}
