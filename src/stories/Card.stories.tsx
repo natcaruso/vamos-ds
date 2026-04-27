@@ -81,7 +81,7 @@ export const Radii: Story = {
 
 export const Polymorphic: Story = {
   render: () => (
-    <Card as="a" href="#example" surface="default" padding="lg" radius="lg">
+    <Card as="section" surface="default" padding="lg" radius="lg" aria-label="Sample card">
       {sample}
     </Card>
   )
